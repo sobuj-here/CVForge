@@ -2,7 +2,7 @@ import os
 import subprocess
 import glob
 
-CV_DIR = r"c:\Users\SOBUJ\Documents\CV"
+CV_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 def check_all_js():
     js_files = glob.glob(os.path.join(CV_DIR, "assets", "js", "**", "*.js"), recursive=True)

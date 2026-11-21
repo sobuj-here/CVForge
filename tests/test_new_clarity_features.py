@@ -15,7 +15,7 @@ import os
 import re
 import sys
 
-CV_DIR = r"c:\Users\SOBUJ\Documents\CV"
+CV_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 def read_file(rel_path):
     with open(os.path.join(CV_DIR, rel_path), "r", encoding="utf-8") as f:

@@ -3,7 +3,7 @@ import re
 import sys
 import json
 
-CV_DIR = r"c:\Users\SOBUJ\Documents\CV"
+CV_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 def test_references_enhancement():
     print("Testing 1: References enhancement (Removed availability sentence completely)...")
