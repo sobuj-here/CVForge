@@ -52,23 +52,8 @@ has_docx_bad = "available upon request" in docx_c.lower()
 print(f"PDF exporter clean of 'available upon request': {not has_pdf_bad}")
 print(f"DOCX exporter clean of 'available upon request': {not has_docx_bad}")
 
-print("\n--- 4. Checking Android APK ---")
-apk_path = "releases/CVForge-v1.0.0.apk"
-if os.path.exists(apk_path):
-    size_mb = os.path.getsize(apk_path) / (1024 * 1024)
-    print(f"APK exists: {apk_path} ({size_mb:.2f} MB)")
-    with zipfile.ZipFile(apk_path) as z:
-        names = z.namelist()
-        print(f"Total files in APK: {len(names)}")
-        print(f"Has AndroidManifest.xml: {'AndroidManifest.xml' in names}")
-        print(f"Has classes.dex: {any(n.endswith('.dex') for n in names)}")
-        print(f"Has web index.html: {'assets/index.html' in names}")
-        print(f"Has styles.css: {'assets/assets/css/styles.css' in names}")
-else:
-    print("APK MISSING!")
-
-print("\n--- 5. Checking Web Application Files ---")
-for f in ["index.html", "manifest.json", "favicon.ico", "assets/icons/icon-512.png", "assets/icons/icon-192.png"]:
+print("\n--- 4. Checking Web Application Files ---")
+for f in ["index.html", "manifest.json", "favicon.ico", "assets/js/bundle.js", "assets/icons/icon-512.png", "assets/icons/icon-192.png"]:
     print(f"{f}: {'FOUND' if os.path.exists(f) else 'MISSING'}")
 
 print("\n--- VERIFICATION PASSED ---")

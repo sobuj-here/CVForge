@@ -29,13 +29,6 @@ export function downloadPdf(elementId = 'cv-preview-content', filename = 'CVForg
       pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
 
-    if (window.AndroidBridge && typeof window.AndroidBridge.saveAndShareFile === 'function') {
-      return window.html2pdf().set(opt).from(element).outputPdf('datauristring').then(pdfUri => {
-        const base64 = pdfUri.split(',')[1];
-        window.AndroidBridge.saveAndShareFile(base64, filename, 'application/pdf');
-      });
-    }
-
     return window.html2pdf().set(opt).from(element).save();
   } else {
     window.print();

@@ -275,10 +275,10 @@ class CVForgeApp {
   }
 }
 
-// Expose Android Native Bridge & Mobile Navigation Handler
-window.CVForgeMobile = {
-  handleBack: () => {
-    // Check if any modal is open
+// Mobile navigation and keyboard modal dismiss handler
+window.CVForgeNavigation = {
+  handleDismiss: () => {
+    // Check if any modal is open and close it
     const modalIds = [
       'template-gallery-modal',
       'export-verification-modal',
@@ -295,7 +295,7 @@ window.CVForgeMobile = {
       const el = document.getElementById(id);
       if (el) {
         el.remove();
-        return true; // Handled modal close
+        return true;
       }
     }
 
@@ -309,9 +309,16 @@ window.CVForgeMobile = {
       }
     }
 
-    return false; // Allow native Android exit
+    return false;
   }
 };
+
+// Global escape key listener to close modals in web browsers
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    window.CVForgeNavigation.handleDismiss();
+  }
+});
 
 // Bootstrap application on DOM ready
 function initCVForge() {

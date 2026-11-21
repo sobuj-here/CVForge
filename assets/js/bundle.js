@@ -325,10 +325,10 @@ class CVForgeApp {
   }
 }
 
-// Expose Android Native Bridge & Mobile Navigation Handler
-window.CVForgeMobile = {
-  handleBack: () => {
-    // Check if any modal is open
+// Mobile navigation and keyboard modal dismiss handler
+window.CVForgeNavigation = {
+  handleDismiss: () => {
+    // Check if any modal is open and close it
     const modalIds = [
       'template-gallery-modal',
       'export-verification-modal',
@@ -345,7 +345,7 @@ window.CVForgeMobile = {
       const el = document.getElementById(id);
       if (el) {
         el.remove();
-        return true; // Handled modal close
+        return true;
       }
     }
 
@@ -359,9 +359,16 @@ window.CVForgeMobile = {
       }
     }
 
-    return false; // Allow native Android exit
+    return false;
   }
 };
+
+// Global escape key listener to close modals in web browsers
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    window.CVForgeNavigation.handleDismiss();
+  }
+});
 
 // Bootstrap application on DOM ready
 function initCVForge() {
@@ -6452,18 +6459,6 @@ async function downloadDocx(profile, filename = 'CVForge_Resume.docx') {
   }
 
   const doc = buildDocxDocument(profile, window.docx);
-
-  // Android Native App Bridge
-  if (window.AndroidBridge && typeof window.AndroidBridge.saveAndShareFile === 'function') {
-    const base64 = await window.docx.Packer.toBase64String(doc);
-    window.AndroidBridge.saveAndShareFile(
-      base64,
-      filename,
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    );
-    return;
-  }
-
   const blob = await window.docx.Packer.toBlob(doc);
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -6472,7 +6467,7 @@ async function downloadDocx(profile, filename = 'CVForge_Resume.docx') {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 
@@ -6556,13 +6551,6 @@ function downloadPdf(elementId = 'cv-preview-content', filename = 'CVForge_Resum
       },
       pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
-
-    if (window.AndroidBridge && typeof window.AndroidBridge.saveAndShareFile === 'function') {
-      return window.html2pdf().set(opt).from(element).outputPdf('datauristring').then(pdfUri => {
-        const base64 = pdfUri.split(',')[1];
-        window.AndroidBridge.saveAndShareFile(base64, filename, 'application/pdf');
-      });
-    }
 
     return window.html2pdf().set(opt).from(element).save();
   } else {

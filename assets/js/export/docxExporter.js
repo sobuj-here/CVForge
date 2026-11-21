@@ -1093,18 +1093,6 @@ export async function downloadDocx(profile, filename = 'CVForge_Resume.docx') {
   }
 
   const doc = buildDocxDocument(profile, window.docx);
-
-  // Android Native App Bridge
-  if (window.AndroidBridge && typeof window.AndroidBridge.saveAndShareFile === 'function') {
-    const base64 = await window.docx.Packer.toBase64String(doc);
-    window.AndroidBridge.saveAndShareFile(
-      base64,
-      filename,
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-    );
-    return;
-  }
-
   const blob = await window.docx.Packer.toBlob(doc);
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -1113,5 +1101,5 @@ export async function downloadDocx(profile, filename = 'CVForge_Resume.docx') {
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
