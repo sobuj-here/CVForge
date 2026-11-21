@@ -47,12 +47,12 @@ export function renderCustomizeBar(containerId = 'customize-bar-container') {
       
       <!-- Group 1: Template Selection (Gallery + Dropdown) -->
       <div class="flex items-center gap-2">
-        <button type="button" id="btn-open-template-gallery" class="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-lg shadow-xs text-xs flex items-center gap-1.5 transition active:scale-95" title="Browse visual cards for all 10 distinct CV formats">
+        <button type="button" id="btn-open-template-gallery" class="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-lg shadow-xs text-xs flex items-center gap-1.5 transition active:scale-95" title="Browse all CV templates">
           <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
           <span>Template Gallery</span>
         </button>
 
-        <select id="sel-format" class="font-bold text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-2.5 py-1.5 focus:ring-2 focus:ring-blue-500 shadow-xs max-w-[240px] truncate" title="Select CV Format">
+        <select id="sel-format" class="font-bold text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-2.5 py-1.5 focus:ring-2 focus:ring-blue-500 shadow-xs max-w-[240px] truncate" title="Select Template">
           ${FORMAT_CATEGORIES.map(cat => {
             const catTemplates = Object.values(TEMPLATES).filter(t => t.formatCategory === cat.id);
             return `
@@ -72,7 +72,7 @@ export function renderCustomizeBar(containerId = 'customize-bar-container') {
       <div class="flex flex-wrap items-center gap-2">
         
         <!-- Theme Picker -->
-        <div class="flex items-center gap-1" title="Visual Workspace Theme">
+        <div class="flex items-center gap-1" title="Theme">
           <span class="text-slate-500 dark:text-slate-400 font-semibold text-[11px]">Theme:</span>
           <select id="sel-theme" class="rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-2 py-1 text-xs font-semibold">
             ${THEMES.map(th => `
@@ -82,7 +82,7 @@ export function renderCustomizeBar(containerId = 'customize-bar-container') {
         </div>
 
         <!-- Font Family -->
-        <div class="flex items-center gap-1 border-l border-slate-200 dark:border-slate-700 pl-2" title="CV Font Family">
+        <div class="flex items-center gap-1 border-l border-slate-200 dark:border-slate-700 pl-2" title="Font">
           <span class="text-slate-500 dark:text-slate-400 font-semibold text-[11px]">Font:</span>
           <select id="sel-font" class="rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-2 py-1 text-xs font-medium">
             <optgroup label="Modern Sans-Serif">
@@ -117,19 +117,19 @@ export function renderCustomizeBar(containerId = 'customize-bar-container') {
         </div>
 
         <!-- Point-Based Font Sizing Trigger (pt) -->
-        <button type="button" id="btn-open-typography-modal" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition flex items-center gap-1.5 shadow-xs" title="Customize independent point sizes (pt) for Name, Headings, and Body">
+        <button type="button" id="btn-open-typography-modal" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition flex items-center gap-1.5 shadow-xs" title="Font Sizes">
           <i data-lucide="type" class="w-3.5 h-3.5 text-blue-600"></i>
           <span>Font Size: <strong class="text-blue-600">${fontSizes.body || 10}pt</strong></span>
         </button>
 
         <!-- Millimeter-Based Margin Controls Trigger (mm) -->
-        <button type="button" id="btn-open-margins-modal" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition flex items-center gap-1.5 shadow-xs" title="Customize Top, Bottom, Left, and Right margins in millimeters">
+        <button type="button" id="btn-open-margins-modal" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition flex items-center gap-1.5 shadow-xs" title="Page Margins">
           <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-blue-600"></i>
           <span>Margins: <strong class="text-blue-600">${marginsCustom.top || 15}mm</strong></span>
         </button>
 
         <!-- Palette Swatches -->
-        <div class="flex items-center gap-1 border-l border-slate-200 dark:border-slate-700 pl-2" title="Primary Accent Color">
+        <div class="flex items-center gap-1 border-l border-slate-200 dark:border-slate-700 pl-2" title="Accent Color">
           <span class="text-slate-500 dark:text-slate-400 font-semibold text-[11px]">Color:</span>
           <div class="flex items-center gap-1">
             ${COLOR_PALETTES.map(col => `
@@ -142,9 +142,9 @@ export function renderCustomizeBar(containerId = 'customize-bar-container') {
         <!-- Spacing Dropdown -->
         <div class="flex items-center gap-1.5 border-l border-slate-200 dark:border-slate-700 pl-2">
           <select id="sel-spacing" class="rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-2 py-1 text-[11px]" title="Line Spacing">
-            <option value="compact" ${settings.spacing === 'compact' ? 'selected' : ''}>Compact Spacing</option>
-            <option value="normal" ${settings.spacing === 'normal' ? 'selected' : ''}>Normal Spacing</option>
-            <option value="relaxed" ${settings.spacing === 'relaxed' ? 'selected' : ''}>Relaxed Spacing</option>
+            <option value="compact" ${settings.spacing === 'compact' ? 'selected' : ''}>Compact</option>
+            <option value="normal" ${settings.spacing === 'normal' ? 'selected' : ''}>Normal</option>
+            <option value="relaxed" ${settings.spacing === 'relaxed' ? 'selected' : ''}>Relaxed</option>
           </select>
         </div>
 
@@ -154,7 +154,7 @@ export function renderCustomizeBar(containerId = 'customize-bar-container') {
       <div class="flex items-center gap-2">
         
         <!-- Paper Size Toggle (A4 vs Letter) -->
-        <div class="inline-flex rounded-lg border border-slate-300 dark:border-slate-700 overflow-hidden bg-slate-50 dark:bg-slate-800 p-0.5" title="Page Dimensions">
+        <div class="inline-flex rounded-lg border border-slate-300 dark:border-slate-700 overflow-hidden bg-slate-50 dark:bg-slate-800 p-0.5" title="Paper Size">
           <button type="button" id="btn-paper-letter" class="px-2.5 py-1 text-[11px] font-bold rounded ${settings.paperSize === 'letter' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-700 dark:text-slate-300 hover:text-blue-600'}">
             US Letter
           </button>
@@ -165,13 +165,13 @@ export function renderCustomizeBar(containerId = 'customize-bar-container') {
 
         <!-- Photo Controls: Show, Size, Shape, Upload -->
         <div class="flex items-center gap-1.5 border-l border-slate-200 dark:border-slate-700 pl-2">
-          <label class="flex items-center gap-1 text-[11px] font-semibold text-slate-700 dark:text-slate-300 cursor-pointer" title="Toggle candidate photograph">
+          <label class="flex items-center gap-1 text-[11px] font-semibold text-slate-700 dark:text-slate-300 cursor-pointer" title="Toggle Photo">
             <input type="checkbox" id="chk-show-photo" ${settings.showPhoto ? 'checked' : ''} class="rounded text-blue-600" />
             <span>Photo</span>
           </label>
 
           ${settings.showPhoto ? `
-            <select id="sel-photo-size" class="rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-[10px] text-slate-700 dark:text-slate-200 px-1.5 py-0.5" title="Photo Dimensions">
+            <select id="sel-photo-size" class="rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-[10px] text-slate-700 dark:text-slate-200 px-1.5 py-0.5" title="Photo Size">
               <option value="small" ${settings.photoSize === 'small' ? 'selected' : ''}>Small (72px)</option>
               <option value="medium" ${settings.photoSize === 'medium' || !settings.photoSize ? 'selected' : ''}>Medium (96px)</option>
               <option value="large" ${settings.photoSize === 'large' ? 'selected' : ''}>Large (120px)</option>
@@ -184,7 +184,7 @@ export function renderCustomizeBar(containerId = 'customize-bar-container') {
           ` : ''}
 
           <input type="file" id="inp-photo-file" class="hidden" accept="image/*" />
-          <button type="button" id="btn-trigger-photo-upload" class="p-1 text-slate-500 hover:text-blue-600 dark:hover:text-blue-400" title="Upload/Change Photo">
+          <button type="button" id="btn-trigger-photo-upload" class="p-1 text-slate-500 hover:text-blue-600 dark:hover:text-blue-400" title="Upload Photo">
             <i data-lucide="image" class="w-3.5 h-3.5"></i>
           </button>
         </div>
@@ -198,7 +198,7 @@ export function renderCustomizeBar(containerId = 'customize-bar-container') {
           <button type="button" id="btn-zoom-in" class="p-1 text-slate-500 hover:text-slate-900 dark:hover:text-white" title="Zoom In (+)">
             <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
           </button>
-          <button type="button" id="btn-zoom-reset" class="text-[10px] text-blue-600 dark:text-blue-400 font-bold px-1 hover:underline" title="Fit to width">
+          <button type="button" id="btn-zoom-reset" class="text-[10px] text-blue-600 dark:text-blue-400 font-bold px-1 hover:underline" title="Fit to Width">
             Fit
           </button>
         </div>

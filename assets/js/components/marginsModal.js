@@ -29,8 +29,8 @@ export function openMarginsModal() {
             <i data-lucide="maximize-2" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Page Margins (mm)</h3>
-            <p class="text-xs text-slate-500">Custom millimeter spacing for print, PDF & Word</p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Page Margins</h3>
+            <p class="text-xs text-slate-500">Adjust page spacing for print, PDF, and Word exports</p>
           </div>
         </div>
         <button type="button" id="btn-close-margins-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -43,7 +43,7 @@ export function openMarginsModal() {
         
         <!-- Quick Preset Pills -->
         <div>
-          <label class="block font-bold text-slate-900 dark:text-white text-xs mb-2">Quick Margin Presets:</label>
+          <label class="block font-bold text-slate-900 dark:text-white text-xs mb-2">Presets:</label>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
             <button type="button" class="btn-preset-margin py-1.5 px-2.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-center transition" data-all="15">
               Standard (15mm)
@@ -61,7 +61,7 @@ export function openMarginsModal() {
         </div>
 
         <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/40 space-y-4">
-          <label class="block font-bold text-slate-900 dark:text-white text-xs">Independent Edge Margins (Safe Range: 5mm – 50mm):</label>
+          <label class="block font-bold text-slate-900 dark:text-white text-xs">Custom Margins (5mm – 50mm):</label>
           
           <div class="grid grid-cols-2 gap-4">
             <!-- Top Margin -->

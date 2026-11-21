@@ -63,7 +63,7 @@ export function openTemplateGalleryModal() {
                 <span class="text-[11px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300">Step 1 of 2</span>
                 <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Select CV Format</h3>
               </div>
-              <p class="text-xs text-slate-500">Choose from 10 international CV formats. Each format provides 5 distinct layout templates.</p>
+              <p class="text-xs text-slate-500">Choose from 10 international CV formats, each with 5 tailored templates.</p>
             </div>
           </div>
           <button type="button" id="btn-close-gallery" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg" aria-label="Close Gallery">
@@ -125,7 +125,7 @@ export function openTemplateGalleryModal() {
 
         <!-- Footer -->
         <div class="px-6 py-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/40 flex items-center justify-between shrink-0 text-xs text-slate-500">
-          <div>Select any format above to explore its dedicated collection of 5 distinct templates.</div>
+          <div>Select a format above to explore its templates.</div>
           <button type="button" id="btn-close-gallery-footer" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300">
             Cancel
           </button>
@@ -159,7 +159,7 @@ export function openTemplateGalleryModal() {
                 <span class="text-[11px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300">Step 2 of 2</span>
                 <h3 class="text-base font-extrabold text-slate-900 dark:text-white">${cat.name} Templates</h3>
               </div>
-              <p class="text-xs text-slate-500">Showing 5 templates designed specifically for <strong>${cat.name}</strong>. Never mixed with other formats.</p>
+              <p class="text-xs text-slate-500">Showing templates designed for <strong>${cat.name}</strong>.</p>
             </div>
           </div>
           <button type="button" id="btn-close-gallery" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg" aria-label="Close Gallery">
@@ -201,7 +201,7 @@ export function openTemplateGalleryModal() {
 
                   <!-- Key Visual Features Badge -->
                   <div class="mt-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
-                    <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Visual Features</span>
+                    <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Layout Features</span>
                     <p class="text-[11px] text-slate-700 dark:text-slate-300 leading-tight">
                       ${tmpl.features || tmpl.tagline}
                     </p>

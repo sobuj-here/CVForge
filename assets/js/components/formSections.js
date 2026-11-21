@@ -57,10 +57,10 @@ export function renderFormSections(containerId = 'form-sections-container') {
             <span class="w-7 h-7 rounded-lg bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-black">1</span>
             <div>
               <div class="text-sm font-bold flex items-center gap-1.5">
-                <span>Personal & Contact Information</span>
-                <span class="text-[10px] text-red-500 font-bold">* Core</span>
+                <span>Personal Information</span>
+                <span class="text-[10px] text-blue-600 dark:text-blue-400 font-bold">Required</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Legal name, contact details, optional headline, and photo</div>
+              <div class="text-[11px] text-slate-500 font-normal">Contact details, headline, and optional photo</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -85,7 +85,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
               <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <button type="button" id="btn-trigger-crop-modal" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs transition inline-flex items-center gap-1.5">
                   <i data-lucide="camera" class="w-3.5 h-3.5"></i>
-                  <span>${p.photoUrl ? 'Edit / Re-crop Headshot' : 'Upload Headshot Photo'}</span>
+                  <span>${p.photoUrl ? 'Edit Photo' : 'Upload Photo'}</span>
                 </button>
                 ${p.photoUrl ? `
                   <button type="button" id="btn-remove-photo-direct" class="px-2.5 py-1.5 text-xs text-red-500 hover:text-red-700 font-bold hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition">
@@ -96,11 +96,11 @@ export function renderFormSections(containerId = 'form-sections-container') {
               <div class="flex items-center justify-center sm:justify-start gap-2 pt-1">
                 <label class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
                   <input type="checkbox" id="chk-show-photo" class="rounded text-blue-600 focus:ring-blue-500" ${settings.showPhoto ? 'checked' : ''} />
-                  <span>Show photo on CV formats</span>
+                  <span>Include photo on CV</span>
                 </label>
               </div>
               <p class="text-[10px] text-slate-500">
-                * Note: Photos are standard in Germany, France, and Europass; typically omitted in US, UK, and Canada applications to prevent hiring bias.
+                Photos are standard in Germany, France, and Europe; usually omitted in the US, UK, and Canada.
               </p>
             </div>
           </div>
@@ -108,22 +108,22 @@ export function renderFormSections(containerId = 'form-sections-container') {
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Full Legal Name <span class="text-red-500 font-bold">*</span>
+                Full Name <span class="text-red-500 font-bold">*</span>
               </label>
               <input type="text" id="inp-full-name" value="${p.fullName || ''}" class="form-input w-full text-xs rounded-lg border ${!p.fullName ? 'border-amber-400 bg-amber-50/20' : 'border-slate-300 dark:border-slate-700'} dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Eleanor Vance" />
-              ${!p.fullName ? `<span class="text-[10px] text-amber-600 mt-0.5 block">Full name is required on all CV formats.</span>` : ''}
+              ${!p.fullName ? `<span class="text-[10px] text-amber-600 mt-0.5 block">Please enter your full name.</span>` : ''}
             </div>
 
             <!-- Professional Headline (STRICTLY OPTIONAL) -->
             <div>
               <div class="flex items-center justify-between mb-1">
                 <label for="inp-headline" class="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                  Professional Job Headline <span class="text-[10px] text-slate-400 font-normal">(Optional)</span>
+                  Professional Headline <span class="text-[10px] text-slate-400 font-normal">(Optional)</span>
                 </label>
               </div>
-              <input type="text" id="inp-headline" value="${p.headline || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Mathematics Graduate, Junior Data Analyst, Administrative Assistant" />
+              <input type="text" id="inp-headline" value="${p.headline || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Operations Manager, Data Analyst, or Mathematics Graduate" />
               <p class="text-[10px] text-slate-400 mt-0.5">
-                A brief 2–5 word summary of your professional identity or target role. Leave blank if preferred.
+                A short title summarizing your role or target position.
               </p>
             </div>
           </div>
@@ -131,36 +131,36 @@ export function renderFormSections(containerId = 'form-sections-container') {
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Email Address <span class="text-red-500 font-bold">*</span>
+                Email <span class="text-red-500 font-bold">*</span>
               </label>
-              <input type="email" id="inp-email" value="${p.email || ''}" class="form-input w-full text-xs rounded-lg border ${p.email && !p.email.includes('@') ? 'border-red-500 bg-red-50/30' : 'border-slate-300 dark:border-slate-700'} dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. name@example.com" />
+              <input type="email" id="inp-email" value="${p.email || ''}" class="form-input w-full text-xs rounded-lg border ${p.email && !p.email.includes('@') ? 'border-red-500 bg-red-50/30' : 'border-slate-300 dark:border-slate-700'} dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. eleanor.vance@example.com" />
               ${p.email && !p.email.includes('@') ? `<span class="text-[10px] text-red-500 mt-0.5 block">Please enter a valid email address.</span>` : ''}
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Phone Number <span class="text-red-500 font-bold">*</span>
+                Phone <span class="text-red-500 font-bold">*</span>
               </label>
               <input type="tel" id="inp-phone" value="${p.phone || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. +1 (415) 555-0142" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Location (City, Country) <span class="text-red-500 font-bold">*</span>
+                Location <span class="text-red-500 font-bold">*</span>
               </label>
-              <input type="text" id="inp-location" value="${p.location || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Austin, TX, USA or London, UK" />
+              <input type="text" id="inp-location" value="${p.location || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Austin, TX or London, UK" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">LinkedIn Profile (Optional)</label>
+              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">LinkedIn (Optional)</label>
               <input type="url" id="inp-linkedin" value="${p.linkedin || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2" placeholder="https://linkedin.com/in/username" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">GitHub / Code Repository (Optional)</label>
+              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">GitHub (Optional)</label>
               <input type="url" id="inp-github" value="${p.github || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2" placeholder="https://github.com/username" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Portfolio / Personal Website (Optional)</label>
+              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Portfolio or Website (Optional)</label>
               <input type="url" id="inp-website" value="${p.website || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2" placeholder="https://myportfolio.com" />
             </div>
           </div>
@@ -169,7 +169,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
           <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
             <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
               <span>Optional International & Regional Fields</span>
-              <span class="text-[10px] text-slate-400 font-normal">Relevant for Bangladesh, Germany, Europass & Asia; leave blank for US/UK</span>
+              <span class="text-[10px] text-slate-400 font-normal">Standard in Europe, Asia, and Bangladesh; leave blank for US and UK</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
@@ -181,8 +181,8 @@ export function renderFormSections(containerId = 'form-sections-container') {
                 <input type="text" id="inp-dob" value="${p.dateOfBirth || ''}" class="form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="DD/MM/YYYY or YYYY-MM-DD" />
               </div>
               <div>
-                <label class="block text-[11px] text-slate-600 dark:text-slate-400 mb-0.5">Driving Licence</label>
-                <input type="text" id="inp-license" value="${p.drivingLicense || ''}" class="form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="e.g. Clean Driver License" />
+                <label class="block text-[11px] text-slate-600 dark:text-slate-400 mb-0.5">Driving License</label>
+                <input type="text" id="inp-license" value="${p.drivingLicense || ''}" class="form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="e.g. Full Driving License" />
               </div>
             </div>
 
@@ -235,12 +235,12 @@ export function renderFormSections(containerId = 'form-sections-container') {
           <div class="flex items-center gap-3">
             <span class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-black">2</span>
             <div>
-              <div class="text-sm font-bold">Professional Summary & Career Objective</div>
-              <div class="text-[11px] text-slate-500 font-normal">3-5 sentence introduction tailored to your target job</div>
+              <div class="text-sm font-bold">Professional Summary</div>
+              <div class="text-[11px] text-slate-500 font-normal">Briefly introduce your experience, strengths, and career goals</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
-            <span class="btn-reset-section px-2 py-0.5 text-[10px] text-slate-400 hover:text-red-500 font-semibold rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-1 cursor-pointer" data-section="summary" data-section-name="Summary & Objective" title="Reset summary to blank">
+            <span class="btn-reset-section px-2 py-0.5 text-[10px] text-slate-400 hover:text-red-500 font-semibold rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-1 cursor-pointer" data-section="summary" data-section-name="Summary" title="Reset summary to blank">
               <i data-lucide="rotate-ccw" class="w-3 h-3"></i><span>Reset</span>
             </span>
             <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
@@ -249,21 +249,21 @@ export function renderFormSections(containerId = 'form-sections-container') {
         <div class="accordion-content p-5 border-t border-slate-100 dark:border-slate-800 space-y-3">
           
           <div class="p-2.5 bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/60 rounded-lg text-[11px] text-indigo-900 dark:text-indigo-200 leading-normal">
-            <strong>Guidance:</strong> A <em>Professional Summary</em> highlights your concrete accomplishments and operational scope (ideal for experienced professionals). A <em>Career Objective</em> emphasizes academic foundations, core analytical skills, and learning readiness (recommended for fresh graduates).
+            Briefly introduce your experience, strengths, and career goals.
           </div>
 
           <div class="flex items-center justify-between">
-            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Summary or Career Objective Statement</label>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Summary</label>
             <button type="button" id="btn-smart-summary" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 bg-indigo-50 dark:bg-indigo-950/50 px-2.5 py-1 rounded-md border border-indigo-200 dark:border-indigo-800 transition">
               <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-              Factual Summary Suggestions
+              Improve Summary
             </button>
           </div>
-          <textarea id="inp-summary" rows="4" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 leading-relaxed focus:ring-2 focus:ring-indigo-500" placeholder="Summarize your professional identity, relevant experience or academic training, core competencies, and practical career focus...">${p.summary || ''}</textarea>
+          <textarea id="inp-summary" rows="4" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 leading-relaxed focus:ring-2 focus:ring-indigo-500" placeholder="e.g. Experienced project manager with a track record of leading cross-functional teams and delivering complex initiatives on schedule...">${p.summary || ''}</textarea>
           
           <div id="smart-summary-box" class="hidden p-3 bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-lg space-y-2">
             <div class="text-xs font-bold text-indigo-900 dark:text-indigo-300 flex items-center justify-between">
-              <span>Suggested professional summary drafts based on your profile:</span>
+              <span>Suggested summaries based on your profile:</span>
               <button type="button" id="btn-close-smart-summary" class="text-slate-400 hover:text-slate-600 text-xs">✕ Close</button>
             </div>
             <div id="smart-summary-options" class="space-y-2 text-xs"></div>
@@ -280,10 +280,10 @@ export function renderFormSections(containerId = 'form-sections-container') {
               <div class="text-sm font-bold flex items-center gap-2">
                 <span>Work Experience</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${profile.isFreshGraduate ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'}">
-                  ${profile.isFreshGraduate ? 'Fresh Graduate Mode' : `${(profile.experience || []).length} positions`}
+                  ${profile.isFreshGraduate ? 'Fresh Graduate' : `${(profile.experience || []).length} positions`}
                 </span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Job titles, companies, employment types, locations, and responsibilities</div>
+              <div class="text-[11px] text-slate-500 font-normal">Work history, key responsibilities, and achievements</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -299,23 +299,23 @@ export function renderFormSections(containerId = 'form-sections-container') {
           <div class="p-3 bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/70 rounded-xl space-y-1.5">
             <label class="flex items-center gap-2 cursor-pointer font-bold text-emerald-950 dark:text-emerald-200 text-xs">
               <input type="checkbox" id="chk-fresh-graduate" ${profile.isFreshGraduate ? 'checked' : ''} class="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 cursor-pointer" />
-              <span>I am a Fresh Graduate / I have no formal work experience</span>
+              <span>I have no formal work experience</span>
             </label>
             <p class="text-[11px] text-emerald-800 dark:text-emerald-300 leading-relaxed pl-6">
-              When checked, the Work Experience section is automatically omitted from your final CV, prioritizing your Education, Projects, and Skills.
+              Your CV will focus on education, projects, and skills.
             </p>
           </div>
 
           ${profile.isFreshGraduate ? `
             <div class="text-xs text-slate-500 italic p-3 text-center border border-dashed border-emerald-300 dark:border-emerald-800 rounded-xl bg-emerald-50/30">
-              Fresh graduate mode is active. You can still add internships or student projects in the dedicated sections below.
+              Work experience is omitted. Your CV will highlight education, projects, and skills.
             </div>
           ` : `
             <div id="experience-items-list" class="space-y-4">
               ${renderExperienceList(profile.experience || [])}
             </div>
             <button type="button" id="btn-add-experience" class="w-full py-2.5 border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-emerald-500 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
-              <i data-lucide="plus" class="w-4 h-4"></i> Add Work Experience Entry
+              <i data-lucide="plus" class="w-4 h-4"></i> Add Experience
             </button>
           `}
         </div>
@@ -328,10 +328,10 @@ export function renderFormSections(containerId = 'form-sections-container') {
             <span class="w-7 h-7 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs font-black">4</span>
             <div>
               <div class="text-sm font-bold flex items-center gap-2">
-                <span>Education & Academic Credentials</span>
+                <span>Education</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${(profile.education || []).length} credentials</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Degree title, subject/major, institution, dates, and coursework</div>
+              <div class="text-[11px] text-slate-500 font-normal">Degrees, institutions, and graduation dates</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -345,10 +345,10 @@ export function renderFormSections(containerId = 'form-sections-container') {
           
           <!-- Degree vs Subject Guidance Box -->
           <div class="p-3 bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-[11px] text-amber-900 dark:text-amber-200 leading-normal space-y-1">
-            <strong>Understanding Degree vs. Subject / Major:</strong>
+            <strong>Degree and Major:</strong>
             <ul class="list-disc list-inside space-y-0.5 text-[11px] text-amber-800 dark:text-amber-300">
-              <li><strong>Degree:</strong> The qualification or credential awarded (e.g. <em>Bachelor of Science (BSc), Master of Arts (MA), Associate Degree (AAS), High School Diploma</em>).</li>
-              <li><strong>Subject / Major:</strong> Your specific academic discipline or concentration (e.g. <em>Mathematics, Business Administration, Accounting, Economics, Physics</em>).</li>
+              <li><strong>Degree:</strong> The qualification or credential awarded (e.g. <em>Bachelor of Science, Master of Arts, High School Diploma</em>).</li>
+              <li><strong>Major / Field:</strong> Your academic concentration (e.g. <em>Mathematics, Business Administration, Computer Science</em>).</li>
             </ul>
           </div>
 
@@ -356,7 +356,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
             ${renderEducationList(profile.education || [])}
           </div>
           <button type="button" id="btn-add-education" class="w-full py-2.5 border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-amber-500 text-slate-600 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
-            <i data-lucide="plus" class="w-4 h-4"></i> Add Education Credential
+            <i data-lucide="plus" class="w-4 h-4"></i> Add Education
           </button>
         </div>
       </div>
@@ -371,7 +371,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
                 <span>Skills</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${skillsList.length} skill${skillsList.length === 1 ? '' : 's'}</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Add key technical, software, analytical, or professional skills with optional proficiency</div>
+              <div class="text-[11px] text-slate-500 font-normal">Add key technical and professional skills with optional proficiency</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -388,7 +388,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
             <div class="flex flex-wrap items-center justify-between gap-2">
               <span class="text-xs font-bold text-purple-900 dark:text-purple-200 flex items-center gap-1.5">
                 <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
-                Add Skills to Your Profile
+                Add Skills
               </span>
               <button type="button" id="btn-add-skill" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-xs transition inline-flex items-center gap-1.5 shadow-xs">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i>
@@ -399,12 +399,12 @@ export function renderFormSections(containerId = 'form-sections-container') {
             <!-- Add Custom Skill Quick Bar -->
             <div class="pt-2 border-t border-purple-200/60 dark:border-purple-800/40">
               <label class="block text-[11px] font-semibold text-purple-900 dark:text-purple-300 mb-1">
-                Add Custom Skill (Direct Input)
+                Add Custom Skill
               </label>
               <div class="flex flex-col sm:flex-row gap-2">
-                <input type="text" id="inp-custom-skill-name" class="form-input text-xs rounded-lg border border-purple-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-1.5 flex-1 focus:ring-2 focus:ring-purple-500" placeholder="Type custom skill name (e.g. Microsoft Excel, SQL, Project Management)..." />
+                <input type="text" id="inp-custom-skill-name" class="form-input text-xs rounded-lg border border-purple-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-1.5 flex-1 focus:ring-2 focus:ring-purple-500" placeholder="e.g. Project Management, SQL, Python, Excel" />
                 <select id="sel-custom-skill-level" class="form-input text-xs rounded-lg border border-purple-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-1.5 sm:w-40 focus:ring-2 focus:ring-purple-500">
-                  <option value="">Optional Level</option>
+                  <option value="">Level (Optional)</option>
                   <option value="Beginner">Beginner</option>
                   <option value="Intermediate">Intermediate</option>
                   <option value="Advanced">Advanced</option>
@@ -413,7 +413,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
                 </select>
                 <button type="button" id="btn-add-custom-skill" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 dark:bg-purple-700 dark:hover:bg-purple-600 text-white font-bold rounded-lg text-xs transition inline-flex items-center justify-center gap-1 shrink-0">
                   <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
-                  <span>Add Custom Skill</span>
+                  <span>Add</span>
                 </button>
               </div>
             </div>
@@ -426,15 +426,15 @@ export function renderFormSections(containerId = 'form-sections-container') {
                 <span><strong>${duplicateCount} duplicate skill${duplicateCount > 1 ? 's' : ''} detected:</strong> ${Array.from(duplicateSkillsSet).slice(0, 4).join(', ')}${duplicateCount > 4 ? '...' : ''}</span>
               </div>
               <button type="button" id="btn-deduplicate-skills" class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-[10px] transition shadow-xs">
-                Clean Duplicate Skills
+                Remove Duplicates
               </button>
             </div>
           ` : `
             <div class="flex items-center justify-between text-[11px] text-slate-500">
-              <span>Unlimited skills supported. Reorder using ▲/▼ buttons.</span>
+              <span>Drag or use the arrows to reorder skills.</span>
               <button type="button" id="btn-deduplicate-skills" class="text-slate-500 hover:text-purple-600 dark:hover:text-purple-400 font-semibold flex items-center gap-1 transition" title="Scan and remove duplicate entries">
                 <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-500"></i>
-                <span>Clean Duplicates</span>
+                <span>Remove Duplicates</span>
               </button>
             </div>
           `}
@@ -445,7 +445,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
           </div>
 
           <p class="text-[11px] text-slate-400 dark:text-slate-500">
-            * Note: All skills appear in a clean, unified presentation across all 10 CV formats. Proficiency levels (Beginner, Intermediate, Advanced, etc.) are optional.
+            * Note: Proficiency levels (Beginner, Intermediate, Advanced, etc.) are optional. All skills display cleanly across every template.
           </p>
         </div>
       </div>
@@ -457,10 +457,10 @@ export function renderFormSections(containerId = 'form-sections-container') {
             <span class="w-7 h-7 rounded-lg bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xs font-black">6</span>
             <div>
               <div class="text-sm font-bold flex items-center gap-2">
-                <span>Key Projects & Deliverables</span>
+                <span>Projects</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${(profile.projects || []).length} projects</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Academic capstones, course assignments, work deliverables, and personal projects</div>
+              <div class="text-[11px] text-slate-500 font-normal">Notable projects, coursework, and deliverables</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -475,7 +475,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
             ${renderProjectsList(profile.projects || [])}
           </div>
           <button type="button" id="btn-add-project" class="w-full py-2.5 border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-teal-500 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
-            <i data-lucide="plus" class="w-4 h-4"></i> Add Project Entry
+            <i data-lucide="plus" class="w-4 h-4"></i> Add Project
           </button>
         </div>
       </div>
@@ -487,10 +487,10 @@ export function renderFormSections(containerId = 'form-sections-container') {
             <span class="w-7 h-7 rounded-lg bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xs font-black">7</span>
             <div>
               <div class="text-sm font-bold flex items-center gap-2">
-                <span>Certifications & Training</span>
+                <span>Certifications</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${(profile.certifications || []).length} certs</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Professional licenses, technical certifications, and training certificates</div>
+              <div class="text-[11px] text-slate-500 font-normal">Licenses, certifications, and courses</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -520,7 +520,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
                 <span>Languages</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${(profile.languages || []).length} languages</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Native, Fluent, Professional Working, Intermediate, or Basic proficiencies</div>
+              <div class="text-[11px] text-slate-500 font-normal">Languages and proficiency levels</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -532,7 +532,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
         </button>
         <div class="accordion-content p-5 border-t border-slate-100 dark:border-slate-800 space-y-3">
           <div class="p-2.5 bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 rounded-lg text-[11px] text-sky-900 dark:text-sky-200">
-            <strong>Proficiency Guide:</strong> <em>Native</em> (mother tongue), <em>Fluent</em> (high operational fluency), <em>Professional Working</em> (comfortable in business meetings and written documentation), <em>Intermediate</em> (routine conversations), <em>Basic</em> (simple phrases).
+            <strong>Proficiency Guide:</strong> Select proficiency: Native, Fluent, Professional Working, Intermediate, or Basic.
           </div>
           <div id="languages-items-list" class="space-y-2">
             ${renderLanguagesList(profile.languages || [])}
@@ -546,8 +546,8 @@ export function renderFormSections(containerId = 'form-sections-container') {
       <!-- Section 9: Optional Sections Manager -->
       <div id="sec-optional-manager" class="p-4 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 rounded-xl space-y-3">
         <div class="flex items-center justify-between">
-          <span class="font-bold text-xs text-slate-800 dark:text-slate-200">Additional Optional CV Sections</span>
-          <span class="text-[10px] text-slate-400">Toggle sections on or off as needed</span>
+          <span class="font-bold text-xs text-slate-800 dark:text-slate-200">Optional Sections</span>
+          <span class="text-[10px] text-slate-400">Choose which additional sections to include</span>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <label class="flex items-center gap-1.5 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
@@ -585,10 +585,10 @@ export function renderFormSections(containerId = 'form-sections-container') {
               <span class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 flex items-center justify-center text-xs font-black">10</span>
               <div>
                 <div class="text-sm font-bold flex items-center gap-1.5">
-                  <span>Professional References</span>
+                  <span>References</span>
                   <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Optional</span>
                 </div>
-                <div class="text-[11px] text-slate-500 font-normal">Referee contacts (omitted completely if left blank)</div>
+                <div class="text-[11px] text-slate-500 font-normal">References (omitted from your CV if empty)</div>
               </div>
             </div>
             <div class="flex items-center gap-2">
@@ -603,7 +603,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
             <!-- Reference Guidance Note -->
             <div class="p-3 bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/60 rounded-xl">
               <p class="text-xs text-blue-900 dark:text-blue-200 leading-relaxed">
-                <strong class="font-semibold">Professional Referees:</strong> Add your verified referee contacts below. If no references are entered, the References section is automatically omitted from your final CV.
+                Add your references below. If left empty, the References section will not appear on your CV.
               </p>
             </div>
 
@@ -611,7 +611,7 @@ export function renderFormSections(containerId = 'form-sections-container') {
               ${renderReferencesList(profile.references || [])}
             </div>
             <button type="button" id="btn-add-reference" class="w-full py-2 border-2 border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
-              <i data-lucide="plus" class="w-4 h-4"></i> Add Individual Referee
+              <i data-lucide="plus" class="w-4 h-4"></i> Add Reference
             </button>
           </div>
         </div>
@@ -624,8 +624,8 @@ export function renderFormSections(containerId = 'form-sections-container') {
             <div class="flex items-center gap-3">
               <span class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 flex items-center justify-center text-xs font-black">11</span>
               <div>
-                <div class="text-sm font-bold">Internship Experience</div>
-                <div class="text-[11px] text-slate-500 font-normal">Student internships, traineeships, and co-op placements</div>
+                <div class="text-sm font-bold">Internships</div>
+                <div class="text-[11px] text-slate-500 font-normal">Internships, traineeships, and placements</div>
               </div>
             </div>
             <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
@@ -652,12 +652,12 @@ export function renderFormSections(containerId = 'form-sections-container') {
 
 function renderExperienceList(items) {
   if (items.length === 0) {
-    return `<div class="text-xs text-slate-400 dark:text-slate-500 italic p-3 text-center border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">No work experience added. (Ideal for fresh graduates, transitioners, or candidates highlighting education and projects).</div>`;
+    return `<div class="text-xs text-slate-400 dark:text-slate-500 italic p-3 text-center border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">No work experience added yet.</div>`;
   }
   return items.map((item, idx) => `
     <div class="p-3.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50/60 dark:bg-slate-800/40 space-y-2.5 transition" data-id="${item.id}">
       <div class="flex items-center justify-between">
-        <span class="font-bold text-xs text-slate-900 dark:text-white">#${idx + 1} — ${item.title || 'Untitled Position'} (${item.company || 'Organization'})</span>
+        <span class="font-bold text-xs text-slate-900 dark:text-white">#${idx + 1} — ${item.title || 'Position'} (${item.company || 'Company'})</span>
         <div class="flex items-center gap-1">
           <button type="button" class="btn-move-up p-1 text-slate-400 hover:text-slate-800 dark:hover:text-white" title="Move Up" ${idx === 0 ? 'disabled' : ''}>▲</button>
           <button type="button" class="btn-move-down p-1 text-slate-400 hover:text-slate-800 dark:hover:text-white" title="Move Down" ${idx === items.length - 1 ? 'disabled' : ''}>▼</button>
@@ -671,8 +671,8 @@ function renderExperienceList(items) {
           <input type="text" class="exp-title form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Operations Coordinator" value="${item.title || ''}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Company / Organization</label>
-          <input type="text" class="exp-company form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Apex Logistics LLC" value="${item.company || ''}" />
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Company</label>
+          <input type="text" class="exp-company form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Apex Logistics" value="${item.company || ''}" />
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Employment Type</label>
@@ -689,7 +689,7 @@ function renderExperienceList(items) {
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Location</label>
-          <input type="text" class="exp-location form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Chicago, IL, USA" value="${item.location || ''}" />
+          <input type="text" class="exp-location form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Chicago, IL" value="${item.location || ''}" />
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Start Date</label>
@@ -699,7 +699,7 @@ function renderExperienceList(items) {
           <div class="flex items-center justify-between mb-0.5">
             <label class="text-[10px] font-semibold text-slate-600 dark:text-slate-400">End Date</label>
             <label class="text-[10px] text-slate-600 dark:text-slate-400 flex items-center gap-1 cursor-pointer">
-              <input type="checkbox" class="exp-current" ${item.current ? 'checked' : ''} /> Currently Working Here
+              <input type="checkbox" class="exp-current" ${item.current ? 'checked' : ''} /> Current position
             </label>
           </div>
           <input type="text" class="exp-end form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. 2023-08" value="${item.endDate || ''}" ${item.current ? 'disabled' : ''} />
@@ -708,25 +708,25 @@ function renderExperienceList(items) {
 
       <div>
         <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">
-          Key Responsibilities & Quantifiable Achievements (Enter each duty or metric on a new line)
+          Responsibilities & Achievements (one per line)
         </label>
         <textarea class="exp-highlights form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-2 leading-relaxed" rows="3" placeholder="• Coordinated weekly inventory counts across 2 warehouses, decreasing stock discrepancies by 15%.&#10;• Supervised order processing for 35 regional accounts with 99.2% on-time delivery.&#10;• Trained 4 new team members on company software and safety compliance.">${Array.isArray(item.highlights) ? item.highlights.join('\n') : ''}</textarea>
       </div>
 
       <div>
-        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Technologies / Tools Used (Comma-separated)</label>
-        <input type="text" class="exp-technologies form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1" placeholder="e.g. Microsoft Excel, SAP ERP, Asana, Google Workspace" value="${Array.isArray(item.technologies) ? item.technologies.join(', ') : ''}" />
+        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Tools & Technologies (comma-separated)</label>
+        <input type="text" class="exp-technologies form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1" placeholder="e.g. Excel, SQL, Asana, Jira" value="${Array.isArray(item.technologies) ? item.technologies.join(', ') : ''}" />
       </div>
     </div>
   `).join('');
 }
 
 function renderEducationList(items) {
-  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed border-slate-300 rounded-xl">No education credentials added yet.</div>`;
+  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed border-slate-300 rounded-xl">No education added yet.</div>`;
   return items.map((item, idx) => `
     <div class="p-3.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50/60 dark:bg-slate-800/40 space-y-2.5" data-id="${item.id}">
       <div class="flex items-center justify-between">
-        <span class="font-bold text-xs text-slate-900 dark:text-white">#${idx + 1} — ${item.degree || 'Credential'}${item.major || item.field ? ` in ${item.major || item.field}` : ''}</span>
+        <span class="font-bold text-xs text-slate-900 dark:text-white">#${idx + 1} — ${item.degree || 'Degree'}${item.major || item.field ? ` in ${item.major || item.field}` : ''}</span>
         <div class="flex items-center gap-1">
           <button type="button" class="btn-move-up p-1 text-slate-400 hover:text-slate-600" ${idx === 0 ? 'disabled' : ''}>▲</button>
           <button type="button" class="btn-move-down p-1 text-slate-400 hover:text-slate-600" ${idx === items.length - 1 ? 'disabled' : ''}>▼</button>
@@ -737,29 +737,29 @@ function renderEducationList(items) {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">
-            Degree / Qualification <span class="text-red-500 font-bold">*</span>
+            Degree <span class="text-red-500 font-bold">*</span>
           </label>
-          <input type="text" class="edu-degree form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Bachelor of Science (BSc), Master of Arts (MA), High School Diploma" value="${item.degree || ''}" />
-          <span class="text-[10px] text-slate-400">The qualification title or certification level</span>
+          <input type="text" class="edu-degree form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Bachelor of Science (BSc)" value="${item.degree || ''}" />
+          <span class="text-[10px] text-slate-400">e.g. Bachelor of Science, High School Diploma</span>
         </div>
 
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">
-            Subject / Major <span class="text-red-500 font-bold">*</span>
+            Major / Field of Study <span class="text-red-500 font-bold">*</span>
           </label>
-          <input type="text" class="edu-major form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Mathematics, Business Administration, Economics, History" value="${item.major || item.field || ''}" />
-          <span class="text-[10px] text-slate-400">Your specific academic discipline or field of study</span>
+          <input type="text" class="edu-major form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Mathematics" value="${item.major || item.field || ''}" />
+          <span class="text-[10px] text-slate-400">e.g. Mathematics, Business, Computer Science</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Institution / University Name</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Institution</label>
           <input type="text" class="edu-institution form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. University of Texas at Austin" value="${item.institution || ''}" />
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Location</label>
-          <input type="text" class="edu-location form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Austin, TX, USA" value="${item.location || ''}" />
+          <input type="text" class="edu-location form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Austin, TX" value="${item.location || ''}" />
         </div>
         <div class="grid grid-cols-2 gap-1.5">
           <div>
@@ -775,12 +775,12 @@ function renderEducationList(items) {
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Grade / CGPA (Optional)</label>
-          <input type="text" class="edu-gpa form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. 3.82 / 4.0 or Upper Second Class (2:1)" value="${item.gpa || ''}" />
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">GPA / Grade (Optional)</label>
+          <input type="text" class="edu-gpa form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. 3.8 / 4.0" value="${item.gpa || ''}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Academic Honors (Optional)</label>
-          <input type="text" class="edu-honors form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Dean's Honor List, Cum Laude" value="${item.honors || ''}" />
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Honors (Optional)</label>
+          <input type="text" class="edu-honors form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Dean's List, Cum Laude" value="${item.honors || ''}" />
         </div>
       </div>
 
@@ -790,7 +790,7 @@ function renderEducationList(items) {
       </div>
 
       <div>
-        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Dissertation / Final Project Title (Optional)</label>
+        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Dissertation / Capstone Title (Optional)</label>
         <input type="text" class="edu-thesis form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="e.g. Stochastic Simulation of Urban Traffic Bottlenecks" value="${item.thesis || ''}" />
       </div>
     </div>
@@ -799,14 +799,14 @@ function renderEducationList(items) {
 
 function renderUnifiedSkillsList(items) {
   if (!items || items.length === 0) {
-    return `<div class="text-xs text-slate-400 italic p-4 text-center border border-dashed rounded-xl border-slate-200 dark:border-slate-700">No skills added yet. Click &ldquo;Add Skill&rdquo; or &ldquo;Add Custom Skill&rdquo; to add your skills.</div>`;
+    return `<div class="text-xs text-slate-400 italic p-4 text-center border border-dashed rounded-xl border-slate-200 dark:border-slate-700">No skills added yet.</div>`;
   }
   return items.map((sk, idx) => `
     <div class="flex items-center gap-2 p-2 bg-white dark:bg-slate-800/60 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition" data-id="${sk.id}">
       <span class="text-[11px] font-bold text-slate-400 w-6 text-center shrink-0">#${idx + 1}</span>
-      <input type="text" class="sk-name form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 flex-1 focus:ring-2 focus:ring-purple-500" placeholder="Skill name (e.g. Microsoft Excel, SQL, Project Coordination)" value="${(sk.name || '').replace(/"/g, '&quot;')}" />
+      <input type="text" class="sk-name form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 flex-1 focus:ring-2 focus:ring-purple-500" placeholder="Skill name (e.g. Project Management, SQL, Excel)" value="${(sk.name || '').replace(/"/g, '&quot;')}" />
       <select class="sk-level form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2 py-1.5 w-36 shrink-0 focus:ring-2 focus:ring-purple-500">
-        <option value="" ${!sk.level ? 'selected' : ''}>Optional Level</option>
+        <option value="" ${!sk.level ? 'selected' : ''}>Level (Optional)</option>
         <option value="Beginner" ${sk.level === 'Beginner' ? 'selected' : ''}>Beginner</option>
         <option value="Intermediate" ${sk.level === 'Intermediate' ? 'selected' : ''}>Intermediate</option>
         <option value="Advanced" ${sk.level === 'Advanced' ? 'selected' : ''}>Advanced</option>
@@ -823,7 +823,7 @@ function renderUnifiedSkillsList(items) {
 }
 
 function renderProjectsList(items) {
-  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed rounded-xl">No projects added yet. (Projects are especially helpful for fresh graduates).</div>`;
+  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed rounded-xl">No projects added yet.</div>`;
   return items.map((proj, idx) => `
     <div class="p-3.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50/60 dark:bg-slate-800/40 space-y-2.5" data-id="${proj.id}">
       <div class="flex items-center justify-between">
@@ -842,35 +842,35 @@ function renderProjectsList(items) {
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Project Type</label>
-          <input type="text" class="proj-type form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Academic Capstone, Coursework, Client Deliverable" value="${proj.projectType || ''}" />
+          <input type="text" class="proj-type form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Academic Capstone, Personal Project" value="${proj.projectType || ''}" />
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Your Role</label>
-          <input type="text" class="proj-role form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Lead Student Researcher, Project Lead" value="${proj.role || ''}" />
+          <input type="text" class="proj-role form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Project Lead, Researcher" value="${proj.role || ''}" />
         </div>
       </div>
 
       <div>
-        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Project Description (Purpose, problem solved, and methodology)</label>
+        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Description</label>
         <textarea class="proj-desc form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-2" rows="2" placeholder="e.g. Developed a discrete-event simulation model in Python to analyze arrival distributions and minimize traffic intersection wait times...">${proj.description || ''}</textarea>
       </div>
 
       <div>
-        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Key Contributions & Measurable Outcomes</label>
+        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Key Outcomes & Impact</label>
         <input type="text" class="proj-outcomes form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="e.g. Demonstrated an estimated 18% reduction in simulated queue delays; presented at regional symposium" value="${proj.outcomes || ''}" />
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Technologies / Tools Used</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Technologies Used</label>
           <input type="text" class="proj-tech form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Python, NumPy, Excel" value="${Array.isArray(proj.technologies) ? proj.technologies.join(', ') : ''}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Project Live Demo Link (Optional)</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Demo Link (Optional)</label>
           <input type="url" class="proj-live form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="https://example.com/demo" value="${proj.liveUrl || ''}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">GitHub / Code Link (Optional)</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">GitHub Link (Optional)</label>
           <input type="url" class="proj-github form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="https://github.com/user/project" value="${proj.githubUrl || ''}" />
         </div>
       </div>
@@ -882,7 +882,7 @@ function renderCertificationsList(items) {
   if (items.length === 0) return `<div class="text-xs text-slate-400 italic">No certifications added yet.</div>`;
   return items.map(c => `
     <div class="p-2.5 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800/40 flex flex-col sm:flex-row items-center gap-2" data-id="${c.id}">
-      <input type="text" class="cert-title form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2 py-1 flex-1 w-full sm:w-auto" placeholder="Certification Name (e.g. Project Management Professional)" value="${c.title || ''}" />
+      <input type="text" class="cert-title form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2 py-1 flex-1 w-full sm:w-auto" placeholder="Certification Name (e.g. PMP)" value="${c.title || ''}" />
       <input type="text" class="cert-issuer form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2 py-1 w-full sm:w-44" placeholder="Issuing Body (e.g. PMI)" value="${c.issuer || ''}" />
       <input type="text" class="cert-date form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2 py-1 w-full sm:w-28" placeholder="Date (YYYY-MM)" value="${c.issueDate || ''}" />
       <button type="button" class="btn-delete-item text-xs text-red-500 hover:text-red-700 font-bold px-1.5">✕</button>
@@ -894,7 +894,7 @@ function renderLanguagesList(items) {
   if (items.length === 0) return `<div class="text-xs text-slate-400 italic">No languages added yet. Click "Add Language" to include languages spoken.</div>`;
   return items.map(l => `
     <div class="flex items-center gap-2 p-1.5 bg-slate-50 dark:bg-slate-800/40 rounded-lg border border-slate-200 dark:border-slate-700" data-id="${l.id}">
-      <input type="text" class="lang-name form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2 py-1 flex-1" placeholder="Language (e.g. English, French, German, Mandarin, Arabic)" value="${l.name || ''}" />
+      <input type="text" class="lang-name form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2 py-1 flex-1" placeholder="Language (e.g. English, Spanish, French)" value="${l.name || ''}" />
       <select class="lang-prof form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2 py-1">
         <option value="Native / Bilingual" ${l.proficiency === 'Native / Bilingual' || l.proficiency === 'Native' ? 'selected' : ''}>Native / Bilingual</option>
         <option value="Fluent" ${l.proficiency === 'Fluent' || l.proficiency === 'Full Professional' ? 'selected' : ''}>Fluent</option>
@@ -916,11 +916,11 @@ function renderLanguagesList(items) {
 }
 
 function renderReferencesList(items) {
-  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">No individual referees added.</div>`;
+  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">No references added yet.</div>`;
   return items.map((ref, idx) => `
     <div class="p-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800/40 space-y-2" data-id="${ref.id}">
       <div class="flex justify-between items-center">
-        <span class="font-bold text-xs text-slate-900 dark:text-slate-100">#${idx + 1} — ${ref.name || 'Referee Contact'}</span>
+        <span class="font-bold text-xs text-slate-900 dark:text-slate-100">#${idx + 1} — ${ref.name || 'Reference'}</span>
         <div class="flex items-center gap-1">
           <button type="button" class="btn-ref-up p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Move up" ${idx === 0 ? 'disabled style="opacity:0.3"' : ''}>▲</button>
           <button type="button" class="btn-ref-down p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Move down" ${idx === items.length - 1 ? 'disabled style="opacity:0.3"' : ''}>▼</button>
@@ -929,25 +929,25 @@ function renderReferencesList(items) {
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Referee Full Name</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Name</label>
           <input type="text" class="ref-name form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Dr. Arthur Pendelton" value="${(ref.name || '').replace(/"/g, '&quot;')}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Job Title / Designation</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Job Title</label>
           <input type="text" class="ref-title form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Professor & Department Chair" value="${(ref.title || '').replace(/"/g, '&quot;')}" />
         </div>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Organization / University</label>
-          <input type="text" class="ref-company form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Acme Corp / Stanford University" value="${(ref.organization || ref.company || '').replace(/"/g, '&quot;')}" />
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Organization</label>
+          <input type="text" class="ref-company form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Stanford University" value="${(ref.organization || ref.company || '').replace(/"/g, '&quot;')}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Email Address</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Email</label>
           <input type="email" class="ref-email form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. referee@organization.org" value="${(ref.email || '').replace(/"/g, '&quot;')}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Phone Number</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Phone</label>
           <input type="tel" class="ref-phone form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. +1 (555) 234-5678" value="${(ref.phone || '').replace(/"/g, '&quot;')}" />
         </div>
       </div>
@@ -964,10 +964,10 @@ function renderInternshipsList(items) {
         <button type="button" class="btn-delete-item text-xs text-red-500 font-bold">Delete</button>
       </div>
       <div class="grid grid-cols-2 gap-2">
-        <input type="text" class="int-title form-input text-xs rounded border p-1" placeholder="Role Title" value="${i.title || ''}" />
-        <input type="text" class="int-company form-input text-xs rounded border p-1" placeholder="Company / Team" value="${i.company || ''}" />
+        <input type="text" class="int-title form-input text-xs rounded border p-1" placeholder="Job Title" value="${i.title || ''}" />
+        <input type="text" class="int-company form-input text-xs rounded border p-1" placeholder="Company" value="${i.company || ''}" />
       </div>
-      <textarea class="int-highlights form-input w-full text-xs rounded border p-1.5" rows="2" placeholder="Key deliverables...">${Array.isArray(i.highlights) ? i.highlights.join('\n') : ''}</textarea>
+      <textarea class="int-highlights form-input w-full text-xs rounded border p-1.5" rows="2" placeholder="Responsibilities and achievements...">${Array.isArray(i.highlights) ? i.highlights.join('\n') : ''}</textarea>
     </div>
   `).join('');
 }
@@ -1000,7 +1000,7 @@ function attachFormListeners() {
       e.preventDefault();
       const secKey = btn.getAttribute('data-section');
       const secName = btn.getAttribute('data-section-name') || secKey;
-      if (confirm(`Reset the "${secName}" section to clean empty state? This action cannot be undone.`)) {
+      if (confirm(`Reset the "${secName}" section? This will clear all entries in this section.`)) {
         appState.resetSection(secKey);
         renderFormSections();
       }
@@ -1056,7 +1056,7 @@ function attachFormListeners() {
         <div class="p-2.5 bg-white dark:bg-slate-800 rounded border border-indigo-200 dark:border-indigo-700/60 hover:border-indigo-500 transition cursor-pointer group" data-text="${encodeURIComponent(s.text)}">
           <div class="font-bold text-indigo-700 dark:text-indigo-400 group-hover:underline flex items-center justify-between">
             <span>${s.title}</span>
-            <span class="text-[10px] bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-200 px-1.5 py-0.5 rounded font-normal">Click to insert</span>
+            <span class="text-[10px] bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-200 px-1.5 py-0.5 rounded font-normal">Use this summary</span>
           </div>
           <p class="text-[11px] text-slate-700 dark:text-slate-300 mt-1 leading-normal">${s.text}</p>
         </div>

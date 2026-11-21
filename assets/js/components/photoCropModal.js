@@ -29,8 +29,8 @@ export function openPhotoCropModal() {
             <i data-lucide="image" class="w-4 h-4"></i>
           </div>
           <div>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Profile Photo Formatting</h3>
-            <p class="text-[11px] text-slate-500">Position, crop, and adjust your professional headshot</p>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Profile Photo</h3>
+            <p class="text-[11px] text-slate-500">Position, crop, and preview your photo</p>
           </div>
         </div>
         <button type="button" id="btn-close-crop" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -44,7 +44,7 @@ export function openPhotoCropModal() {
         <!-- File Picker -->
         <div>
           <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
-            Upload Headshot Image (JPG, PNG, WebP • Max 8MB)
+            Choose Photo (JPG, PNG, WebP • Max 8MB)
           </label>
           <input type="file" id="inp-crop-file" accept="image/jpeg,image/png,image/webp" class="block w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-blue-950/60 dark:file:text-blue-300" />
           <div id="crop-error-msg" class="text-[11px] text-red-500 mt-1 hidden font-medium"></div>
@@ -65,10 +65,10 @@ export function openPhotoCropModal() {
         <!-- Controls: Shape & Zoom -->
         <div class="grid grid-cols-2 gap-3 pt-2 border-t border-slate-100 dark:border-slate-800">
           <div>
-            <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Photo Layout Shape</label>
+            <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Photo Shape</label>
             <div class="inline-flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 w-full bg-slate-50 dark:bg-slate-800">
               <button type="button" id="btn-shape-circle" class="flex-1 py-1 text-[11px] font-bold rounded ${currentShape === 'circle' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-700 dark:text-slate-300'}">
-                Circular
+                Circle
               </button>
               <button type="button" id="btn-shape-square" class="flex-1 py-1 text-[11px] font-bold rounded ${currentShape !== 'circle' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-700 dark:text-slate-300'}">
                 Square
@@ -77,7 +77,7 @@ export function openPhotoCropModal() {
           </div>
           <div>
             <div class="flex justify-between items-center mb-1">
-              <label class="font-semibold text-slate-700 dark:text-slate-300">Zoom Level</label>
+              <label class="font-semibold text-slate-700 dark:text-slate-300">Zoom</label>
               <span id="crop-zoom-label" class="font-mono text-[10px] text-slate-500">1.0x</span>
             </div>
             <input type="range" id="crop-zoom-slider" min="1" max="3" step="0.05" value="1" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600" />
@@ -96,7 +96,7 @@ export function openPhotoCropModal() {
             Cancel
           </button>
           <button type="button" id="btn-save-crop" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition flex items-center gap-1.5">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i> Apply Headshot
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> Apply Photo
           </button>
         </div>
       </div>

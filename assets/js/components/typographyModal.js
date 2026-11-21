@@ -76,8 +76,8 @@ export function openTypographyModal() {
             <i data-lucide="type" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Typography & Font Styling</h3>
-            <p class="text-xs text-slate-500">22 international fonts, style variations, and physical point sizes (pt)</p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Font & Typography</h3>
+            <p class="text-xs text-slate-500">Font family, weights, and point sizes (pt)</p>
           </div>
         </div>
         <button type="button" id="btn-close-typography-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg" aria-label="Close">
@@ -140,17 +140,17 @@ export function openTypographyModal() {
           <div>
             <label class="block font-bold text-slate-900 dark:text-white mb-1">Apply Font To</label>
             <select id="modal-sel-target" class="w-full form-input text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-2 font-medium">
-              <option value="all" ${currentTarget === 'all' ? 'selected' : ''}>All Document Text</option>
-              <option value="headings" ${currentTarget === 'headings' ? 'selected' : ''}>Headings & Section Titles</option>
-              <option value="body" ${currentTarget === 'body' ? 'selected' : ''}>Body Text & Descriptions</option>
-              <option value="name" ${currentTarget === 'name' ? 'selected' : ''}>Candidate Name Only</option>
+              <option value="all" ${currentTarget === 'all' ? 'selected' : ''}>Entire Document</option>
+              <option value="headings" ${currentTarget === 'headings' ? 'selected' : ''}>Headings Only</option>
+              <option value="body" ${currentTarget === 'body' ? 'selected' : ''}>Body Text Only</option>
+              <option value="name" ${currentTarget === 'name' ? 'selected' : ''}>Name Only</option>
             </select>
           </div>
         </div>
 
         <!-- Point-Based Font Sizes -->
         <div class="space-y-3 pt-2 border-t border-slate-200 dark:border-slate-800">
-          <div class="font-bold text-slate-900 dark:text-white text-xs">Point-Based Sizing (pt)</div>
+          <div class="font-bold text-slate-900 dark:text-white text-xs">Font Sizes (pt)</div>
           
           <!-- 1. Candidate Full Name -->
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/40 space-y-1.5">
@@ -186,8 +186,8 @@ export function openTypographyModal() {
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/40 space-y-1.5">
             <div class="flex items-center justify-between">
               <div>
-                <label class="font-bold text-slate-900 dark:text-white text-xs block">Body Text & Descriptions</label>
-                <span class="text-[10px] text-slate-400">Job duties, project descriptions, skills (Recommended: 9.5pt – 11pt)</span>
+                <label class="font-bold text-slate-900 dark:text-white text-xs block">Body Text</label>
+                <span class="text-[10px] text-slate-400">Job descriptions, summaries, bullet points (Recommended: 9.5pt – 11pt)</span>
               </div>
               <div class="flex items-center gap-1.5">
                 <input type="number" id="inp-size-body" min="7" max="16" step="0.5" value="${fontSizes.body}" class="w-16 text-center font-bold font-mono text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white py-1 px-1.5" />
@@ -201,8 +201,8 @@ export function openTypographyModal() {
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/40 space-y-1.5">
             <div class="flex items-center justify-between">
               <div>
-                <label class="font-bold text-slate-900 dark:text-white text-xs block">Contact Information & Meta Dates</label>
-                <span class="text-[10px] text-slate-400">Email, phone, links, employment dates (Recommended: 8.5pt – 10pt)</span>
+                <label class="font-bold text-slate-900 dark:text-white text-xs block">Contact Info & Dates</label>
+                <span class="text-[10px] text-slate-400">Email, phone, links, dates (Recommended: 8.5pt – 10pt)</span>
               </div>
               <div class="flex items-center gap-1.5">
                 <input type="number" id="inp-size-contact" min="7" max="14" step="0.5" value="${fontSizes.contact}" class="w-16 text-center font-bold font-mono text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white py-1 px-1.5" />

@@ -50,7 +50,7 @@ export function togglePrintPreview() {
       banner.id = 'print-preview-banner';
       banner.className = 'fixed top-3 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-5 py-2.5 rounded-full shadow-2xl flex items-center gap-3 text-xs font-bold border border-slate-700 animate-in fade-in duration-200';
       banner.innerHTML = `
-        <span>Print Preview Mode (Isolated Document Canvas)</span>
+        <span>Print Preview</span>
         <button type="button" id="btn-exit-print-preview" class="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-[11px] transition">Exit Preview</button>
       `;
       document.body.appendChild(banner);

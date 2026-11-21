@@ -32,10 +32,10 @@ export function openClearDataModal() {
           </div>
           <div>
             <h3 class="text-base font-bold text-slate-900 dark:text-white">Clear Candidate Data</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Safely start fresh without losing your layout preferences</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Start fresh while keeping your layout preferences</p>
           </div>
         </div>
-        <button type="button" id="btn-close-clear-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg" aria-label="Close">
+        <button type="button" id="btn-close-clear-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg" aria-label="Close">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -44,20 +44,20 @@ export function openClearDataModal() {
       <div class="p-6 space-y-4 text-xs text-slate-700 dark:text-slate-300">
         
         <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-          Are you sure you want to clear your current candidate information? All personal details, work experience, education, skills, projects, and certifications will be reset to a clean blank state.
+          Are you sure you want to clear your information? All personal details, work history, education, skills, and projects will be reset.
         </p>
 
         <!-- What is preserved card -->
         <div class="p-3.5 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl space-y-2">
           <div class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
             <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
-            <span>What Will Be Preserved:</span>
+            <span>What will be kept:</span>
           </div>
           <ul class="text-[11px] text-slate-500 dark:text-slate-400 list-disc list-inside space-y-1">
-            <li>Your chosen workspace theme and accent colors</li>
-            <li>Typography settings, point sizes (pt), and margin preferences</li>
-            <li>All custom imported and built-in templates</li>
-            <li>Your destination country and regional formatting rules</li>
+            <li>Selected theme and colors</li>
+            <li>Font, text size, and margin settings</li>
+            <li>Active template layout</li>
+            <li>Target country formatting rules</li>
           </ul>
         </div>
 
@@ -65,17 +65,17 @@ export function openClearDataModal() {
         <div class="p-3.5 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-xl space-y-2">
           <div class="font-bold text-blue-900 dark:text-blue-300 flex items-center gap-1.5">
             <i data-lucide="download" class="w-4 h-4 text-blue-600"></i>
-            <span>Recommended: Download Backup First</span>
+            <span>Recommended: Download a backup first</span>
           </div>
           <p class="text-[11px] text-blue-800/80 dark:text-blue-300/80 leading-relaxed">
-            Download your current CV data as a portable JSON file so you can easily restore it at any time.
+            Save your current CV data as a JSON file so you can restore it whenever you need.
           </p>
           <div>
             <button type="button" id="btn-backup-before-clear" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs transition flex items-center gap-1.5 shadow-xs">
               <i data-lucide="file-json" class="w-3.5 h-3.5"></i>
-              <span>Download JSON Backup Now</span>
+              <span>Download JSON Backup</span>
             </button>
-            <span id="backup-success-indicator" class="hidden text-[10px] text-emerald-600 font-bold ml-2">✓ Backup downloaded!</span>
+            <span id="backup-success-indicator" class="hidden text-[10px] text-emerald-600 font-bold ml-2">✓ Backup saved!</span>
           </div>
         </div>
 
@@ -84,11 +84,11 @@ export function openClearDataModal() {
       <!-- Footer -->
       <div class="px-6 py-3.5 border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/40 flex items-center justify-between">
         <button type="button" id="btn-cancel-clear" class="px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition">
-          Cancel (Keep My Data)
+          Cancel
         </button>
         <button type="button" id="btn-confirm-clear" class="px-4 py-2 text-xs font-bold bg-red-600 hover:bg-red-700 text-white rounded-lg transition shadow-xs flex items-center gap-1.5">
           <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-          <span>Yes, Clear Candidate Data</span>
+          <span>Clear Candidate Data</span>
         </button>
       </div>
 

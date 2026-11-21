@@ -59,8 +59,8 @@ export function openExportModal(defaultExportType = 'pdf') {
             <i data-lucide="file-check-2" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Export CV Document</h3>
-            <p class="text-xs text-slate-500">Pre-download quality verification & format settings</p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Export Document</h3>
+            <p class="text-xs text-slate-500">Review settings and choose your export format</p>
           </div>
         </div>
         <button type="button" id="btn-close-export-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -77,15 +77,15 @@ export function openExportModal(defaultExportType = 'pdf') {
             <div class="flex items-start gap-2">
               <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
               <div>
-                <strong class="font-bold block text-xs">Notice: Demonstration Sample Data Active</strong>
+                <strong class="font-bold block text-xs">Notice: Sample Data Active</strong>
                 <p class="text-[11px] text-amber-800 dark:text-amber-300 mt-0.5 leading-relaxed">
-                  You are exporting preloaded sample candidate information. If you intend to submit this CV to real employers, start with a clean form and enter your own real qualifications.
+                  You are exporting sample candidate information. Clear sample data anytime to build your own CV.
                 </p>
               </div>
             </div>
             <div class="flex items-center gap-2 pt-1 pl-6">
               <button type="button" id="btn-export-modal-clear-demo" class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-[11px] transition shadow-xs">
-                Clear Sample Data & Start Blank
+                Clear Sample Data
               </button>
               <span class="text-[10px] text-amber-700 dark:text-amber-400">or proceed below</span>
             </div>
@@ -127,7 +127,7 @@ export function openExportModal(defaultExportType = 'pdf') {
 
         <!-- Compliance Checklist -->
         <div class="space-y-1.5">
-          <label class="block text-xs font-bold text-slate-800 dark:text-slate-200">International Compliance Check:</label>
+          <label class="block text-xs font-bold text-slate-800 dark:text-slate-200">Format & Region Check:</label>
           <div class="space-y-1.5">
             ${complianceItems.map(item => `
               <div class="p-2 rounded-lg border ${item.ok ? 'border-emerald-200 dark:border-emerald-900 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300' : 'border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/30 text-amber-800 dark:text-amber-300'} flex items-start gap-2">

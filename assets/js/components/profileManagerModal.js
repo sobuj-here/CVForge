@@ -33,8 +33,8 @@ export function openProfileManagerModal() {
               <i data-lucide="folder-kanban" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Profile Manager & Local Storage</h3>
-              <p class="text-xs text-slate-500">Manage multiple job versions, backups, and privacy</p>
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Profile Manager</h3>
+              <p class="text-xs text-slate-500">Manage multiple CV versions and backups</p>
             </div>
           </div>
           <button type="button" id="btn-close-pm" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg">
@@ -62,7 +62,7 @@ export function openProfileManagerModal() {
           <!-- Saved Profiles List -->
           <div>
             <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Saved Profile Versions (${list.length})</h4>
+              <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Saved Profiles (${list.length})</h4>
               <button type="button" id="btn-new-blank-profile" class="text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i> New Blank Profile
               </button>
@@ -70,7 +70,7 @@ export function openProfileManagerModal() {
 
             ${list.length === 0 ? `
               <div class="p-4 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl text-center text-slate-400">
-                No extra profiles saved yet. Click "Duplicate Profile" above to save variations for different target jobs.
+                No saved profiles yet. Click "Duplicate Profile" to save variations for different jobs.
               </div>
             ` : `
               <div class="space-y-2">
@@ -96,13 +96,13 @@ export function openProfileManagerModal() {
 
           <!-- Backup & Import Actions -->
           <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30 space-y-3">
-            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Export & Import JSON Backups</h4>
+            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Backup & Restore</h4>
             <div class="flex flex-wrap gap-2">
               <button type="button" id="btn-pm-export-json" class="px-3 py-1.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white font-bold rounded-lg text-xs transition flex items-center gap-1.5">
-                <i data-lucide="download" class="w-3.5 h-3.5"></i> Export Active Profile (.json)
+                <i data-lucide="download" class="w-3.5 h-3.5"></i> Export Backup (.json)
               </button>
               <button type="button" id="btn-pm-import-json" class="px-3 py-1.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white font-bold rounded-lg text-xs transition flex items-center gap-1.5">
-                <i data-lucide="upload" class="w-3.5 h-3.5"></i> Import Profile from File
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i> Import from Backup
               </button>
               <input type="file" id="inp-pm-file" class="hidden" accept=".json" />
             </div>
@@ -112,20 +112,20 @@ export function openProfileManagerModal() {
           <div class="p-4 rounded-xl border border-emerald-200 dark:border-emerald-900/40 bg-emerald-50/60 dark:bg-emerald-950/30 space-y-2">
             <div class="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 font-bold text-xs">
               <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
-              <span>100% Client-Side Privacy Policy</span>
+              <span>Your data stays on this device</span>
             </div>
             <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-              CVForge does not transmit, store, or process your personal, educational, or work history data on any external web server. All information resides strictly within your computer's browser local storage (localStorage). You retain full ownership and control over your resume data at all times.
+              Your information is saved in your browser's local storage. Nothing is sent to external servers.
             </p>
             <div class="pt-2 flex flex-wrap justify-between items-center gap-2 border-t border-emerald-200 dark:border-emerald-900/30">
-              <span class="text-[11px] text-slate-500">Need to start over or reset?</span>
+              <span class="text-[11px] text-slate-500">Need to start over?</span>
               <div class="flex items-center gap-2">
                 <button type="button" id="btn-pm-clear-candidate" class="text-xs font-bold text-amber-600 hover:text-amber-700 hover:underline">
                   Clear Candidate Data
                 </button>
                 <span class="text-slate-300 dark:text-slate-700">|</span>
                 <button type="button" id="btn-pm-wipe-all" class="text-xs font-bold text-red-600 hover:text-red-700 hover:underline">
-                  Wipe All Storage
+                  Reset All Data
                 </button>
               </div>
             </div>
@@ -151,7 +151,7 @@ export function openProfileManagerModal() {
 
     // Duplicate current profile
     document.getElementById('btn-save-current-as')?.addEventListener('click', () => {
-      const name = prompt('Enter a name for this profile version:', `${currentProfile.personal?.fullName || 'Profile'} - Copy`);
+      const name = prompt('Enter a profile name:', `${currentProfile.personal?.fullName || 'Profile'} - Copy`);
       if (name) {
         appState.saveCurrentProfileAs(name);
         renderModal();
@@ -160,7 +160,7 @@ export function openProfileManagerModal() {
 
     // New blank profile
     document.getElementById('btn-new-blank-profile')?.addEventListener('click', () => {
-      if (confirm('Create a new blank profile? Your current edits are saved in your browser.')) {
+      if (confirm('Create a new blank profile? Your current changes are saved in your browser.')) {
         appState.resetToBlank();
         close();
       }
@@ -216,10 +216,10 @@ export function openProfileManagerModal() {
 
     // Wipe all data
     document.getElementById('btn-pm-wipe-all')?.addEventListener('click', () => {
-      if (confirm('Are you certain? This will delete all saved CVForge data from your local browser.')) {
+      if (confirm('Are you sure? This will delete all saved profiles and reset CVForge.')) {
         appState.clearAllData();
         close();
-        alert('All local CVForge data deleted.');
+        alert('All local data cleared.');
       }
     });
 

@@ -35,52 +35,52 @@ export function openCoverLetterModal() {
     if (letterTone === 'executive') {
       return `Dear ${recipientName},
 
-I am writing to formally submit my candidacy for the ${jobTitle} position at ${companyName}. With extensive experience spearheading high-scale technical initiatives and architecting resilient platforms, I have built a career centered on driving measurable business outcomes and cultivating world-class engineering execution.
+I am writing to express my interest in the ${jobTitle} position at ${companyName}. With extensive experience leading initiatives and delivering complex projects, I have developed a track record of driving operational efficiency and supporting high-performing teams.
 
-Throughout my tenure at ${topExp?.company || 'industry-leading technology organizations'}, I led initiatives that directly impacted scalability and operational efficiency. Notably, I ${topHighlight.toLowerCase()}. My background in ${skillsList} allows me to bridge high-level corporate roadmaps with disciplined, hands-on architectural standards.
+In my recent role at ${topExp?.company || 'my previous organization'}, I led key efforts including ${topHighlight.toLowerCase()}. My background in ${skillsList} allows me to align strategic goals with day-to-day execution.
 
-${companyName}'s commitment to engineering innovation strongly aligns with my own leadership philosophy. I welcome the opportunity to discuss how my technical acumen, mentorship track record, and delivery focus can support ${companyName}'s strategic objectives in the coming years.
+${companyName}'s work and values strongly align with my professional approach. I would welcome the opportunity to discuss how my experience and problem-solving skills can contribute to your team.
 
-Thank you for your consideration, and I look forward to speaking with you.
+Thank you for your consideration.
 
 Sincerely,
 
 ${p.fullName || 'Candidate Name'}
-${p.phone ? `Tel: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
+${p.phone ? `Phone: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
     }
 
     if (letterTone === 'graduate') {
       return `Dear ${recipientName},
 
-I am excited to apply for the ${jobTitle} role at ${companyName}. As a dedicated graduate${profile.education?.[0] ? ` with a ${profile.education[0].degree} from ${profile.education[0].institution}` : ''}, I have developed a strong technical foundation and a genuine passion for solving complex software problems.
+I am writing to apply for the ${jobTitle} role at ${companyName}. As a recent graduate${profile.education?.[0] ? ` with a ${profile.education[0].degree} from ${profile.education[0].institution}` : ''}, I have built a solid foundation in ${skillsList} through coursework and practical projects.
 
-Through rigorous academic capstone projects and hands-on development using ${skillsList}, I have demonstrated rapid learning agility and disciplined software engineering habits. In my recent project work, I engineered end-to-end applications with comprehensive test coverage and clean architectural design.
+During my studies, I completed hands-on projects that required structured problem-solving, attention to detail, and team collaboration. I am eager to apply these skills and continue developing professionally within your team.
 
-I have long admired ${companyName}'s engineering culture, and I am eager to contribute my problem-solving energy, collaborative spirit, and technical skills to your team. I would welcome the opportunity to interview and discuss how I can contribute from day one.
+I admire ${companyName}'s work and would be thrilled to contribute to your ongoing projects. I welcome the opportunity to discuss my qualifications further in an interview.
 
-Thank you very much for your time and consideration.
+Thank you for your time and consideration.
 
-Warm regards,
+Sincerely,
 
 ${p.fullName || 'Candidate Name'}
-${p.phone ? `Tel: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
+${p.phone ? `Phone: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
     }
 
     // Default 'modern'
     return `Dear ${recipientName},
 
-I am thrilled to submit my application for the ${jobTitle} opportunity at ${companyName}. As a ${p.headline || 'dedicated professional'} with deep hands-on expertise in ${skillsList}, I have consistently delivered scalable solutions that solve mission-critical challenges.
+I am writing to apply for the ${jobTitle} position at ${companyName}. With a strong background in ${skillsList}, I have consistently delivered reliable results and contributed to key team objectives.
 
-In my recent work, I spearheaded key initiatives including: ${topHighlight.toLowerCase()}. I take pride in engineering maintainable, high-impact systems, collaborating cross-functionally with product and design teams, and continuously improving development velocity.
+In my recent experience, I have focused on: ${topHighlight.toLowerCase()}. I enjoy collaborating with team members across different disciplines, improving processes, and solving practical challenges effectively.
 
-${companyName}'s ambitious mission represents the ideal environment for my technical skillset and creative problem-solving mindset. I am eager to bring my enthusiasm and track record of delivery to your engineering squad.
+I would welcome the chance to discuss how my skills and background make me a strong fit for this position at ${companyName}.
 
-Thank you for your review of my application. I look forward to the possibility of discussing this role in detail.
+Thank you for considering my application.
 
-Best regards,
+Sincerely,
 
 ${p.fullName || 'Candidate Name'}
-${p.phone ? `Tel: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
+${p.phone ? `Phone: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
   };
 
   const renderModal = () => {
@@ -94,8 +94,8 @@ ${p.phone ? `Tel: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
               <i data-lucide="mail" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="text-base font-bold text-slate-900 dark:text-white">Matching Cover Letter Generator</h3>
-              <p class="text-xs text-slate-500">Automatically styled to match your active CV typography & header</p>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Cover Letter</h3>
+              <p class="text-xs text-slate-500">Formatted to match your CV layout and font</p>
             </div>
           </div>
           <button type="button" id="btn-close-letter" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">

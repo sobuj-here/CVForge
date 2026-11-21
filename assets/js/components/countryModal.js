@@ -29,8 +29,8 @@ export function openCountryModal() {
               <i data-lucide="globe" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="text-base font-bold text-slate-900 dark:text-white">International CV & Resume Conventions</h3>
-              <p class="text-xs text-slate-500">Recruitment standards tailored by country & jurisdiction</p>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Target Country Guidelines</h3>
+              <p class="text-xs text-slate-500">Recruitment standards and conventions by country</p>
             </div>
           </div>
           <button type="button" id="btn-close-country" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">

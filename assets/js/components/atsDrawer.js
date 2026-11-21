@@ -29,12 +29,12 @@ export function openAtsModal() {
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">ATS Heuristic Audit Engine</h3>
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">ATS Compatibility Check</h3>
               <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                Rule-Based Analysis
+                Best Practice Check
               </span>
             </div>
-            <p class="text-xs text-slate-500">Heuristic check against parsing architectures (Workday, Taleo, Greenhouse, iCIMS)</p>
+            <p class="text-xs text-slate-500">Checks your formatting and content against ATS guidelines</p>
           </div>
         </div>
         <button type="button" id="btn-close-ats" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg" aria-label="Close ATS Modal">
@@ -48,7 +48,7 @@ export function openAtsModal() {
         <!-- Score Banner -->
         <div class="p-5 rounded-xl border flex flex-col sm:flex-row items-center justify-between gap-4 ${audit.tierColor}">
           <div>
-            <div class="text-[10px] font-bold uppercase tracking-wider">Algorithmic Match Score</div>
+            <div class="text-[10px] font-bold uppercase tracking-wider">Compatibility Score</div>
             <div class="text-3xl font-black mt-0.5">${audit.score} <span class="text-lg font-normal">/ 100</span></div>
             <div class="text-xs font-semibold mt-1">${audit.tier}</div>
           </div>
@@ -56,26 +56,26 @@ export function openAtsModal() {
             ${profile.format !== 'ats-friendly' ? `
               <button type="button" id="btn-switch-ats-format" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow-sm text-xs transition flex items-center gap-1.5">
                 <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-                Switch to ATS-Friendly Format
+                Use ATS-Friendly Format
               </button>
             ` : `
               <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/60 px-3 py-1.5 rounded-lg border border-emerald-300 dark:border-emerald-800">
-                <i data-lucide="check" class="w-4 h-4"></i> Single-Column ATS Format Active
+                <i data-lucide="check" class="w-4 h-4"></i> ATS-Friendly Format Active
               </span>
             `}
           </div>
         </div>
 
-        <!-- Non-Guarantee Transparency Disclaimer (Mandatory Requirement) -->
+        <!-- Non-Guarantee Transparency Disclaimer -->
         <div class="p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/40 rounded-xl text-[11px] text-amber-800 dark:text-amber-300 leading-relaxed">
-          <strong>Important ATS Disclaimer:</strong> No software can guarantee 100% ATS success or employment interviews, as parsing algorithms vary across company configurations. This checker provides actionable best-practice recommendations to maximize machine parseability and human recruiter clarity.
+          <strong>Note:</strong> While no tool can guarantee an interview, these suggestions help ensure your CV is easily read by both applicant tracking systems and hiring managers.
         </div>
 
         <!-- Detected Issues & Problems -->
         ${audit.warnings.length > 0 ? `
           <div class="space-y-2">
             <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider flex items-center gap-1.5 text-amber-600">
-              <i data-lucide="alert-triangle" class="w-4 h-4"></i> Detected Issues (${audit.warnings.length})
+              <i data-lucide="alert-triangle" class="w-4 h-4"></i> Suggestions to Improve (${audit.warnings.length})
             </h4>
             <div class="space-y-1.5">
               ${audit.warnings.map(w => `

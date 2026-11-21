@@ -421,12 +421,12 @@ function openAtsModal() {
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">ATS Heuristic Audit Engine</h3>
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">ATS Compatibility Check</h3>
               <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-                Rule-Based Analysis
+                Best Practice Check
               </span>
             </div>
-            <p class="text-xs text-slate-500">Heuristic check against parsing architectures (Workday, Taleo, Greenhouse, iCIMS)</p>
+            <p class="text-xs text-slate-500">Checks your formatting and content against ATS guidelines</p>
           </div>
         </div>
         <button type="button" id="btn-close-ats" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg" aria-label="Close ATS Modal">
@@ -440,7 +440,7 @@ function openAtsModal() {
         <!-- Score Banner -->
         <div class="p-5 rounded-xl border flex flex-col sm:flex-row items-center justify-between gap-4 ${audit.tierColor}">
           <div>
-            <div class="text-[10px] font-bold uppercase tracking-wider">Algorithmic Match Score</div>
+            <div class="text-[10px] font-bold uppercase tracking-wider">Compatibility Score</div>
             <div class="text-3xl font-black mt-0.5">${audit.score} <span class="text-lg font-normal">/ 100</span></div>
             <div class="text-xs font-semibold mt-1">${audit.tier}</div>
           </div>
@@ -448,26 +448,26 @@ function openAtsModal() {
             ${profile.format !== 'ats-friendly' ? `
               <button type="button" id="btn-switch-ats-format" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg shadow-sm text-xs transition flex items-center gap-1.5">
                 <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-                Switch to ATS-Friendly Format
+                Use ATS-Friendly Format
               </button>
             ` : `
               <span class="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/60 px-3 py-1.5 rounded-lg border border-emerald-300 dark:border-emerald-800">
-                <i data-lucide="check" class="w-4 h-4"></i> Single-Column ATS Format Active
+                <i data-lucide="check" class="w-4 h-4"></i> ATS-Friendly Format Active
               </span>
             `}
           </div>
         </div>
 
-        <!-- Non-Guarantee Transparency Disclaimer (Mandatory Requirement) -->
+        <!-- Non-Guarantee Transparency Disclaimer -->
         <div class="p-3 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/40 rounded-xl text-[11px] text-amber-800 dark:text-amber-300 leading-relaxed">
-          <strong>Important ATS Disclaimer:</strong> No software can guarantee 100% ATS success or employment interviews, as parsing algorithms vary across company configurations. This checker provides actionable best-practice recommendations to maximize machine parseability and human recruiter clarity.
+          <strong>Note:</strong> While no tool can guarantee an interview, these suggestions help ensure your CV is easily read by both applicant tracking systems and hiring managers.
         </div>
 
         <!-- Detected Issues & Problems -->
         ${audit.warnings.length > 0 ? `
           <div class="space-y-2">
             <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider flex items-center gap-1.5 text-amber-600">
-              <i data-lucide="alert-triangle" class="w-4 h-4"></i> Detected Issues (${audit.warnings.length})
+              <i data-lucide="alert-triangle" class="w-4 h-4"></i> Suggestions to Improve (${audit.warnings.length})
             </h4>
             <div class="space-y-1.5">
               ${audit.warnings.map(w => `
@@ -580,10 +580,10 @@ function openClearDataModal() {
           </div>
           <div>
             <h3 class="text-base font-bold text-slate-900 dark:text-white">Clear Candidate Data</h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400">Safely start fresh without losing your layout preferences</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400">Start fresh while keeping your layout preferences</p>
           </div>
         </div>
-        <button type="button" id="btn-close-clear-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg" aria-label="Close">
+        <button type="button" id="btn-close-clear-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg" aria-label="Close">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -592,20 +592,20 @@ function openClearDataModal() {
       <div class="p-6 space-y-4 text-xs text-slate-700 dark:text-slate-300">
         
         <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-          Are you sure you want to clear your current candidate information? All personal details, work experience, education, skills, projects, and certifications will be reset to a clean blank state.
+          Are you sure you want to clear your information? All personal details, work history, education, skills, and projects will be reset.
         </p>
 
         <!-- What is preserved card -->
         <div class="p-3.5 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl space-y-2">
           <div class="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1.5">
             <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
-            <span>What Will Be Preserved:</span>
+            <span>What will be kept:</span>
           </div>
           <ul class="text-[11px] text-slate-500 dark:text-slate-400 list-disc list-inside space-y-1">
-            <li>Your chosen workspace theme and accent colors</li>
-            <li>Typography settings, point sizes (pt), and margin preferences</li>
-            <li>All custom imported and built-in templates</li>
-            <li>Your destination country and regional formatting rules</li>
+            <li>Selected theme and colors</li>
+            <li>Font, text size, and margin settings</li>
+            <li>Active template layout</li>
+            <li>Target country formatting rules</li>
           </ul>
         </div>
 
@@ -613,17 +613,17 @@ function openClearDataModal() {
         <div class="p-3.5 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 rounded-xl space-y-2">
           <div class="font-bold text-blue-900 dark:text-blue-300 flex items-center gap-1.5">
             <i data-lucide="download" class="w-4 h-4 text-blue-600"></i>
-            <span>Recommended: Download Backup First</span>
+            <span>Recommended: Download a backup first</span>
           </div>
           <p class="text-[11px] text-blue-800/80 dark:text-blue-300/80 leading-relaxed">
-            Download your current CV data as a portable JSON file so you can easily restore it at any time.
+            Save your current CV data as a JSON file so you can restore it whenever you need.
           </p>
           <div>
             <button type="button" id="btn-backup-before-clear" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs transition flex items-center gap-1.5 shadow-xs">
               <i data-lucide="file-json" class="w-3.5 h-3.5"></i>
-              <span>Download JSON Backup Now</span>
+              <span>Download JSON Backup</span>
             </button>
-            <span id="backup-success-indicator" class="hidden text-[10px] text-emerald-600 font-bold ml-2">✓ Backup downloaded!</span>
+            <span id="backup-success-indicator" class="hidden text-[10px] text-emerald-600 font-bold ml-2">✓ Backup saved!</span>
           </div>
         </div>
 
@@ -632,11 +632,11 @@ function openClearDataModal() {
       <!-- Footer -->
       <div class="px-6 py-3.5 border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/40 flex items-center justify-between">
         <button type="button" id="btn-cancel-clear" class="px-4 py-2 text-xs font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition">
-          Cancel (Keep My Data)
+          Cancel
         </button>
         <button type="button" id="btn-confirm-clear" class="px-4 py-2 text-xs font-bold bg-red-600 hover:bg-red-700 text-white rounded-lg transition shadow-xs flex items-center gap-1.5">
           <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-          <span>Yes, Clear Candidate Data</span>
+          <span>Clear Candidate Data</span>
         </button>
       </div>
 
@@ -702,8 +702,8 @@ function openCountryModal() {
               <i data-lucide="globe" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="text-base font-bold text-slate-900 dark:text-white">International CV & Resume Conventions</h3>
-              <p class="text-xs text-slate-500">Recruitment standards tailored by country & jurisdiction</p>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Target Country Guidelines</h3>
+              <p class="text-xs text-slate-500">Recruitment standards and conventions by country</p>
             </div>
           </div>
           <button type="button" id="btn-close-country" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -872,52 +872,52 @@ function openCoverLetterModal() {
     if (letterTone === 'executive') {
       return `Dear ${recipientName},
 
-I am writing to formally submit my candidacy for the ${jobTitle} position at ${companyName}. With extensive experience spearheading high-scale technical initiatives and architecting resilient platforms, I have built a career centered on driving measurable business outcomes and cultivating world-class engineering execution.
+I am writing to express my interest in the ${jobTitle} position at ${companyName}. With extensive experience leading initiatives and delivering complex projects, I have developed a track record of driving operational efficiency and supporting high-performing teams.
 
-Throughout my tenure at ${topExp?.company || 'industry-leading technology organizations'}, I led initiatives that directly impacted scalability and operational efficiency. Notably, I ${topHighlight.toLowerCase()}. My background in ${skillsList} allows me to bridge high-level corporate roadmaps with disciplined, hands-on architectural standards.
+In my recent role at ${topExp?.company || 'my previous organization'}, I led key efforts including ${topHighlight.toLowerCase()}. My background in ${skillsList} allows me to align strategic goals with day-to-day execution.
 
-${companyName}'s commitment to engineering innovation strongly aligns with my own leadership philosophy. I welcome the opportunity to discuss how my technical acumen, mentorship track record, and delivery focus can support ${companyName}'s strategic objectives in the coming years.
+${companyName}'s work and values strongly align with my professional approach. I would welcome the opportunity to discuss how my experience and problem-solving skills can contribute to your team.
 
-Thank you for your consideration, and I look forward to speaking with you.
+Thank you for your consideration.
 
 Sincerely,
 
 ${p.fullName || 'Candidate Name'}
-${p.phone ? `Tel: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
+${p.phone ? `Phone: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
     }
 
     if (letterTone === 'graduate') {
       return `Dear ${recipientName},
 
-I am excited to apply for the ${jobTitle} role at ${companyName}. As a dedicated graduate${profile.education?.[0] ? ` with a ${profile.education[0].degree} from ${profile.education[0].institution}` : ''}, I have developed a strong technical foundation and a genuine passion for solving complex software problems.
+I am writing to apply for the ${jobTitle} role at ${companyName}. As a recent graduate${profile.education?.[0] ? ` with a ${profile.education[0].degree} from ${profile.education[0].institution}` : ''}, I have built a solid foundation in ${skillsList} through coursework and practical projects.
 
-Through rigorous academic capstone projects and hands-on development using ${skillsList}, I have demonstrated rapid learning agility and disciplined software engineering habits. In my recent project work, I engineered end-to-end applications with comprehensive test coverage and clean architectural design.
+During my studies, I completed hands-on projects that required structured problem-solving, attention to detail, and team collaboration. I am eager to apply these skills and continue developing professionally within your team.
 
-I have long admired ${companyName}'s engineering culture, and I am eager to contribute my problem-solving energy, collaborative spirit, and technical skills to your team. I would welcome the opportunity to interview and discuss how I can contribute from day one.
+I admire ${companyName}'s work and would be thrilled to contribute to your ongoing projects. I welcome the opportunity to discuss my qualifications further in an interview.
 
-Thank you very much for your time and consideration.
+Thank you for your time and consideration.
 
-Warm regards,
+Sincerely,
 
 ${p.fullName || 'Candidate Name'}
-${p.phone ? `Tel: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
+${p.phone ? `Phone: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
     }
 
     // Default 'modern'
     return `Dear ${recipientName},
 
-I am thrilled to submit my application for the ${jobTitle} opportunity at ${companyName}. As a ${p.headline || 'dedicated professional'} with deep hands-on expertise in ${skillsList}, I have consistently delivered scalable solutions that solve mission-critical challenges.
+I am writing to apply for the ${jobTitle} position at ${companyName}. With a strong background in ${skillsList}, I have consistently delivered reliable results and contributed to key team objectives.
 
-In my recent work, I spearheaded key initiatives including: ${topHighlight.toLowerCase()}. I take pride in engineering maintainable, high-impact systems, collaborating cross-functionally with product and design teams, and continuously improving development velocity.
+In my recent experience, I have focused on: ${topHighlight.toLowerCase()}. I enjoy collaborating with team members across different disciplines, improving processes, and solving practical challenges effectively.
 
-${companyName}'s ambitious mission represents the ideal environment for my technical skillset and creative problem-solving mindset. I am eager to bring my enthusiasm and track record of delivery to your engineering squad.
+I would welcome the chance to discuss how my skills and background make me a strong fit for this position at ${companyName}.
 
-Thank you for your review of my application. I look forward to the possibility of discussing this role in detail.
+Thank you for considering my application.
 
-Best regards,
+Sincerely,
 
 ${p.fullName || 'Candidate Name'}
-${p.phone ? `Tel: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
+${p.phone ? `Phone: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
   };
 
   const renderModal = () => {
@@ -931,8 +931,8 @@ ${p.phone ? `Tel: ${p.phone} | ` : ''}Email: ${p.email || ''}`;
               <i data-lucide="mail" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="text-base font-bold text-slate-900 dark:text-white">Matching Cover Letter Generator</h3>
-              <p class="text-xs text-slate-500">Automatically styled to match your active CV typography & header</p>
+              <h3 class="text-base font-bold text-slate-900 dark:text-white">Cover Letter</h3>
+              <p class="text-xs text-slate-500">Formatted to match your CV layout and font</p>
             </div>
           </div>
           <button type="button" id="btn-close-letter" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -1105,12 +1105,12 @@ function renderCustomizeBar(containerId = 'customize-bar-container') {
       
       <!-- Group 1: Template Selection (Gallery + Dropdown) -->
       <div class="flex items-center gap-2">
-        <button type="button" id="btn-open-template-gallery" class="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-lg shadow-xs text-xs flex items-center gap-1.5 transition active:scale-95" title="Browse visual cards for all 10 distinct CV formats">
+        <button type="button" id="btn-open-template-gallery" class="px-3 py-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-lg shadow-xs text-xs flex items-center gap-1.5 transition active:scale-95" title="Browse all CV templates">
           <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
           <span>Template Gallery</span>
         </button>
 
-        <select id="sel-format" class="font-bold text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-2.5 py-1.5 focus:ring-2 focus:ring-blue-500 shadow-xs max-w-[240px] truncate" title="Select CV Format">
+        <select id="sel-format" class="font-bold text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-2.5 py-1.5 focus:ring-2 focus:ring-blue-500 shadow-xs max-w-[240px] truncate" title="Select Template">
           ${FORMAT_CATEGORIES.map(cat => {
             const catTemplates = Object.values(TEMPLATES).filter(t => t.formatCategory === cat.id);
             return `
@@ -1130,7 +1130,7 @@ function renderCustomizeBar(containerId = 'customize-bar-container') {
       <div class="flex flex-wrap items-center gap-2">
         
         <!-- Theme Picker -->
-        <div class="flex items-center gap-1" title="Visual Workspace Theme">
+        <div class="flex items-center gap-1" title="Theme">
           <span class="text-slate-500 dark:text-slate-400 font-semibold text-[11px]">Theme:</span>
           <select id="sel-theme" class="rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-2 py-1 text-xs font-semibold">
             ${THEMES.map(th => `
@@ -1140,7 +1140,7 @@ function renderCustomizeBar(containerId = 'customize-bar-container') {
         </div>
 
         <!-- Font Family -->
-        <div class="flex items-center gap-1 border-l border-slate-200 dark:border-slate-700 pl-2" title="CV Font Family">
+        <div class="flex items-center gap-1 border-l border-slate-200 dark:border-slate-700 pl-2" title="Font">
           <span class="text-slate-500 dark:text-slate-400 font-semibold text-[11px]">Font:</span>
           <select id="sel-font" class="rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-800 dark:text-slate-100 px-2 py-1 text-xs font-medium">
             <optgroup label="Modern Sans-Serif">
@@ -1175,19 +1175,19 @@ function renderCustomizeBar(containerId = 'customize-bar-container') {
         </div>
 
         <!-- Point-Based Font Sizing Trigger (pt) -->
-        <button type="button" id="btn-open-typography-modal" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition flex items-center gap-1.5 shadow-xs" title="Customize independent point sizes (pt) for Name, Headings, and Body">
+        <button type="button" id="btn-open-typography-modal" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition flex items-center gap-1.5 shadow-xs" title="Font Sizes">
           <i data-lucide="type" class="w-3.5 h-3.5 text-blue-600"></i>
           <span>Font Size: <strong class="text-blue-600">${fontSizes.body || 10}pt</strong></span>
         </button>
 
         <!-- Millimeter-Based Margin Controls Trigger (mm) -->
-        <button type="button" id="btn-open-margins-modal" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition flex items-center gap-1.5 shadow-xs" title="Customize Top, Bottom, Left, and Right margins in millimeters">
+        <button type="button" id="btn-open-margins-modal" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:border-blue-500 hover:text-blue-600 transition flex items-center gap-1.5 shadow-xs" title="Page Margins">
           <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-blue-600"></i>
           <span>Margins: <strong class="text-blue-600">${marginsCustom.top || 15}mm</strong></span>
         </button>
 
         <!-- Palette Swatches -->
-        <div class="flex items-center gap-1 border-l border-slate-200 dark:border-slate-700 pl-2" title="Primary Accent Color">
+        <div class="flex items-center gap-1 border-l border-slate-200 dark:border-slate-700 pl-2" title="Accent Color">
           <span class="text-slate-500 dark:text-slate-400 font-semibold text-[11px]">Color:</span>
           <div class="flex items-center gap-1">
             ${COLOR_PALETTES.map(col => `
@@ -1200,9 +1200,9 @@ function renderCustomizeBar(containerId = 'customize-bar-container') {
         <!-- Spacing Dropdown -->
         <div class="flex items-center gap-1.5 border-l border-slate-200 dark:border-slate-700 pl-2">
           <select id="sel-spacing" class="rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-2 py-1 text-[11px]" title="Line Spacing">
-            <option value="compact" ${settings.spacing === 'compact' ? 'selected' : ''}>Compact Spacing</option>
-            <option value="normal" ${settings.spacing === 'normal' ? 'selected' : ''}>Normal Spacing</option>
-            <option value="relaxed" ${settings.spacing === 'relaxed' ? 'selected' : ''}>Relaxed Spacing</option>
+            <option value="compact" ${settings.spacing === 'compact' ? 'selected' : ''}>Compact</option>
+            <option value="normal" ${settings.spacing === 'normal' ? 'selected' : ''}>Normal</option>
+            <option value="relaxed" ${settings.spacing === 'relaxed' ? 'selected' : ''}>Relaxed</option>
           </select>
         </div>
 
@@ -1212,7 +1212,7 @@ function renderCustomizeBar(containerId = 'customize-bar-container') {
       <div class="flex items-center gap-2">
         
         <!-- Paper Size Toggle (A4 vs Letter) -->
-        <div class="inline-flex rounded-lg border border-slate-300 dark:border-slate-700 overflow-hidden bg-slate-50 dark:bg-slate-800 p-0.5" title="Page Dimensions">
+        <div class="inline-flex rounded-lg border border-slate-300 dark:border-slate-700 overflow-hidden bg-slate-50 dark:bg-slate-800 p-0.5" title="Paper Size">
           <button type="button" id="btn-paper-letter" class="px-2.5 py-1 text-[11px] font-bold rounded ${settings.paperSize === 'letter' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-700 dark:text-slate-300 hover:text-blue-600'}">
             US Letter
           </button>
@@ -1223,13 +1223,13 @@ function renderCustomizeBar(containerId = 'customize-bar-container') {
 
         <!-- Photo Controls: Show, Size, Shape, Upload -->
         <div class="flex items-center gap-1.5 border-l border-slate-200 dark:border-slate-700 pl-2">
-          <label class="flex items-center gap-1 text-[11px] font-semibold text-slate-700 dark:text-slate-300 cursor-pointer" title="Toggle candidate photograph">
+          <label class="flex items-center gap-1 text-[11px] font-semibold text-slate-700 dark:text-slate-300 cursor-pointer" title="Toggle Photo">
             <input type="checkbox" id="chk-show-photo" ${settings.showPhoto ? 'checked' : ''} class="rounded text-blue-600" />
             <span>Photo</span>
           </label>
 
           ${settings.showPhoto ? `
-            <select id="sel-photo-size" class="rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-[10px] text-slate-700 dark:text-slate-200 px-1.5 py-0.5" title="Photo Dimensions">
+            <select id="sel-photo-size" class="rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 text-[10px] text-slate-700 dark:text-slate-200 px-1.5 py-0.5" title="Photo Size">
               <option value="small" ${settings.photoSize === 'small' ? 'selected' : ''}>Small (72px)</option>
               <option value="medium" ${settings.photoSize === 'medium' || !settings.photoSize ? 'selected' : ''}>Medium (96px)</option>
               <option value="large" ${settings.photoSize === 'large' ? 'selected' : ''}>Large (120px)</option>
@@ -1242,7 +1242,7 @@ function renderCustomizeBar(containerId = 'customize-bar-container') {
           ` : ''}
 
           <input type="file" id="inp-photo-file" class="hidden" accept="image/*" />
-          <button type="button" id="btn-trigger-photo-upload" class="p-1 text-slate-500 hover:text-blue-600 dark:hover:text-blue-400" title="Upload/Change Photo">
+          <button type="button" id="btn-trigger-photo-upload" class="p-1 text-slate-500 hover:text-blue-600 dark:hover:text-blue-400" title="Upload Photo">
             <i data-lucide="image" class="w-3.5 h-3.5"></i>
           </button>
         </div>
@@ -1256,7 +1256,7 @@ function renderCustomizeBar(containerId = 'customize-bar-container') {
           <button type="button" id="btn-zoom-in" class="p-1 text-slate-500 hover:text-slate-900 dark:hover:text-white" title="Zoom In (+)">
             <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
           </button>
-          <button type="button" id="btn-zoom-reset" class="text-[10px] text-blue-600 dark:text-blue-400 font-bold px-1 hover:underline" title="Fit to width">
+          <button type="button" id="btn-zoom-reset" class="text-[10px] text-blue-600 dark:text-blue-400 font-bold px-1 hover:underline" title="Fit to Width">
             Fit
           </button>
         </div>
@@ -1455,8 +1455,8 @@ function openExportModal(defaultExportType = 'pdf') {
             <i data-lucide="file-check-2" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Export CV Document</h3>
-            <p class="text-xs text-slate-500">Pre-download quality verification & format settings</p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Export Document</h3>
+            <p class="text-xs text-slate-500">Review settings and choose your export format</p>
           </div>
         </div>
         <button type="button" id="btn-close-export-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -1473,15 +1473,15 @@ function openExportModal(defaultExportType = 'pdf') {
             <div class="flex items-start gap-2">
               <i data-lucide="alert-triangle" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
               <div>
-                <strong class="font-bold block text-xs">Notice: Demonstration Sample Data Active</strong>
+                <strong class="font-bold block text-xs">Notice: Sample Data Active</strong>
                 <p class="text-[11px] text-amber-800 dark:text-amber-300 mt-0.5 leading-relaxed">
-                  You are exporting preloaded sample candidate information. If you intend to submit this CV to real employers, start with a clean form and enter your own real qualifications.
+                  You are exporting sample candidate information. Clear sample data anytime to build your own CV.
                 </p>
               </div>
             </div>
             <div class="flex items-center gap-2 pt-1 pl-6">
               <button type="button" id="btn-export-modal-clear-demo" class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-[11px] transition shadow-xs">
-                Clear Sample Data & Start Blank
+                Clear Sample Data
               </button>
               <span class="text-[10px] text-amber-700 dark:text-amber-400">or proceed below</span>
             </div>
@@ -1523,7 +1523,7 @@ function openExportModal(defaultExportType = 'pdf') {
 
         <!-- Compliance Checklist -->
         <div class="space-y-1.5">
-          <label class="block text-xs font-bold text-slate-800 dark:text-slate-200">International Compliance Check:</label>
+          <label class="block text-xs font-bold text-slate-800 dark:text-slate-200">Format & Region Check:</label>
           <div class="space-y-1.5">
             ${complianceItems.map(item => `
               <div class="p-2 rounded-lg border ${item.ok ? 'border-emerald-200 dark:border-emerald-900 bg-emerald-50/60 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300' : 'border-amber-200 dark:border-amber-900 bg-amber-50/60 dark:bg-amber-950/30 text-amber-800 dark:text-amber-300'} flex items-start gap-2">
@@ -1691,10 +1691,10 @@ function renderFormSections(containerId = 'form-sections-container') {
             <span class="w-7 h-7 rounded-lg bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-black">1</span>
             <div>
               <div class="text-sm font-bold flex items-center gap-1.5">
-                <span>Personal & Contact Information</span>
-                <span class="text-[10px] text-red-500 font-bold">* Core</span>
+                <span>Personal Information</span>
+                <span class="text-[10px] text-blue-600 dark:text-blue-400 font-bold">Required</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Legal name, contact details, optional headline, and photo</div>
+              <div class="text-[11px] text-slate-500 font-normal">Contact details, headline, and optional photo</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -1719,7 +1719,7 @@ function renderFormSections(containerId = 'form-sections-container') {
               <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                 <button type="button" id="btn-trigger-crop-modal" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs transition inline-flex items-center gap-1.5">
                   <i data-lucide="camera" class="w-3.5 h-3.5"></i>
-                  <span>${p.photoUrl ? 'Edit / Re-crop Headshot' : 'Upload Headshot Photo'}</span>
+                  <span>${p.photoUrl ? 'Edit Photo' : 'Upload Photo'}</span>
                 </button>
                 ${p.photoUrl ? `
                   <button type="button" id="btn-remove-photo-direct" class="px-2.5 py-1.5 text-xs text-red-500 hover:text-red-700 font-bold hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition">
@@ -1730,11 +1730,11 @@ function renderFormSections(containerId = 'form-sections-container') {
               <div class="flex items-center justify-center sm:justify-start gap-2 pt-1">
                 <label class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-300 cursor-pointer">
                   <input type="checkbox" id="chk-show-photo" class="rounded text-blue-600 focus:ring-blue-500" ${settings.showPhoto ? 'checked' : ''} />
-                  <span>Show photo on CV formats</span>
+                  <span>Include photo on CV</span>
                 </label>
               </div>
               <p class="text-[10px] text-slate-500">
-                * Note: Photos are standard in Germany, France, and Europass; typically omitted in US, UK, and Canada applications to prevent hiring bias.
+                Photos are standard in Germany, France, and Europe; usually omitted in the US, UK, and Canada.
               </p>
             </div>
           </div>
@@ -1742,22 +1742,22 @@ function renderFormSections(containerId = 'form-sections-container') {
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Full Legal Name <span class="text-red-500 font-bold">*</span>
+                Full Name <span class="text-red-500 font-bold">*</span>
               </label>
               <input type="text" id="inp-full-name" value="${p.fullName || ''}" class="form-input w-full text-xs rounded-lg border ${!p.fullName ? 'border-amber-400 bg-amber-50/20' : 'border-slate-300 dark:border-slate-700'} dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Eleanor Vance" />
-              ${!p.fullName ? `<span class="text-[10px] text-amber-600 mt-0.5 block">Full name is required on all CV formats.</span>` : ''}
+              ${!p.fullName ? `<span class="text-[10px] text-amber-600 mt-0.5 block">Please enter your full name.</span>` : ''}
             </div>
 
             <!-- Professional Headline (STRICTLY OPTIONAL) -->
             <div>
               <div class="flex items-center justify-between mb-1">
                 <label for="inp-headline" class="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                  Professional Job Headline <span class="text-[10px] text-slate-400 font-normal">(Optional)</span>
+                  Professional Headline <span class="text-[10px] text-slate-400 font-normal">(Optional)</span>
                 </label>
               </div>
-              <input type="text" id="inp-headline" value="${p.headline || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Mathematics Graduate, Junior Data Analyst, Administrative Assistant" />
+              <input type="text" id="inp-headline" value="${p.headline || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Operations Manager, Data Analyst, or Mathematics Graduate" />
               <p class="text-[10px] text-slate-400 mt-0.5">
-                A brief 2–5 word summary of your professional identity or target role. Leave blank if preferred.
+                A short title summarizing your role or target position.
               </p>
             </div>
           </div>
@@ -1765,36 +1765,36 @@ function renderFormSections(containerId = 'form-sections-container') {
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Email Address <span class="text-red-500 font-bold">*</span>
+                Email <span class="text-red-500 font-bold">*</span>
               </label>
-              <input type="email" id="inp-email" value="${p.email || ''}" class="form-input w-full text-xs rounded-lg border ${p.email && !p.email.includes('@') ? 'border-red-500 bg-red-50/30' : 'border-slate-300 dark:border-slate-700'} dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. name@example.com" />
+              <input type="email" id="inp-email" value="${p.email || ''}" class="form-input w-full text-xs rounded-lg border ${p.email && !p.email.includes('@') ? 'border-red-500 bg-red-50/30' : 'border-slate-300 dark:border-slate-700'} dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. eleanor.vance@example.com" />
               ${p.email && !p.email.includes('@') ? `<span class="text-[10px] text-red-500 mt-0.5 block">Please enter a valid email address.</span>` : ''}
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Phone Number <span class="text-red-500 font-bold">*</span>
+                Phone <span class="text-red-500 font-bold">*</span>
               </label>
               <input type="tel" id="inp-phone" value="${p.phone || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. +1 (415) 555-0142" />
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">
-                Location (City, Country) <span class="text-red-500 font-bold">*</span>
+                Location <span class="text-red-500 font-bold">*</span>
               </label>
-              <input type="text" id="inp-location" value="${p.location || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Austin, TX, USA or London, UK" />
+              <input type="text" id="inp-location" value="${p.location || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g. Austin, TX or London, UK" />
             </div>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <div>
-              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">LinkedIn Profile (Optional)</label>
+              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">LinkedIn (Optional)</label>
               <input type="url" id="inp-linkedin" value="${p.linkedin || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2" placeholder="https://linkedin.com/in/username" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">GitHub / Code Repository (Optional)</label>
+              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">GitHub (Optional)</label>
               <input type="url" id="inp-github" value="${p.github || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2" placeholder="https://github.com/username" />
             </div>
             <div>
-              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Portfolio / Personal Website (Optional)</label>
+              <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Portfolio or Website (Optional)</label>
               <input type="url" id="inp-website" value="${p.website || ''}" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-2" placeholder="https://myportfolio.com" />
             </div>
           </div>
@@ -1803,7 +1803,7 @@ function renderFormSections(containerId = 'form-sections-container') {
           <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
             <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center justify-between">
               <span>Optional International & Regional Fields</span>
-              <span class="text-[10px] text-slate-400 font-normal">Relevant for Bangladesh, Germany, Europass & Asia; leave blank for US/UK</span>
+              <span class="text-[10px] text-slate-400 font-normal">Standard in Europe, Asia, and Bangladesh; leave blank for US and UK</span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
               <div>
@@ -1815,8 +1815,8 @@ function renderFormSections(containerId = 'form-sections-container') {
                 <input type="text" id="inp-dob" value="${p.dateOfBirth || ''}" class="form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="DD/MM/YYYY or YYYY-MM-DD" />
               </div>
               <div>
-                <label class="block text-[11px] text-slate-600 dark:text-slate-400 mb-0.5">Driving Licence</label>
-                <input type="text" id="inp-license" value="${p.drivingLicense || ''}" class="form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="e.g. Clean Driver License" />
+                <label class="block text-[11px] text-slate-600 dark:text-slate-400 mb-0.5">Driving License</label>
+                <input type="text" id="inp-license" value="${p.drivingLicense || ''}" class="form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="e.g. Full Driving License" />
               </div>
             </div>
 
@@ -1869,12 +1869,12 @@ function renderFormSections(containerId = 'form-sections-container') {
           <div class="flex items-center gap-3">
             <span class="w-7 h-7 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xs font-black">2</span>
             <div>
-              <div class="text-sm font-bold">Professional Summary & Career Objective</div>
-              <div class="text-[11px] text-slate-500 font-normal">3-5 sentence introduction tailored to your target job</div>
+              <div class="text-sm font-bold">Professional Summary</div>
+              <div class="text-[11px] text-slate-500 font-normal">Briefly introduce your experience, strengths, and career goals</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
-            <span class="btn-reset-section px-2 py-0.5 text-[10px] text-slate-400 hover:text-red-500 font-semibold rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-1 cursor-pointer" data-section="summary" data-section-name="Summary & Objective" title="Reset summary to blank">
+            <span class="btn-reset-section px-2 py-0.5 text-[10px] text-slate-400 hover:text-red-500 font-semibold rounded hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center gap-1 cursor-pointer" data-section="summary" data-section-name="Summary" title="Reset summary to blank">
               <i data-lucide="rotate-ccw" class="w-3 h-3"></i><span>Reset</span>
             </span>
             <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
@@ -1883,21 +1883,21 @@ function renderFormSections(containerId = 'form-sections-container') {
         <div class="accordion-content p-5 border-t border-slate-100 dark:border-slate-800 space-y-3">
           
           <div class="p-2.5 bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800/60 rounded-lg text-[11px] text-indigo-900 dark:text-indigo-200 leading-normal">
-            <strong>Guidance:</strong> A <em>Professional Summary</em> highlights your concrete accomplishments and operational scope (ideal for experienced professionals). A <em>Career Objective</em> emphasizes academic foundations, core analytical skills, and learning readiness (recommended for fresh graduates).
+            Briefly introduce your experience, strengths, and career goals.
           </div>
 
           <div class="flex items-center justify-between">
-            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Summary or Career Objective Statement</label>
+            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300">Summary</label>
             <button type="button" id="btn-smart-summary" class="inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 bg-indigo-50 dark:bg-indigo-950/50 px-2.5 py-1 rounded-md border border-indigo-200 dark:border-indigo-800 transition">
               <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-              Factual Summary Suggestions
+              Improve Summary
             </button>
           </div>
-          <textarea id="inp-summary" rows="4" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 leading-relaxed focus:ring-2 focus:ring-indigo-500" placeholder="Summarize your professional identity, relevant experience or academic training, core competencies, and practical career focus...">${p.summary || ''}</textarea>
+          <textarea id="inp-summary" rows="4" class="form-input w-full text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 leading-relaxed focus:ring-2 focus:ring-indigo-500" placeholder="e.g. Experienced project manager with a track record of leading cross-functional teams and delivering complex initiatives on schedule...">${p.summary || ''}</textarea>
           
           <div id="smart-summary-box" class="hidden p-3 bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 rounded-lg space-y-2">
             <div class="text-xs font-bold text-indigo-900 dark:text-indigo-300 flex items-center justify-between">
-              <span>Suggested professional summary drafts based on your profile:</span>
+              <span>Suggested summaries based on your profile:</span>
               <button type="button" id="btn-close-smart-summary" class="text-slate-400 hover:text-slate-600 text-xs">✕ Close</button>
             </div>
             <div id="smart-summary-options" class="space-y-2 text-xs"></div>
@@ -1914,10 +1914,10 @@ function renderFormSections(containerId = 'form-sections-container') {
               <div class="text-sm font-bold flex items-center gap-2">
                 <span>Work Experience</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${profile.isFreshGraduate ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'}">
-                  ${profile.isFreshGraduate ? 'Fresh Graduate Mode' : `${(profile.experience || []).length} positions`}
+                  ${profile.isFreshGraduate ? 'Fresh Graduate' : `${(profile.experience || []).length} positions`}
                 </span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Job titles, companies, employment types, locations, and responsibilities</div>
+              <div class="text-[11px] text-slate-500 font-normal">Work history, key responsibilities, and achievements</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -1933,23 +1933,23 @@ function renderFormSections(containerId = 'form-sections-container') {
           <div class="p-3 bg-emerald-50/80 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/70 rounded-xl space-y-1.5">
             <label class="flex items-center gap-2 cursor-pointer font-bold text-emerald-950 dark:text-emerald-200 text-xs">
               <input type="checkbox" id="chk-fresh-graduate" ${profile.isFreshGraduate ? 'checked' : ''} class="rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4 cursor-pointer" />
-              <span>I am a Fresh Graduate / I have no formal work experience</span>
+              <span>I have no formal work experience</span>
             </label>
             <p class="text-[11px] text-emerald-800 dark:text-emerald-300 leading-relaxed pl-6">
-              When checked, the Work Experience section is automatically omitted from your final CV, prioritizing your Education, Projects, and Skills.
+              Your CV will focus on education, projects, and skills.
             </p>
           </div>
 
           ${profile.isFreshGraduate ? `
             <div class="text-xs text-slate-500 italic p-3 text-center border border-dashed border-emerald-300 dark:border-emerald-800 rounded-xl bg-emerald-50/30">
-              Fresh graduate mode is active. You can still add internships or student projects in the dedicated sections below.
+              Work experience is omitted. Your CV will highlight education, projects, and skills.
             </div>
           ` : `
             <div id="experience-items-list" class="space-y-4">
               ${renderExperienceList(profile.experience || [])}
             </div>
             <button type="button" id="btn-add-experience" class="w-full py-2.5 border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-emerald-500 text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
-              <i data-lucide="plus" class="w-4 h-4"></i> Add Work Experience Entry
+              <i data-lucide="plus" class="w-4 h-4"></i> Add Experience
             </button>
           `}
         </div>
@@ -1962,10 +1962,10 @@ function renderFormSections(containerId = 'form-sections-container') {
             <span class="w-7 h-7 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs font-black">4</span>
             <div>
               <div class="text-sm font-bold flex items-center gap-2">
-                <span>Education & Academic Credentials</span>
+                <span>Education</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${(profile.education || []).length} credentials</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Degree title, subject/major, institution, dates, and coursework</div>
+              <div class="text-[11px] text-slate-500 font-normal">Degrees, institutions, and graduation dates</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -1979,10 +1979,10 @@ function renderFormSections(containerId = 'form-sections-container') {
           
           <!-- Degree vs Subject Guidance Box -->
           <div class="p-3 bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60 rounded-xl text-[11px] text-amber-900 dark:text-amber-200 leading-normal space-y-1">
-            <strong>Understanding Degree vs. Subject / Major:</strong>
+            <strong>Degree and Major:</strong>
             <ul class="list-disc list-inside space-y-0.5 text-[11px] text-amber-800 dark:text-amber-300">
-              <li><strong>Degree:</strong> The qualification or credential awarded (e.g. <em>Bachelor of Science (BSc), Master of Arts (MA), Associate Degree (AAS), High School Diploma</em>).</li>
-              <li><strong>Subject / Major:</strong> Your specific academic discipline or concentration (e.g. <em>Mathematics, Business Administration, Accounting, Economics, Physics</em>).</li>
+              <li><strong>Degree:</strong> The qualification or credential awarded (e.g. <em>Bachelor of Science, Master of Arts, High School Diploma</em>).</li>
+              <li><strong>Major / Field:</strong> Your academic concentration (e.g. <em>Mathematics, Business Administration, Computer Science</em>).</li>
             </ul>
           </div>
 
@@ -1990,7 +1990,7 @@ function renderFormSections(containerId = 'form-sections-container') {
             ${renderEducationList(profile.education || [])}
           </div>
           <button type="button" id="btn-add-education" class="w-full py-2.5 border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-amber-500 text-slate-600 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
-            <i data-lucide="plus" class="w-4 h-4"></i> Add Education Credential
+            <i data-lucide="plus" class="w-4 h-4"></i> Add Education
           </button>
         </div>
       </div>
@@ -2005,7 +2005,7 @@ function renderFormSections(containerId = 'form-sections-container') {
                 <span>Skills</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${skillsList.length} skill${skillsList.length === 1 ? '' : 's'}</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Add key technical, software, analytical, or professional skills with optional proficiency</div>
+              <div class="text-[11px] text-slate-500 font-normal">Add key technical and professional skills with optional proficiency</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -2022,7 +2022,7 @@ function renderFormSections(containerId = 'form-sections-container') {
             <div class="flex flex-wrap items-center justify-between gap-2">
               <span class="text-xs font-bold text-purple-900 dark:text-purple-200 flex items-center gap-1.5">
                 <i data-lucide="sparkles" class="w-4 h-4 text-purple-600 dark:text-purple-400"></i>
-                Add Skills to Your Profile
+                Add Skills
               </span>
               <button type="button" id="btn-add-skill" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg text-xs transition inline-flex items-center gap-1.5 shadow-xs">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i>
@@ -2033,12 +2033,12 @@ function renderFormSections(containerId = 'form-sections-container') {
             <!-- Add Custom Skill Quick Bar -->
             <div class="pt-2 border-t border-purple-200/60 dark:border-purple-800/40">
               <label class="block text-[11px] font-semibold text-purple-900 dark:text-purple-300 mb-1">
-                Add Custom Skill (Direct Input)
+                Add Custom Skill
               </label>
               <div class="flex flex-col sm:flex-row gap-2">
-                <input type="text" id="inp-custom-skill-name" class="form-input text-xs rounded-lg border border-purple-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-1.5 flex-1 focus:ring-2 focus:ring-purple-500" placeholder="Type custom skill name (e.g. Microsoft Excel, SQL, Project Management)..." />
+                <input type="text" id="inp-custom-skill-name" class="form-input text-xs rounded-lg border border-purple-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-1.5 flex-1 focus:ring-2 focus:ring-purple-500" placeholder="e.g. Project Management, SQL, Python, Excel" />
                 <select id="sel-custom-skill-level" class="form-input text-xs rounded-lg border border-purple-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-3 py-1.5 sm:w-40 focus:ring-2 focus:ring-purple-500">
-                  <option value="">Optional Level</option>
+                  <option value="">Level (Optional)</option>
                   <option value="Beginner">Beginner</option>
                   <option value="Intermediate">Intermediate</option>
                   <option value="Advanced">Advanced</option>
@@ -2047,7 +2047,7 @@ function renderFormSections(containerId = 'form-sections-container') {
                 </select>
                 <button type="button" id="btn-add-custom-skill" class="px-3.5 py-1.5 bg-slate-800 hover:bg-slate-900 dark:bg-purple-700 dark:hover:bg-purple-600 text-white font-bold rounded-lg text-xs transition inline-flex items-center justify-center gap-1 shrink-0">
                   <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
-                  <span>Add Custom Skill</span>
+                  <span>Add</span>
                 </button>
               </div>
             </div>
@@ -2060,15 +2060,15 @@ function renderFormSections(containerId = 'form-sections-container') {
                 <span><strong>${duplicateCount} duplicate skill${duplicateCount > 1 ? 's' : ''} detected:</strong> ${Array.from(duplicateSkillsSet).slice(0, 4).join(', ')}${duplicateCount > 4 ? '...' : ''}</span>
               </div>
               <button type="button" id="btn-deduplicate-skills" class="px-2.5 py-1 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-lg text-[10px] transition shadow-xs">
-                Clean Duplicate Skills
+                Remove Duplicates
               </button>
             </div>
           ` : `
             <div class="flex items-center justify-between text-[11px] text-slate-500">
-              <span>Unlimited skills supported. Reorder using ▲/▼ buttons.</span>
+              <span>Drag or use the arrows to reorder skills.</span>
               <button type="button" id="btn-deduplicate-skills" class="text-slate-500 hover:text-purple-600 dark:hover:text-purple-400 font-semibold flex items-center gap-1 transition" title="Scan and remove duplicate entries">
                 <i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-500"></i>
-                <span>Clean Duplicates</span>
+                <span>Remove Duplicates</span>
               </button>
             </div>
           `}
@@ -2079,7 +2079,7 @@ function renderFormSections(containerId = 'form-sections-container') {
           </div>
 
           <p class="text-[11px] text-slate-400 dark:text-slate-500">
-            * Note: All skills appear in a clean, unified presentation across all 10 CV formats. Proficiency levels (Beginner, Intermediate, Advanced, etc.) are optional.
+            * Note: Proficiency levels (Beginner, Intermediate, Advanced, etc.) are optional. All skills display cleanly across every template.
           </p>
         </div>
       </div>
@@ -2091,10 +2091,10 @@ function renderFormSections(containerId = 'form-sections-container') {
             <span class="w-7 h-7 rounded-lg bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 flex items-center justify-center text-xs font-black">6</span>
             <div>
               <div class="text-sm font-bold flex items-center gap-2">
-                <span>Key Projects & Deliverables</span>
+                <span>Projects</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${(profile.projects || []).length} projects</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Academic capstones, course assignments, work deliverables, and personal projects</div>
+              <div class="text-[11px] text-slate-500 font-normal">Notable projects, coursework, and deliverables</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -2109,7 +2109,7 @@ function renderFormSections(containerId = 'form-sections-container') {
             ${renderProjectsList(profile.projects || [])}
           </div>
           <button type="button" id="btn-add-project" class="w-full py-2.5 border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-teal-500 text-slate-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
-            <i data-lucide="plus" class="w-4 h-4"></i> Add Project Entry
+            <i data-lucide="plus" class="w-4 h-4"></i> Add Project
           </button>
         </div>
       </div>
@@ -2121,10 +2121,10 @@ function renderFormSections(containerId = 'form-sections-container') {
             <span class="w-7 h-7 rounded-lg bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xs font-black">7</span>
             <div>
               <div class="text-sm font-bold flex items-center gap-2">
-                <span>Certifications & Training</span>
+                <span>Certifications</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${(profile.certifications || []).length} certs</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Professional licenses, technical certifications, and training certificates</div>
+              <div class="text-[11px] text-slate-500 font-normal">Licenses, certifications, and courses</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -2154,7 +2154,7 @@ function renderFormSections(containerId = 'form-sections-container') {
                 <span>Languages</span>
                 <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">${(profile.languages || []).length} languages</span>
               </div>
-              <div class="text-[11px] text-slate-500 font-normal">Native, Fluent, Professional Working, Intermediate, or Basic proficiencies</div>
+              <div class="text-[11px] text-slate-500 font-normal">Languages and proficiency levels</div>
             </div>
           </div>
           <div class="flex items-center gap-2">
@@ -2166,7 +2166,7 @@ function renderFormSections(containerId = 'form-sections-container') {
         </button>
         <div class="accordion-content p-5 border-t border-slate-100 dark:border-slate-800 space-y-3">
           <div class="p-2.5 bg-sky-50 dark:bg-sky-950/40 border border-sky-200 dark:border-sky-800 rounded-lg text-[11px] text-sky-900 dark:text-sky-200">
-            <strong>Proficiency Guide:</strong> <em>Native</em> (mother tongue), <em>Fluent</em> (high operational fluency), <em>Professional Working</em> (comfortable in business meetings and written documentation), <em>Intermediate</em> (routine conversations), <em>Basic</em> (simple phrases).
+            <strong>Proficiency Guide:</strong> Select proficiency: Native, Fluent, Professional Working, Intermediate, or Basic.
           </div>
           <div id="languages-items-list" class="space-y-2">
             ${renderLanguagesList(profile.languages || [])}
@@ -2180,8 +2180,8 @@ function renderFormSections(containerId = 'form-sections-container') {
       <!-- Section 9: Optional Sections Manager -->
       <div id="sec-optional-manager" class="p-4 bg-slate-50 dark:bg-slate-800/40 border border-slate-200 dark:border-slate-700 rounded-xl space-y-3">
         <div class="flex items-center justify-between">
-          <span class="font-bold text-xs text-slate-800 dark:text-slate-200">Additional Optional CV Sections</span>
-          <span class="text-[10px] text-slate-400">Toggle sections on or off as needed</span>
+          <span class="font-bold text-xs text-slate-800 dark:text-slate-200">Optional Sections</span>
+          <span class="text-[10px] text-slate-400">Choose which additional sections to include</span>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <label class="flex items-center gap-1.5 text-xs text-slate-700 dark:text-slate-300 cursor-pointer">
@@ -2219,10 +2219,10 @@ function renderFormSections(containerId = 'form-sections-container') {
               <span class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 flex items-center justify-center text-xs font-black">10</span>
               <div>
                 <div class="text-sm font-bold flex items-center gap-1.5">
-                  <span>Professional References</span>
+                  <span>References</span>
                   <span class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-500">Optional</span>
                 </div>
-                <div class="text-[11px] text-slate-500 font-normal">Referee contacts (omitted completely if left blank)</div>
+                <div class="text-[11px] text-slate-500 font-normal">References (omitted from your CV if empty)</div>
               </div>
             </div>
             <div class="flex items-center gap-2">
@@ -2237,7 +2237,7 @@ function renderFormSections(containerId = 'form-sections-container') {
             <!-- Reference Guidance Note -->
             <div class="p-3 bg-blue-50/70 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/60 rounded-xl">
               <p class="text-xs text-blue-900 dark:text-blue-200 leading-relaxed">
-                <strong class="font-semibold">Professional Referees:</strong> Add your verified referee contacts below. If no references are entered, the References section is automatically omitted from your final CV.
+                Add your references below. If left empty, the References section will not appear on your CV.
               </p>
             </div>
 
@@ -2245,7 +2245,7 @@ function renderFormSections(containerId = 'form-sections-container') {
               ${renderReferencesList(profile.references || [])}
             </div>
             <button type="button" id="btn-add-reference" class="w-full py-2 border-2 border-dashed border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-300 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition">
-              <i data-lucide="plus" class="w-4 h-4"></i> Add Individual Referee
+              <i data-lucide="plus" class="w-4 h-4"></i> Add Reference
             </button>
           </div>
         </div>
@@ -2258,8 +2258,8 @@ function renderFormSections(containerId = 'form-sections-container') {
             <div class="flex items-center gap-3">
               <span class="w-7 h-7 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 flex items-center justify-center text-xs font-black">11</span>
               <div>
-                <div class="text-sm font-bold">Internship Experience</div>
-                <div class="text-[11px] text-slate-500 font-normal">Student internships, traineeships, and co-op placements</div>
+                <div class="text-sm font-bold">Internships</div>
+                <div class="text-[11px] text-slate-500 font-normal">Internships, traineeships, and placements</div>
               </div>
             </div>
             <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 transition-transform"></i>
@@ -2286,12 +2286,12 @@ function renderFormSections(containerId = 'form-sections-container') {
 
 function renderExperienceList(items) {
   if (items.length === 0) {
-    return `<div class="text-xs text-slate-400 dark:text-slate-500 italic p-3 text-center border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">No work experience added. (Ideal for fresh graduates, transitioners, or candidates highlighting education and projects).</div>`;
+    return `<div class="text-xs text-slate-400 dark:text-slate-500 italic p-3 text-center border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">No work experience added yet.</div>`;
   }
   return items.map((item, idx) => `
     <div class="p-3.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50/60 dark:bg-slate-800/40 space-y-2.5 transition" data-id="${item.id}">
       <div class="flex items-center justify-between">
-        <span class="font-bold text-xs text-slate-900 dark:text-white">#${idx + 1} — ${item.title || 'Untitled Position'} (${item.company || 'Organization'})</span>
+        <span class="font-bold text-xs text-slate-900 dark:text-white">#${idx + 1} — ${item.title || 'Position'} (${item.company || 'Company'})</span>
         <div class="flex items-center gap-1">
           <button type="button" class="btn-move-up p-1 text-slate-400 hover:text-slate-800 dark:hover:text-white" title="Move Up" ${idx === 0 ? 'disabled' : ''}>▲</button>
           <button type="button" class="btn-move-down p-1 text-slate-400 hover:text-slate-800 dark:hover:text-white" title="Move Down" ${idx === items.length - 1 ? 'disabled' : ''}>▼</button>
@@ -2305,8 +2305,8 @@ function renderExperienceList(items) {
           <input type="text" class="exp-title form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Operations Coordinator" value="${item.title || ''}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Company / Organization</label>
-          <input type="text" class="exp-company form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Apex Logistics LLC" value="${item.company || ''}" />
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Company</label>
+          <input type="text" class="exp-company form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Apex Logistics" value="${item.company || ''}" />
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Employment Type</label>
@@ -2323,7 +2323,7 @@ function renderExperienceList(items) {
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Location</label>
-          <input type="text" class="exp-location form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Chicago, IL, USA" value="${item.location || ''}" />
+          <input type="text" class="exp-location form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Chicago, IL" value="${item.location || ''}" />
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Start Date</label>
@@ -2333,7 +2333,7 @@ function renderExperienceList(items) {
           <div class="flex items-center justify-between mb-0.5">
             <label class="text-[10px] font-semibold text-slate-600 dark:text-slate-400">End Date</label>
             <label class="text-[10px] text-slate-600 dark:text-slate-400 flex items-center gap-1 cursor-pointer">
-              <input type="checkbox" class="exp-current" ${item.current ? 'checked' : ''} /> Currently Working Here
+              <input type="checkbox" class="exp-current" ${item.current ? 'checked' : ''} /> Current position
             </label>
           </div>
           <input type="text" class="exp-end form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. 2023-08" value="${item.endDate || ''}" ${item.current ? 'disabled' : ''} />
@@ -2342,25 +2342,25 @@ function renderExperienceList(items) {
 
       <div>
         <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">
-          Key Responsibilities & Quantifiable Achievements (Enter each duty or metric on a new line)
+          Responsibilities & Achievements (one per line)
         </label>
         <textarea class="exp-highlights form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-2 leading-relaxed" rows="3" placeholder="• Coordinated weekly inventory counts across 2 warehouses, decreasing stock discrepancies by 15%.&#10;• Supervised order processing for 35 regional accounts with 99.2% on-time delivery.&#10;• Trained 4 new team members on company software and safety compliance.">${Array.isArray(item.highlights) ? item.highlights.join('\n') : ''}</textarea>
       </div>
 
       <div>
-        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Technologies / Tools Used (Comma-separated)</label>
-        <input type="text" class="exp-technologies form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1" placeholder="e.g. Microsoft Excel, SAP ERP, Asana, Google Workspace" value="${Array.isArray(item.technologies) ? item.technologies.join(', ') : ''}" />
+        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Tools & Technologies (comma-separated)</label>
+        <input type="text" class="exp-technologies form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1" placeholder="e.g. Excel, SQL, Asana, Jira" value="${Array.isArray(item.technologies) ? item.technologies.join(', ') : ''}" />
       </div>
     </div>
   `).join('');
 }
 
 function renderEducationList(items) {
-  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed border-slate-300 rounded-xl">No education credentials added yet.</div>`;
+  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed border-slate-300 rounded-xl">No education added yet.</div>`;
   return items.map((item, idx) => `
     <div class="p-3.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50/60 dark:bg-slate-800/40 space-y-2.5" data-id="${item.id}">
       <div class="flex items-center justify-between">
-        <span class="font-bold text-xs text-slate-900 dark:text-white">#${idx + 1} — ${item.degree || 'Credential'}${item.major || item.field ? ` in ${item.major || item.field}` : ''}</span>
+        <span class="font-bold text-xs text-slate-900 dark:text-white">#${idx + 1} — ${item.degree || 'Degree'}${item.major || item.field ? ` in ${item.major || item.field}` : ''}</span>
         <div class="flex items-center gap-1">
           <button type="button" class="btn-move-up p-1 text-slate-400 hover:text-slate-600" ${idx === 0 ? 'disabled' : ''}>▲</button>
           <button type="button" class="btn-move-down p-1 text-slate-400 hover:text-slate-600" ${idx === items.length - 1 ? 'disabled' : ''}>▼</button>
@@ -2371,29 +2371,29 @@ function renderEducationList(items) {
       <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">
-            Degree / Qualification <span class="text-red-500 font-bold">*</span>
+            Degree <span class="text-red-500 font-bold">*</span>
           </label>
-          <input type="text" class="edu-degree form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Bachelor of Science (BSc), Master of Arts (MA), High School Diploma" value="${item.degree || ''}" />
-          <span class="text-[10px] text-slate-400">The qualification title or certification level</span>
+          <input type="text" class="edu-degree form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Bachelor of Science (BSc)" value="${item.degree || ''}" />
+          <span class="text-[10px] text-slate-400">e.g. Bachelor of Science, High School Diploma</span>
         </div>
 
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">
-            Subject / Major <span class="text-red-500 font-bold">*</span>
+            Major / Field of Study <span class="text-red-500 font-bold">*</span>
           </label>
-          <input type="text" class="edu-major form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Mathematics, Business Administration, Economics, History" value="${item.major || item.field || ''}" />
-          <span class="text-[10px] text-slate-400">Your specific academic discipline or field of study</span>
+          <input type="text" class="edu-major form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Mathematics" value="${item.major || item.field || ''}" />
+          <span class="text-[10px] text-slate-400">e.g. Mathematics, Business, Computer Science</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Institution / University Name</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Institution</label>
           <input type="text" class="edu-institution form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. University of Texas at Austin" value="${item.institution || ''}" />
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Location</label>
-          <input type="text" class="edu-location form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Austin, TX, USA" value="${item.location || ''}" />
+          <input type="text" class="edu-location form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Austin, TX" value="${item.location || ''}" />
         </div>
         <div class="grid grid-cols-2 gap-1.5">
           <div>
@@ -2409,12 +2409,12 @@ function renderEducationList(items) {
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Grade / CGPA (Optional)</label>
-          <input type="text" class="edu-gpa form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. 3.82 / 4.0 or Upper Second Class (2:1)" value="${item.gpa || ''}" />
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">GPA / Grade (Optional)</label>
+          <input type="text" class="edu-gpa form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. 3.8 / 4.0" value="${item.gpa || ''}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Academic Honors (Optional)</label>
-          <input type="text" class="edu-honors form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Dean's Honor List, Cum Laude" value="${item.honors || ''}" />
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Honors (Optional)</label>
+          <input type="text" class="edu-honors form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Dean's List, Cum Laude" value="${item.honors || ''}" />
         </div>
       </div>
 
@@ -2424,7 +2424,7 @@ function renderEducationList(items) {
       </div>
 
       <div>
-        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Dissertation / Final Project Title (Optional)</label>
+        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Dissertation / Capstone Title (Optional)</label>
         <input type="text" class="edu-thesis form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="e.g. Stochastic Simulation of Urban Traffic Bottlenecks" value="${item.thesis || ''}" />
       </div>
     </div>
@@ -2433,14 +2433,14 @@ function renderEducationList(items) {
 
 function renderUnifiedSkillsList(items) {
   if (!items || items.length === 0) {
-    return `<div class="text-xs text-slate-400 italic p-4 text-center border border-dashed rounded-xl border-slate-200 dark:border-slate-700">No skills added yet. Click &ldquo;Add Skill&rdquo; or &ldquo;Add Custom Skill&rdquo; to add your skills.</div>`;
+    return `<div class="text-xs text-slate-400 italic p-4 text-center border border-dashed rounded-xl border-slate-200 dark:border-slate-700">No skills added yet.</div>`;
   }
   return items.map((sk, idx) => `
     <div class="flex items-center gap-2 p-2 bg-white dark:bg-slate-800/60 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 transition" data-id="${sk.id}">
       <span class="text-[11px] font-bold text-slate-400 w-6 text-center shrink-0">#${idx + 1}</span>
-      <input type="text" class="sk-name form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 flex-1 focus:ring-2 focus:ring-purple-500" placeholder="Skill name (e.g. Microsoft Excel, SQL, Project Coordination)" value="${(sk.name || '').replace(/"/g, '&quot;')}" />
+      <input type="text" class="sk-name form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 flex-1 focus:ring-2 focus:ring-purple-500" placeholder="Skill name (e.g. Project Management, SQL, Excel)" value="${(sk.name || '').replace(/"/g, '&quot;')}" />
       <select class="sk-level form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2 py-1.5 w-36 shrink-0 focus:ring-2 focus:ring-purple-500">
-        <option value="" ${!sk.level ? 'selected' : ''}>Optional Level</option>
+        <option value="" ${!sk.level ? 'selected' : ''}>Level (Optional)</option>
         <option value="Beginner" ${sk.level === 'Beginner' ? 'selected' : ''}>Beginner</option>
         <option value="Intermediate" ${sk.level === 'Intermediate' ? 'selected' : ''}>Intermediate</option>
         <option value="Advanced" ${sk.level === 'Advanced' ? 'selected' : ''}>Advanced</option>
@@ -2457,7 +2457,7 @@ function renderUnifiedSkillsList(items) {
 }
 
 function renderProjectsList(items) {
-  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed rounded-xl">No projects added yet. (Projects are especially helpful for fresh graduates).</div>`;
+  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed rounded-xl">No projects added yet.</div>`;
   return items.map((proj, idx) => `
     <div class="p-3.5 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50/60 dark:bg-slate-800/40 space-y-2.5" data-id="${proj.id}">
       <div class="flex items-center justify-between">
@@ -2476,35 +2476,35 @@ function renderProjectsList(items) {
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Project Type</label>
-          <input type="text" class="proj-type form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Academic Capstone, Coursework, Client Deliverable" value="${proj.projectType || ''}" />
+          <input type="text" class="proj-type form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Academic Capstone, Personal Project" value="${proj.projectType || ''}" />
         </div>
         <div>
           <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Your Role</label>
-          <input type="text" class="proj-role form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Lead Student Researcher, Project Lead" value="${proj.role || ''}" />
+          <input type="text" class="proj-role form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Project Lead, Researcher" value="${proj.role || ''}" />
         </div>
       </div>
 
       <div>
-        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Project Description (Purpose, problem solved, and methodology)</label>
+        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Description</label>
         <textarea class="proj-desc form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-2" rows="2" placeholder="e.g. Developed a discrete-event simulation model in Python to analyze arrival distributions and minimize traffic intersection wait times...">${proj.description || ''}</textarea>
       </div>
 
       <div>
-        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Key Contributions & Measurable Outcomes</label>
+        <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Key Outcomes & Impact</label>
         <input type="text" class="proj-outcomes form-input w-full text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5" placeholder="e.g. Demonstrated an estimated 18% reduction in simulated queue delays; presented at regional symposium" value="${proj.outcomes || ''}" />
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Technologies / Tools Used</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Technologies Used</label>
           <input type="text" class="proj-tech form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Python, NumPy, Excel" value="${Array.isArray(proj.technologies) ? proj.technologies.join(', ') : ''}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Project Live Demo Link (Optional)</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Demo Link (Optional)</label>
           <input type="url" class="proj-live form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="https://example.com/demo" value="${proj.liveUrl || ''}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">GitHub / Code Link (Optional)</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">GitHub Link (Optional)</label>
           <input type="url" class="proj-github form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="https://github.com/user/project" value="${proj.githubUrl || ''}" />
         </div>
       </div>
@@ -2516,7 +2516,7 @@ function renderCertificationsList(items) {
   if (items.length === 0) return `<div class="text-xs text-slate-400 italic">No certifications added yet.</div>`;
   return items.map(c => `
     <div class="p-2.5 border border-slate-200 dark:border-slate-700 rounded-lg bg-slate-50 dark:bg-slate-800/40 flex flex-col sm:flex-row items-center gap-2" data-id="${c.id}">
-      <input type="text" class="cert-title form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2 py-1 flex-1 w-full sm:w-auto" placeholder="Certification Name (e.g. Project Management Professional)" value="${c.title || ''}" />
+      <input type="text" class="cert-title form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2 py-1 flex-1 w-full sm:w-auto" placeholder="Certification Name (e.g. PMP)" value="${c.title || ''}" />
       <input type="text" class="cert-issuer form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2 py-1 w-full sm:w-44" placeholder="Issuing Body (e.g. PMI)" value="${c.issuer || ''}" />
       <input type="text" class="cert-date form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2 py-1 w-full sm:w-28" placeholder="Date (YYYY-MM)" value="${c.issueDate || ''}" />
       <button type="button" class="btn-delete-item text-xs text-red-500 hover:text-red-700 font-bold px-1.5">✕</button>
@@ -2528,7 +2528,7 @@ function renderLanguagesList(items) {
   if (items.length === 0) return `<div class="text-xs text-slate-400 italic">No languages added yet. Click "Add Language" to include languages spoken.</div>`;
   return items.map(l => `
     <div class="flex items-center gap-2 p-1.5 bg-slate-50 dark:bg-slate-800/40 rounded-lg border border-slate-200 dark:border-slate-700" data-id="${l.id}">
-      <input type="text" class="lang-name form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2 py-1 flex-1" placeholder="Language (e.g. English, French, German, Mandarin, Arabic)" value="${l.name || ''}" />
+      <input type="text" class="lang-name form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2 py-1 flex-1" placeholder="Language (e.g. English, Spanish, French)" value="${l.name || ''}" />
       <select class="lang-prof form-input text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white px-2 py-1">
         <option value="Native / Bilingual" ${l.proficiency === 'Native / Bilingual' || l.proficiency === 'Native' ? 'selected' : ''}>Native / Bilingual</option>
         <option value="Fluent" ${l.proficiency === 'Fluent' || l.proficiency === 'Full Professional' ? 'selected' : ''}>Fluent</option>
@@ -2550,11 +2550,11 @@ function renderLanguagesList(items) {
 }
 
 function renderReferencesList(items) {
-  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">No individual referees added.</div>`;
+  if (items.length === 0) return `<div class="text-xs text-slate-400 italic p-3 text-center border border-dashed border-slate-300 dark:border-slate-700 rounded-xl">No references added yet.</div>`;
   return items.map((ref, idx) => `
     <div class="p-3 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800/40 space-y-2" data-id="${ref.id}">
       <div class="flex justify-between items-center">
-        <span class="font-bold text-xs text-slate-900 dark:text-slate-100">#${idx + 1} — ${ref.name || 'Referee Contact'}</span>
+        <span class="font-bold text-xs text-slate-900 dark:text-slate-100">#${idx + 1} — ${ref.name || 'Reference'}</span>
         <div class="flex items-center gap-1">
           <button type="button" class="btn-ref-up p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Move up" ${idx === 0 ? 'disabled style="opacity:0.3"' : ''}>▲</button>
           <button type="button" class="btn-ref-down p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xs" title="Move down" ${idx === items.length - 1 ? 'disabled style="opacity:0.3"' : ''}>▼</button>
@@ -2563,25 +2563,25 @@ function renderReferencesList(items) {
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Referee Full Name</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Name</label>
           <input type="text" class="ref-name form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Dr. Arthur Pendelton" value="${(ref.name || '').replace(/"/g, '&quot;')}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Job Title / Designation</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Job Title</label>
           <input type="text" class="ref-title form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Professor & Department Chair" value="${(ref.title || '').replace(/"/g, '&quot;')}" />
         </div>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Organization / University</label>
-          <input type="text" class="ref-company form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Acme Corp / Stanford University" value="${(ref.organization || ref.company || '').replace(/"/g, '&quot;')}" />
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Organization</label>
+          <input type="text" class="ref-company form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. Stanford University" value="${(ref.organization || ref.company || '').replace(/"/g, '&quot;')}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Email Address</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Email</label>
           <input type="email" class="ref-email form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. referee@organization.org" value="${(ref.email || '').replace(/"/g, '&quot;')}" />
         </div>
         <div>
-          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Phone Number</label>
+          <label class="block text-[10px] font-semibold text-slate-600 dark:text-slate-400 mb-0.5">Phone</label>
           <input type="tel" class="ref-phone form-input text-xs rounded border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-1.5 w-full" placeholder="e.g. +1 (555) 234-5678" value="${(ref.phone || '').replace(/"/g, '&quot;')}" />
         </div>
       </div>
@@ -2598,10 +2598,10 @@ function renderInternshipsList(items) {
         <button type="button" class="btn-delete-item text-xs text-red-500 font-bold">Delete</button>
       </div>
       <div class="grid grid-cols-2 gap-2">
-        <input type="text" class="int-title form-input text-xs rounded border p-1" placeholder="Role Title" value="${i.title || ''}" />
-        <input type="text" class="int-company form-input text-xs rounded border p-1" placeholder="Company / Team" value="${i.company || ''}" />
+        <input type="text" class="int-title form-input text-xs rounded border p-1" placeholder="Job Title" value="${i.title || ''}" />
+        <input type="text" class="int-company form-input text-xs rounded border p-1" placeholder="Company" value="${i.company || ''}" />
       </div>
-      <textarea class="int-highlights form-input w-full text-xs rounded border p-1.5" rows="2" placeholder="Key deliverables...">${Array.isArray(i.highlights) ? i.highlights.join('\n') : ''}</textarea>
+      <textarea class="int-highlights form-input w-full text-xs rounded border p-1.5" rows="2" placeholder="Responsibilities and achievements...">${Array.isArray(i.highlights) ? i.highlights.join('\n') : ''}</textarea>
     </div>
   `).join('');
 }
@@ -2634,7 +2634,7 @@ function attachFormListeners() {
       e.preventDefault();
       const secKey = btn.getAttribute('data-section');
       const secName = btn.getAttribute('data-section-name') || secKey;
-      if (confirm(`Reset the "${secName}" section to clean empty state? This action cannot be undone.`)) {
+      if (confirm(`Reset the "${secName}" section? This will clear all entries in this section.`)) {
         appState.resetSection(secKey);
         renderFormSections();
       }
@@ -2690,7 +2690,7 @@ function attachFormListeners() {
         <div class="p-2.5 bg-white dark:bg-slate-800 rounded border border-indigo-200 dark:border-indigo-700/60 hover:border-indigo-500 transition cursor-pointer group" data-text="${encodeURIComponent(s.text)}">
           <div class="font-bold text-indigo-700 dark:text-indigo-400 group-hover:underline flex items-center justify-between">
             <span>${s.title}</span>
-            <span class="text-[10px] bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-200 px-1.5 py-0.5 rounded font-normal">Click to insert</span>
+            <span class="text-[10px] bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-200 px-1.5 py-0.5 rounded font-normal">Use this summary</span>
           </div>
           <p class="text-[11px] text-slate-700 dark:text-slate-300 mt-1 leading-normal">${s.text}</p>
         </div>
@@ -3103,8 +3103,8 @@ function openJobMatcherModal() {
             <i data-lucide="target" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Job Description Keyword Matcher</h3>
-            <p class="text-xs text-slate-500">Scan job requisitions and align your CV keywords</p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Job Keyword Matcher</h3>
+            <p class="text-xs text-slate-500">Match keywords in your CV against a job description</p>
           </div>
         </div>
         <button type="button" id="btn-close-matcher" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -3116,13 +3116,13 @@ function openJobMatcherModal() {
       <div class="p-6 overflow-y-auto space-y-5 text-xs text-slate-700 dark:text-slate-300">
         <div>
           <label class="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-1">
-            Paste Target Job Description Requisition:
+            Paste Job Description:
           </label>
-          <textarea id="txt-job-description" rows="5" class="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 leading-relaxed focus:ring-2 focus:ring-blue-500" placeholder="Paste the job opening requirements, responsibilities, and preferred qualifications here..."></textarea>
+          <textarea id="txt-job-description" rows="5" class="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 leading-relaxed focus:ring-2 focus:ring-blue-500" placeholder="Paste the job requirements, responsibilities, or qualifications here..."></textarea>
           <div class="mt-2 flex justify-between items-center">
-            <span class="text-[11px] text-slate-500">Extracts hard skills, soft skills, tools, and domain keywords</span>
+            <span class="text-[11px] text-slate-500">Identifies matching skills and relevant terms</span>
             <button type="button" id="btn-run-match" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-sm text-xs transition flex items-center gap-1.5">
-              <i data-lucide="scan" class="w-3.5 h-3.5"></i> Analyze & Match
+              <i data-lucide="scan" class="w-3.5 h-3.5"></i> Match Keywords
             </button>
           </div>
         </div>
@@ -3133,7 +3133,7 @@ function openJobMatcherModal() {
           <!-- Match Score Banner -->
           <div class="p-4 rounded-xl border flex items-center justify-between" id="matcher-score-banner">
             <div>
-              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Job Keyword Match Score</div>
+              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Keyword Match Score</div>
               <div class="text-2xl font-black text-slate-900 dark:text-white" id="matcher-score-text">0%</div>
             </div>
             <div id="matcher-score-pill" class="text-xs font-bold px-3 py-1.5 rounded-lg">
@@ -3144,7 +3144,7 @@ function openJobMatcherModal() {
           <!-- Matched Keywords -->
           <div>
             <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-2 flex items-center gap-1 text-emerald-600">
-              <i data-lucide="check" class="w-4 h-4"></i> Matched Keywords in Your CV (<span id="count-matched">0</span>)
+              <i data-lucide="check" class="w-4 h-4"></i> Matched in Your CV (<span id="count-matched">0</span>)
             </h4>
             <div id="container-matched-keywords" class="flex flex-wrap gap-1.5"></div>
           </div>
@@ -3152,9 +3152,9 @@ function openJobMatcherModal() {
           <!-- Missing Keywords -->
           <div>
             <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-2 flex items-center gap-1 text-red-600">
-              <i data-lucide="alert-circle" class="w-4 h-4"></i> Missing Target Keywords (<span id="count-missing">0</span>)
+              <i data-lucide="alert-circle" class="w-4 h-4"></i> Missing Keywords (<span id="count-missing">0</span>)
             </h4>
-            <p class="text-[11px] text-slate-500 mb-2">Click any keyword to add it to your Skills:</p>
+            <p class="text-[11px] text-slate-500 mb-2">Click a keyword to add it to your skills:</p>
             <div id="container-missing-keywords" class="flex flex-wrap gap-1.5"></div>
           </div>
 
@@ -3284,8 +3284,8 @@ function openMarginsModal() {
             <i data-lucide="maximize-2" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Page Margins (mm)</h3>
-            <p class="text-xs text-slate-500">Custom millimeter spacing for print, PDF & Word</p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Page Margins</h3>
+            <p class="text-xs text-slate-500">Adjust page spacing for print, PDF, and Word exports</p>
           </div>
         </div>
         <button type="button" id="btn-close-margins-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -3298,7 +3298,7 @@ function openMarginsModal() {
         
         <!-- Quick Preset Pills -->
         <div>
-          <label class="block font-bold text-slate-900 dark:text-white text-xs mb-2">Quick Margin Presets:</label>
+          <label class="block font-bold text-slate-900 dark:text-white text-xs mb-2">Presets:</label>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
             <button type="button" class="btn-preset-margin py-1.5 px-2.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-500 bg-slate-50 dark:bg-slate-800 font-semibold text-center transition" data-all="15">
               Standard (15mm)
@@ -3316,7 +3316,7 @@ function openMarginsModal() {
         </div>
 
         <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/40 space-y-4">
-          <label class="block font-bold text-slate-900 dark:text-white text-xs">Independent Edge Margins (Safe Range: 5mm – 50mm):</label>
+          <label class="block font-bold text-slate-900 dark:text-white text-xs">Custom Margins (5mm – 50mm):</label>
           
           <div class="grid grid-cols-2 gap-4">
             <!-- Top Margin -->
@@ -3472,8 +3472,8 @@ function openPhotoCropModal() {
             <i data-lucide="image" class="w-4 h-4"></i>
           </div>
           <div>
-            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Profile Photo Formatting</h3>
-            <p class="text-[11px] text-slate-500">Position, crop, and adjust your professional headshot</p>
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white">Profile Photo</h3>
+            <p class="text-[11px] text-slate-500">Position, crop, and preview your photo</p>
           </div>
         </div>
         <button type="button" id="btn-close-crop" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -3487,7 +3487,7 @@ function openPhotoCropModal() {
         <!-- File Picker -->
         <div>
           <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">
-            Upload Headshot Image (JPG, PNG, WebP • Max 8MB)
+            Choose Photo (JPG, PNG, WebP • Max 8MB)
           </label>
           <input type="file" id="inp-crop-file" accept="image/jpeg,image/png,image/webp" class="block w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 dark:file:bg-blue-950/60 dark:file:text-blue-300" />
           <div id="crop-error-msg" class="text-[11px] text-red-500 mt-1 hidden font-medium"></div>
@@ -3508,10 +3508,10 @@ function openPhotoCropModal() {
         <!-- Controls: Shape & Zoom -->
         <div class="grid grid-cols-2 gap-3 pt-2 border-t border-slate-100 dark:border-slate-800">
           <div>
-            <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Photo Layout Shape</label>
+            <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Photo Shape</label>
             <div class="inline-flex rounded-lg border border-slate-200 dark:border-slate-700 p-0.5 w-full bg-slate-50 dark:bg-slate-800">
               <button type="button" id="btn-shape-circle" class="flex-1 py-1 text-[11px] font-bold rounded ${currentShape === 'circle' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-700 dark:text-slate-300'}">
-                Circular
+                Circle
               </button>
               <button type="button" id="btn-shape-square" class="flex-1 py-1 text-[11px] font-bold rounded ${currentShape !== 'circle' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-700 dark:text-slate-300'}">
                 Square
@@ -3520,7 +3520,7 @@ function openPhotoCropModal() {
           </div>
           <div>
             <div class="flex justify-between items-center mb-1">
-              <label class="font-semibold text-slate-700 dark:text-slate-300">Zoom Level</label>
+              <label class="font-semibold text-slate-700 dark:text-slate-300">Zoom</label>
               <span id="crop-zoom-label" class="font-mono text-[10px] text-slate-500">1.0x</span>
             </div>
             <input type="range" id="crop-zoom-slider" min="1" max="3" step="0.05" value="1" class="w-full h-1.5 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-blue-600" />
@@ -3539,7 +3539,7 @@ function openPhotoCropModal() {
             Cancel
           </button>
           <button type="button" id="btn-save-crop" class="px-4 py-1.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition flex items-center gap-1.5">
-            <i data-lucide="check" class="w-3.5 h-3.5"></i> Apply Headshot
+            <i data-lucide="check" class="w-3.5 h-3.5"></i> Apply Photo
           </button>
         </div>
       </div>
@@ -3760,8 +3760,8 @@ function openProfileManagerModal() {
               <i data-lucide="folder-kanban" class="w-5 h-5"></i>
             </div>
             <div>
-              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Profile Manager & Local Storage</h3>
-              <p class="text-xs text-slate-500">Manage multiple job versions, backups, and privacy</p>
+              <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Profile Manager</h3>
+              <p class="text-xs text-slate-500">Manage multiple CV versions and backups</p>
             </div>
           </div>
           <button type="button" id="btn-close-pm" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg">
@@ -3789,7 +3789,7 @@ function openProfileManagerModal() {
           <!-- Saved Profiles List -->
           <div>
             <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Saved Profile Versions (${list.length})</h4>
+              <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Saved Profiles (${list.length})</h4>
               <button type="button" id="btn-new-blank-profile" class="text-blue-600 dark:text-blue-400 font-bold hover:underline flex items-center gap-1">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i> New Blank Profile
               </button>
@@ -3797,7 +3797,7 @@ function openProfileManagerModal() {
 
             ${list.length === 0 ? `
               <div class="p-4 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl text-center text-slate-400">
-                No extra profiles saved yet. Click "Duplicate Profile" above to save variations for different target jobs.
+                No saved profiles yet. Click "Duplicate Profile" to save variations for different jobs.
               </div>
             ` : `
               <div class="space-y-2">
@@ -3823,13 +3823,13 @@ function openProfileManagerModal() {
 
           <!-- Backup & Import Actions -->
           <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/30 space-y-3">
-            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Export & Import JSON Backups</h4>
+            <h4 class="font-bold text-xs uppercase tracking-wider text-slate-900 dark:text-white">Backup & Restore</h4>
             <div class="flex flex-wrap gap-2">
               <button type="button" id="btn-pm-export-json" class="px-3 py-1.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white font-bold rounded-lg text-xs transition flex items-center gap-1.5">
-                <i data-lucide="download" class="w-3.5 h-3.5"></i> Export Active Profile (.json)
+                <i data-lucide="download" class="w-3.5 h-3.5"></i> Export Backup (.json)
               </button>
               <button type="button" id="btn-pm-import-json" class="px-3 py-1.5 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-800 dark:text-white font-bold rounded-lg text-xs transition flex items-center gap-1.5">
-                <i data-lucide="upload" class="w-3.5 h-3.5"></i> Import Profile from File
+                <i data-lucide="upload" class="w-3.5 h-3.5"></i> Import from Backup
               </button>
               <input type="file" id="inp-pm-file" class="hidden" accept=".json" />
             </div>
@@ -3839,20 +3839,20 @@ function openProfileManagerModal() {
           <div class="p-4 rounded-xl border border-emerald-200 dark:border-emerald-900/40 bg-emerald-50/60 dark:bg-emerald-950/30 space-y-2">
             <div class="flex items-center gap-2 text-emerald-800 dark:text-emerald-300 font-bold text-xs">
               <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
-              <span>100% Client-Side Privacy Policy</span>
+              <span>Your data stays on this device</span>
             </div>
             <p class="text-[11px] text-slate-600 dark:text-slate-300 leading-relaxed">
-              CVForge does not transmit, store, or process your personal, educational, or work history data on any external web server. All information resides strictly within your computer's browser local storage (localStorage). You retain full ownership and control over your resume data at all times.
+              Your information is saved in your browser's local storage. Nothing is sent to external servers.
             </p>
             <div class="pt-2 flex flex-wrap justify-between items-center gap-2 border-t border-emerald-200 dark:border-emerald-900/30">
-              <span class="text-[11px] text-slate-500">Need to start over or reset?</span>
+              <span class="text-[11px] text-slate-500">Need to start over?</span>
               <div class="flex items-center gap-2">
                 <button type="button" id="btn-pm-clear-candidate" class="text-xs font-bold text-amber-600 hover:text-amber-700 hover:underline">
                   Clear Candidate Data
                 </button>
                 <span class="text-slate-300 dark:text-slate-700">|</span>
                 <button type="button" id="btn-pm-wipe-all" class="text-xs font-bold text-red-600 hover:text-red-700 hover:underline">
-                  Wipe All Storage
+                  Reset All Data
                 </button>
               </div>
             </div>
@@ -3878,7 +3878,7 @@ function openProfileManagerModal() {
 
     // Duplicate current profile
     document.getElementById('btn-save-current-as')?.addEventListener('click', () => {
-      const name = prompt('Enter a name for this profile version:', `${currentProfile.personal?.fullName || 'Profile'} - Copy`);
+      const name = prompt('Enter a profile name:', `${currentProfile.personal?.fullName || 'Profile'} - Copy`);
       if (name) {
         appState.saveCurrentProfileAs(name);
         renderModal();
@@ -3887,7 +3887,7 @@ function openProfileManagerModal() {
 
     // New blank profile
     document.getElementById('btn-new-blank-profile')?.addEventListener('click', () => {
-      if (confirm('Create a new blank profile? Your current edits are saved in your browser.')) {
+      if (confirm('Create a new blank profile? Your current changes are saved in your browser.')) {
         appState.resetToBlank();
         close();
       }
@@ -3943,10 +3943,10 @@ function openProfileManagerModal() {
 
     // Wipe all data
     document.getElementById('btn-pm-wipe-all')?.addEventListener('click', () => {
-      if (confirm('Are you certain? This will delete all saved CVForge data from your local browser.')) {
+      if (confirm('Are you sure? This will delete all saved profiles and reset CVForge.')) {
         appState.clearAllData();
         close();
-        alert('All local CVForge data deleted.');
+        alert('All local data cleared.');
       }
     });
 
@@ -4028,7 +4028,7 @@ function openTemplateGalleryModal() {
                 <span class="text-[11px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300">Step 1 of 2</span>
                 <h3 class="text-base font-extrabold text-slate-900 dark:text-white">Select CV Format</h3>
               </div>
-              <p class="text-xs text-slate-500">Choose from 10 international CV formats. Each format provides 5 distinct layout templates.</p>
+              <p class="text-xs text-slate-500">Choose from 10 international CV formats, each with 5 tailored templates.</p>
             </div>
           </div>
           <button type="button" id="btn-close-gallery" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg" aria-label="Close Gallery">
@@ -4090,7 +4090,7 @@ function openTemplateGalleryModal() {
 
         <!-- Footer -->
         <div class="px-6 py-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-800/40 flex items-center justify-between shrink-0 text-xs text-slate-500">
-          <div>Select any format above to explore its dedicated collection of 5 distinct templates.</div>
+          <div>Select a format above to explore its templates.</div>
           <button type="button" id="btn-close-gallery-footer" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-slate-700 dark:text-slate-300">
             Cancel
           </button>
@@ -4124,7 +4124,7 @@ function openTemplateGalleryModal() {
                 <span class="text-[11px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300">Step 2 of 2</span>
                 <h3 class="text-base font-extrabold text-slate-900 dark:text-white">${cat.name} Templates</h3>
               </div>
-              <p class="text-xs text-slate-500">Showing 5 templates designed specifically for <strong>${cat.name}</strong>. Never mixed with other formats.</p>
+              <p class="text-xs text-slate-500">Showing templates designed for <strong>${cat.name}</strong>.</p>
             </div>
           </div>
           <button type="button" id="btn-close-gallery" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1.5 rounded-lg" aria-label="Close Gallery">
@@ -4166,7 +4166,7 @@ function openTemplateGalleryModal() {
 
                   <!-- Key Visual Features Badge -->
                   <div class="mt-2 p-2 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
-                    <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Visual Features</span>
+                    <span class="text-[10px] uppercase font-bold text-slate-400 block mb-0.5">Layout Features</span>
                     <p class="text-[11px] text-slate-700 dark:text-slate-300 leading-tight">
                       ${tmpl.features || tmpl.tagline}
                     </p>
@@ -4483,8 +4483,8 @@ function openTypographyModal() {
             <i data-lucide="type" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Typography & Font Styling</h3>
-            <p class="text-xs text-slate-500">22 international fonts, style variations, and physical point sizes (pt)</p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Font & Typography</h3>
+            <p class="text-xs text-slate-500">Font family, weights, and point sizes (pt)</p>
           </div>
         </div>
         <button type="button" id="btn-close-typography-modal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg" aria-label="Close">
@@ -4547,17 +4547,17 @@ function openTypographyModal() {
           <div>
             <label class="block font-bold text-slate-900 dark:text-white mb-1">Apply Font To</label>
             <select id="modal-sel-target" class="w-full form-input text-xs rounded-lg border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white px-2.5 py-2 font-medium">
-              <option value="all" ${currentTarget === 'all' ? 'selected' : ''}>All Document Text</option>
-              <option value="headings" ${currentTarget === 'headings' ? 'selected' : ''}>Headings & Section Titles</option>
-              <option value="body" ${currentTarget === 'body' ? 'selected' : ''}>Body Text & Descriptions</option>
-              <option value="name" ${currentTarget === 'name' ? 'selected' : ''}>Candidate Name Only</option>
+              <option value="all" ${currentTarget === 'all' ? 'selected' : ''}>Entire Document</option>
+              <option value="headings" ${currentTarget === 'headings' ? 'selected' : ''}>Headings Only</option>
+              <option value="body" ${currentTarget === 'body' ? 'selected' : ''}>Body Text Only</option>
+              <option value="name" ${currentTarget === 'name' ? 'selected' : ''}>Name Only</option>
             </select>
           </div>
         </div>
 
         <!-- Point-Based Font Sizes -->
         <div class="space-y-3 pt-2 border-t border-slate-200 dark:border-slate-800">
-          <div class="font-bold text-slate-900 dark:text-white text-xs">Point-Based Sizing (pt)</div>
+          <div class="font-bold text-slate-900 dark:text-white text-xs">Font Sizes (pt)</div>
           
           <!-- 1. Candidate Full Name -->
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/40 space-y-1.5">
@@ -4593,8 +4593,8 @@ function openTypographyModal() {
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/40 space-y-1.5">
             <div class="flex items-center justify-between">
               <div>
-                <label class="font-bold text-slate-900 dark:text-white text-xs block">Body Text & Descriptions</label>
-                <span class="text-[10px] text-slate-400">Job duties, project descriptions, skills (Recommended: 9.5pt – 11pt)</span>
+                <label class="font-bold text-slate-900 dark:text-white text-xs block">Body Text</label>
+                <span class="text-[10px] text-slate-400">Job descriptions, summaries, bullet points (Recommended: 9.5pt – 11pt)</span>
               </div>
               <div class="flex items-center gap-1.5">
                 <input type="number" id="inp-size-body" min="7" max="16" step="0.5" value="${fontSizes.body}" class="w-16 text-center font-bold font-mono text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white py-1 px-1.5" />
@@ -4608,8 +4608,8 @@ function openTypographyModal() {
           <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/40 space-y-1.5">
             <div class="flex items-center justify-between">
               <div>
-                <label class="font-bold text-slate-900 dark:text-white text-xs block">Contact Information & Meta Dates</label>
-                <span class="text-[10px] text-slate-400">Email, phone, links, employment dates (Recommended: 8.5pt – 10pt)</span>
+                <label class="font-bold text-slate-900 dark:text-white text-xs block">Contact Info & Dates</label>
+                <span class="text-[10px] text-slate-400">Email, phone, links, dates (Recommended: 8.5pt – 10pt)</span>
               </div>
               <div class="flex items-center gap-1.5">
                 <input type="number" id="inp-size-contact" min="7" max="14" step="0.5" value="${fontSizes.contact}" class="w-16 text-center font-bold font-mono text-xs rounded border border-slate-300 dark:border-slate-600 dark:bg-slate-800 dark:text-white py-1 px-1.5" />
@@ -4820,8 +4820,8 @@ function runAtsAudit(profile) {
     score += 5;
     suggestions.push('Expand your professional summary to 3-5 sentences highlighting core competencies.');
   } else {
-    warnings.push('Professional summary section is completely empty.');
-    suggestions.push('Write a brief executive summary or use the Smart Summary Generator.');
+    warnings.push('Professional summary section is empty.');
+    suggestions.push('Write a brief summary or use Improve Summary.');
   }
 
   // 3. Experience / Practical Evidence (Total: 25 pts)
@@ -5294,9 +5294,9 @@ exports.matchJobDescription = matchJobDescription;
   // Module: ./engine/summaryEngine.js
   __modules__['./engine/summaryEngine.js'] = function(require, exports, module, __require__, __currentDir) {
 /**
- * CVForge - Smart Professional Summary Generator
- * Generates customized, tailored professional summaries strictly grounded in the user's
- * real inputs (headline, skills, experience, education). Never hallucinates false facts!
+ * CVForge - Professional Summary Generator
+ * Generates clear, natural, human-written professional summaries grounded in the user's
+ * real inputs (headline, skills, experience, education).
  */
 
 function generateSummaries(profile) {
@@ -5305,37 +5305,43 @@ function generateSummaries(profile) {
   const topTech = Array.isArray(profile.skills)
     ? profile.skills.slice(0, 5).map(s => s.name).filter(Boolean)
     : (profile.skills?.technical || []).slice(0, 5).map(s => s.name);
-  const techStr = topTech.length > 0 ? topTech.join(', ') : 'modern industry technologies';
+  const techStr = topTech.length > 0 ? topTech.join(', ') : 'industry-standard tools and practices';
   const highestEdu = profile.education?.[0]?.degree || '';
-  const topProjects = (profile.projects || []).slice(0, 2).map(p => p.title);
   const hasExp = (profile.experience || []).length > 0;
 
   const summaries = [];
 
-  // 1. Results-Driven & Executive
   if (hasExp) {
     summaries.push({
-      title: 'Results-Driven & Strategic',
-      text: `Accomplished ${headline} with over ${yearsExp}+ years of dedicated experience delivering scalable solutions and driving technical excellence. Proven track record of architecting mission-critical systems, spearheading cross-functional initiatives, and leveraging ${techStr} to solve complex business challenges while maximizing operational efficiency and reliability.`
+      title: 'Results-Focused Professional',
+      text: `${headline} with ${yearsExp > 1 ? `${yearsExp} years of experience` : 'hands-on experience'} in ${techStr}. Proven track record of leading projects, improving operational workflows, and delivering measurable results.`
+    });
+
+    summaries.push({
+      title: 'Technical & Operational Specialist',
+      text: `Detail-oriented ${headline} with expertise in ${techStr}. Experienced in developing efficient solutions, collaborating across cross-functional teams, and consistently meeting project milestones.`
+    });
+
+    summaries.push({
+      title: 'Leadership & Project Delivery',
+      text: `Adaptable ${headline} skilled in ${techStr}. Focused on clear communication, process optimization, and driving successful outcomes from planning through execution.`
     });
   } else {
     summaries.push({
-      title: 'High-Potential & Project-Driven',
-      text: `Motivated ${headline}${highestEdu ? ` holding a ${highestEdu}` : ''} equipped with rigorous analytical training and hands-on project engineering experience. Demonstrated proficiency in ${techStr} through successful academic and open-source project deliverables. Eager to leverage strong problem-solving capabilities and collaborative drive within an ambitious engineering team.`
+      title: 'Career Starter / Graduate',
+      text: `Motivated ${headline}${highestEdu ? ` with a degree in ${highestEdu}` : ''} and practical experience in ${techStr}. Strong analytical foundation, quick to master new tools, and eager to contribute to team goals.`
+    });
+
+    summaries.push({
+      title: 'Project & Skills-Focused',
+      text: `${headline} with hands-on project experience in ${techStr}. Strong problem-solving abilities, collaborative mindset, and dedicated to delivering high-quality work.`
+    });
+
+    summaries.push({
+      title: 'Analytical & Growth-Oriented',
+      text: `Detail-focused ${headline}${highestEdu ? ` holding a ${highestEdu}` : ''}. Skilled in ${techStr} with a strong work ethic and enthusiasm for learning industry best practices.`
     });
   }
-
-  // 2. Technical Specialist & Architecture Focus
-  summaries.push({
-    title: 'Technical Specialist & Architecture Focus',
-    text: `Specialized ${headline} adept in full lifecycle system architecture, robust software design patterns, and engineering modern platforms using ${techStr}. Recognized for write-once maintainable code, disciplined automated testing, and a continuous focus on performance optimization, security, and developer productivity.`
-  });
-
-  // 3. Growth & Innovation Oriented
-  summaries.push({
-    title: 'Growth, Agile & Innovation Focus',
-    text: `Dynamic and adaptable ${headline} combining deep expertise in ${techStr} with a user-centric, agile delivery mindset. Passionate about transforming product requirements into robust, high-impact digital experiences while fostering knowledge-sharing and continuous engineering improvements.`
-  });
 
   return summaries;
 }
@@ -6573,7 +6579,7 @@ function togglePrintPreview() {
       banner.id = 'print-preview-banner';
       banner.className = 'fixed top-3 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-5 py-2.5 rounded-full shadow-2xl flex items-center gap-3 text-xs font-bold border border-slate-700 animate-in fade-in duration-200';
       banner.innerHTML = `
-        <span>Print Preview Mode (Isolated Document Canvas)</span>
+        <span>Print Preview</span>
         <button type="button" id="btn-exit-print-preview" class="px-2.5 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded-full text-[11px] transition">Exit Preview</button>
       `;
       document.body.appendChild(banner);

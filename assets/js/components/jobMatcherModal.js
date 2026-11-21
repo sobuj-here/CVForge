@@ -24,8 +24,8 @@ export function openJobMatcherModal() {
             <i data-lucide="target" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="text-base font-bold text-slate-900 dark:text-white">Job Description Keyword Matcher</h3>
-            <p class="text-xs text-slate-500">Scan job requisitions and align your CV keywords</p>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Job Keyword Matcher</h3>
+            <p class="text-xs text-slate-500">Match keywords in your CV against a job description</p>
           </div>
         </div>
         <button type="button" id="btn-close-matcher" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg">
@@ -37,13 +37,13 @@ export function openJobMatcherModal() {
       <div class="p-6 overflow-y-auto space-y-5 text-xs text-slate-700 dark:text-slate-300">
         <div>
           <label class="block text-xs font-bold text-slate-800 dark:text-slate-200 mb-1">
-            Paste Target Job Description Requisition:
+            Paste Job Description:
           </label>
-          <textarea id="txt-job-description" rows="5" class="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 leading-relaxed focus:ring-2 focus:ring-blue-500" placeholder="Paste the job opening requirements, responsibilities, and preferred qualifications here..."></textarea>
+          <textarea id="txt-job-description" rows="5" class="w-full text-xs rounded-xl border border-slate-300 dark:border-slate-700 dark:bg-slate-800 dark:text-white p-3 leading-relaxed focus:ring-2 focus:ring-blue-500" placeholder="Paste the job requirements, responsibilities, or qualifications here..."></textarea>
           <div class="mt-2 flex justify-between items-center">
-            <span class="text-[11px] text-slate-500">Extracts hard skills, soft skills, tools, and domain keywords</span>
+            <span class="text-[11px] text-slate-500">Identifies matching skills and relevant terms</span>
             <button type="button" id="btn-run-match" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-sm text-xs transition flex items-center gap-1.5">
-              <i data-lucide="scan" class="w-3.5 h-3.5"></i> Analyze & Match
+              <i data-lucide="scan" class="w-3.5 h-3.5"></i> Match Keywords
             </button>
           </div>
         </div>
@@ -54,7 +54,7 @@ export function openJobMatcherModal() {
           <!-- Match Score Banner -->
           <div class="p-4 rounded-xl border flex items-center justify-between" id="matcher-score-banner">
             <div>
-              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Job Keyword Match Score</div>
+              <div class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Keyword Match Score</div>
               <div class="text-2xl font-black text-slate-900 dark:text-white" id="matcher-score-text">0%</div>
             </div>
             <div id="matcher-score-pill" class="text-xs font-bold px-3 py-1.5 rounded-lg">
@@ -65,7 +65,7 @@ export function openJobMatcherModal() {
           <!-- Matched Keywords -->
           <div>
             <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-2 flex items-center gap-1 text-emerald-600">
-              <i data-lucide="check" class="w-4 h-4"></i> Matched Keywords in Your CV (<span id="count-matched">0</span>)
+              <i data-lucide="check" class="w-4 h-4"></i> Matched in Your CV (<span id="count-matched">0</span>)
             </h4>
             <div id="container-matched-keywords" class="flex flex-wrap gap-1.5"></div>
           </div>
@@ -73,9 +73,9 @@ export function openJobMatcherModal() {
           <!-- Missing Keywords -->
           <div>
             <h4 class="font-bold text-slate-900 dark:text-white text-xs uppercase tracking-wider mb-2 flex items-center gap-1 text-red-600">
-              <i data-lucide="alert-circle" class="w-4 h-4"></i> Missing Target Keywords (<span id="count-missing">0</span>)
+              <i data-lucide="alert-circle" class="w-4 h-4"></i> Missing Keywords (<span id="count-missing">0</span>)
             </h4>
-            <p class="text-[11px] text-slate-500 mb-2">Click any keyword to add it to your Skills:</p>
+            <p class="text-[11px] text-slate-500 mb-2">Click a keyword to add it to your skills:</p>
             <div id="container-missing-keywords" class="flex flex-wrap gap-1.5"></div>
           </div>
 

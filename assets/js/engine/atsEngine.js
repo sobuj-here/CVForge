@@ -81,8 +81,8 @@ export function runAtsAudit(profile) {
     score += 5;
     suggestions.push('Expand your professional summary to 3-5 sentences highlighting core competencies.');
   } else {
-    warnings.push('Professional summary section is completely empty.');
-    suggestions.push('Write a brief executive summary or use the Smart Summary Generator.');
+    warnings.push('Professional summary section is empty.');
+    suggestions.push('Write a brief summary or use Improve Summary.');
   }
 
   // 3. Experience / Practical Evidence (Total: 25 pts)

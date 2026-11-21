@@ -1,7 +1,7 @@
 /**
- * CVForge - Smart Professional Summary Generator
- * Generates customized, tailored professional summaries strictly grounded in the user's
- * real inputs (headline, skills, experience, education). Never hallucinates false facts!
+ * CVForge - Professional Summary Generator
+ * Generates clear, natural, human-written professional summaries grounded in the user's
+ * real inputs (headline, skills, experience, education).
  */
 
 export function generateSummaries(profile) {
@@ -10,37 +10,43 @@ export function generateSummaries(profile) {
   const topTech = Array.isArray(profile.skills)
     ? profile.skills.slice(0, 5).map(s => s.name).filter(Boolean)
     : (profile.skills?.technical || []).slice(0, 5).map(s => s.name);
-  const techStr = topTech.length > 0 ? topTech.join(', ') : 'modern industry technologies';
+  const techStr = topTech.length > 0 ? topTech.join(', ') : 'industry-standard tools and practices';
   const highestEdu = profile.education?.[0]?.degree || '';
-  const topProjects = (profile.projects || []).slice(0, 2).map(p => p.title);
   const hasExp = (profile.experience || []).length > 0;
 
   const summaries = [];
 
-  // 1. Results-Driven & Executive
   if (hasExp) {
     summaries.push({
-      title: 'Results-Driven & Strategic',
-      text: `Accomplished ${headline} with over ${yearsExp}+ years of dedicated experience delivering scalable solutions and driving technical excellence. Proven track record of architecting mission-critical systems, spearheading cross-functional initiatives, and leveraging ${techStr} to solve complex business challenges while maximizing operational efficiency and reliability.`
+      title: 'Results-Focused Professional',
+      text: `${headline} with ${yearsExp > 1 ? `${yearsExp} years of experience` : 'hands-on experience'} in ${techStr}. Proven track record of leading projects, improving operational workflows, and delivering measurable results.`
+    });
+
+    summaries.push({
+      title: 'Technical & Operational Specialist',
+      text: `Detail-oriented ${headline} with expertise in ${techStr}. Experienced in developing efficient solutions, collaborating across cross-functional teams, and consistently meeting project milestones.`
+    });
+
+    summaries.push({
+      title: 'Leadership & Project Delivery',
+      text: `Adaptable ${headline} skilled in ${techStr}. Focused on clear communication, process optimization, and driving successful outcomes from planning through execution.`
     });
   } else {
     summaries.push({
-      title: 'High-Potential & Project-Driven',
-      text: `Motivated ${headline}${highestEdu ? ` holding a ${highestEdu}` : ''} equipped with rigorous analytical training and hands-on project engineering experience. Demonstrated proficiency in ${techStr} through successful academic and open-source project deliverables. Eager to leverage strong problem-solving capabilities and collaborative drive within an ambitious engineering team.`
+      title: 'Career Starter / Graduate',
+      text: `Motivated ${headline}${highestEdu ? ` with a degree in ${highestEdu}` : ''} and practical experience in ${techStr}. Strong analytical foundation, quick to master new tools, and eager to contribute to team goals.`
+    });
+
+    summaries.push({
+      title: 'Project & Skills-Focused',
+      text: `${headline} with hands-on project experience in ${techStr}. Strong problem-solving abilities, collaborative mindset, and dedicated to delivering high-quality work.`
+    });
+
+    summaries.push({
+      title: 'Analytical & Growth-Oriented',
+      text: `Detail-focused ${headline}${highestEdu ? ` holding a ${highestEdu}` : ''}. Skilled in ${techStr} with a strong work ethic and enthusiasm for learning industry best practices.`
     });
   }
-
-  // 2. Technical Specialist & Architecture Focus
-  summaries.push({
-    title: 'Technical Specialist & Architecture Focus',
-    text: `Specialized ${headline} adept in full lifecycle system architecture, robust software design patterns, and engineering modern platforms using ${techStr}. Recognized for write-once maintainable code, disciplined automated testing, and a continuous focus on performance optimization, security, and developer productivity.`
-  });
-
-  // 3. Growth & Innovation Oriented
-  summaries.push({
-    title: 'Growth, Agile & Innovation Focus',
-    text: `Dynamic and adaptable ${headline} combining deep expertise in ${techStr} with a user-centric, agile delivery mindset. Passionate about transforming product requirements into robust, high-impact digital experiences while fostering knowledge-sharing and continuous engineering improvements.`
-  });
 
   return summaries;
 }

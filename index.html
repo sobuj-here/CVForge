@@ -66,7 +66,7 @@
               Auto-saved
             </span>
           </div>
-          <p class="text-[11px] text-slate-500 font-medium">Professional & International CV Generator</p>
+          <p class="text-[11px] text-slate-500 font-medium">Resume & CV Builder</p>
         </div>
       </div>
 
@@ -74,13 +74,13 @@
       <div class="hidden md:flex items-center gap-3 border-x border-slate-200 dark:border-slate-800 px-4">
         
         <!-- Region Badge -->
-        <button type="button" id="btn-open-country" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition text-xs font-semibold text-slate-700 dark:text-slate-200" title="Switch target country conventions (US, CA, UK, DE, FR, AU, EU)">
+        <button type="button" id="btn-open-country" class="flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/60 hover:bg-slate-100 dark:hover:bg-slate-800 transition text-xs font-semibold text-slate-700 dark:text-slate-200" title="Target Country (US, UK, CA, EU, etc.)">
           <i data-lucide="globe" class="w-3.5 h-3.5 text-blue-600"></i>
           <span>Region: <strong id="header-country-badge">US</strong></span>
         </button>
 
         <!-- Profile Completeness Indicator -->
-        <div class="flex items-center gap-2" title="Resume completeness rating">
+        <div class="flex items-center gap-2" title="Profile Completeness">
           <div class="w-20 bg-slate-200 dark:bg-slate-700 h-2 rounded-full overflow-hidden">
             <div id="header-completeness-bar" class="bg-blue-600 h-full rounded-full transition-all duration-300" style="width: 80%"></div>
           </div>
@@ -88,7 +88,7 @@
         </div>
 
         <!-- ATS Heuristic Score Pill -->
-        <button type="button" id="btn-open-ats" class="text-xs font-bold px-2.5 py-1 rounded-full border transition flex items-center gap-1.5 cursor-pointer hover:scale-105" title="Click to view full ATS Compatibility Report & rule-based suggestions">
+        <button type="button" id="btn-open-ats" class="text-xs font-bold px-2.5 py-1 rounded-full border transition flex items-center gap-1.5 cursor-pointer hover:scale-105" title="ATS Compatibility Check">
           <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
           <span id="header-ats-score">ATS: 92%</span>
         </button>
@@ -108,27 +108,27 @@
         </div>
 
         <!-- Job Keyword Matcher -->
-        <button type="button" id="btn-open-job-matcher" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition" title="Match keywords against job description" aria-label="Job Keyword Matcher">
+        <button type="button" id="btn-open-job-matcher" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition" title="Job Keyword Matcher" aria-label="Job Keyword Matcher">
           <i data-lucide="target" class="w-4 h-4"></i>
         </button>
 
         <!-- Cover Letter Generator -->
-        <button type="button" id="btn-open-cover-letter" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition" title="Matching Cover Letter Generator" aria-label="Cover Letter Generator">
+        <button type="button" id="btn-open-cover-letter" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition" title="Cover Letter" aria-label="Cover Letter">
           <i data-lucide="mail" class="w-4 h-4"></i>
         </button>
 
         <!-- Profile Manager & Storage -->
-        <button type="button" id="btn-open-profile-manager" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition" title="Manage Profiles, Backups & Privacy" aria-label="Profile Manager">
+        <button type="button" id="btn-open-profile-manager" class="p-2 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition" title="Manage Profiles & Backups" aria-label="Profile Manager">
           <i data-lucide="folder-kanban" class="w-4 h-4"></i>
         </button>
 
         <!-- Quick Sample Profiles Dropdown -->
-        <select id="sel-sample-profile" class="text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-800 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-2 py-1.5" title="Preloaded sample candidate data">
-          <option value="">Load Sample Candidate...</option>
-          <option value="fresh_graduate">Fresh Graduate (Mathematics / Entry-Level)</option>
-          <option value="experienced_professional">Experienced Professional (Operations & Projects)</option>
-          <option value="data_analyst">Data Analyst (SQL, Python, Power BI)</option>
-          <option value="office_assistant">Administrative / Office Assistant</option>
+        <select id="sel-sample-profile" class="text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-800 dark:bg-slate-800 text-slate-700 dark:text-slate-200 px-2 py-1.5" title="Sample Profiles">
+          <option value="">Sample Profiles...</option>
+          <option value="fresh_graduate">Fresh Graduate (Entry-Level)</option>
+          <option value="experienced_professional">Operations & Projects Manager</option>
+          <option value="data_analyst">Data Analyst</option>
+          <option value="office_assistant">Administrative Assistant</option>
         </select>
 
         <!-- Theme Toggle -->
@@ -139,15 +139,36 @@
 
         <!-- Primary Export Actions -->
         <div class="flex items-center gap-1.5 ml-2 border-l border-slate-200 dark:border-slate-800 pl-2">
-          <button type="button" id="btn-export-pdf" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-sm text-xs transition flex items-center gap-1.5 active:scale-95" title="Download vector-accurate PDF">
+          <button type="button" id="btn-export-pdf" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-sm text-xs transition flex items-center gap-1.5 active:scale-95" title="Download PDF">
             <i data-lucide="download" class="w-3.5 h-3.5"></i>
             <span>PDF</span>
           </button>
           
-          <button type="button" id="btn-export-docx" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 text-white font-bold rounded-lg shadow-sm text-xs transition flex items-center gap-1.5 active:scale-95" title="Export Microsoft Word (.docx)">
+          <button type="button" id="btn-export-docx" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 dark:bg-slate-700 dark:hover:bg-slate-600 text-white font-bold rounded-lg shadow-sm text-xs transition flex items-center gap-1.5 active:scale-95" title="Download Word Document (.docx)">
             <i data-lucide="file-down" class="w-3.5 h-3.5"></i>
             <span>Word (.docx)</span>
           </button>
+          
+          <button type="button" id="btn-print-preview" class="p-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-200 rounded-lg text-xs transition" title="Print CV" aria-label="Print Preview">
+            <i data-lucide="printer" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Demo Mode Banner (Visible when isDemo === true) -->
+  <div id="demo-mode-banner" class="hidden bg-amber-500/15 border-b border-amber-500/30 text-amber-900 dark:text-amber-200 px-4 py-2 text-xs flex items-center justify-between z-20">
+    <div class="flex items-center gap-2">
+      <span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-amber-500 text-white font-black text-[10px] tracking-wide uppercase">Sample Data</span>
+      <span class="font-medium">You are previewing sample data. Clear it anytime to start your own CV.</span>
+    </div>
+    <button type="button" id="btn-clear-demo-data" class="font-bold underline text-amber-900 dark:text-amber-100 hover:text-amber-700 dark:hover:text-amber-300 ml-3 cursor-pointer">
+      Clear sample data →
+    </button>
+  </div>
           
           <button type="button" id="btn-print-preview" class="p-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-200 rounded-lg text-xs transition" title="Print Preview & System Print" aria-label="Print Preview">
             <i data-lucide="printer" class="w-4 h-4"></i>
@@ -162,11 +183,11 @@
   <!-- Demo Mode Banner (Visible when isDemo === true) -->
   <div id="demo-mode-banner" class="hidden bg-amber-500/15 border-b border-amber-500/30 text-amber-900 dark:text-amber-200 px-4 py-2 text-xs flex items-center justify-between z-20">
     <div class="flex items-center gap-2">
-      <span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-amber-500 text-white font-black text-[10px] tracking-wide uppercase">Sample / Demo Data</span>
-      <span class="font-medium">You are viewing pre-loaded sample candidate data for demonstration. None of this data is yours.</span>
+      <span class="inline-flex items-center justify-center px-2 py-0.5 rounded bg-amber-500 text-white font-black text-[10px] tracking-wide uppercase">Sample Data</span>
+      <span class="font-medium">You are previewing sample data. Clear it anytime to start your own CV.</span>
     </div>
     <button type="button" id="btn-clear-demo-data" class="font-bold underline text-amber-900 dark:text-amber-100 hover:text-amber-700 dark:hover:text-amber-300 ml-3 cursor-pointer">
-      Clear Demo Data & Start My Real CV →
+      Clear sample data →
     </button>
   </div>
 
@@ -180,8 +201,8 @@
     <section id="workspace-form-column" class="w-full md:w-1/2 lg:w-[45%] h-full overflow-y-auto border-r border-slate-200 dark:border-slate-800 p-4 lg:p-6 space-y-4">
       <div class="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-800">
         <div>
-          <h2 class="text-sm font-extrabold text-slate-900 dark:text-white uppercase tracking-wider">Candidate Information Profile</h2>
-          <p class="text-xs text-slate-500">Enter your credentials once — all formats adapt automatically</p>
+          <h2 class="text-sm font-extrabold text-slate-900 dark:text-white uppercase tracking-wider">Personal Information</h2>
+          <p class="text-xs text-slate-500">Enter your details to build your CV</p>
         </div>
         <div class="flex items-center gap-2">
           <!-- Responsive View Mode Switcher -->
@@ -190,7 +211,7 @@
             <button type="button" class="btn-view-form px-2 py-1 text-[11px] font-bold rounded text-slate-600 dark:text-slate-300 hover:text-blue-600">Form</button>
             <button type="button" class="btn-view-preview px-2 py-1 text-[11px] font-bold rounded text-slate-600 dark:text-slate-300 hover:text-blue-600">Preview</button>
           </div>
-          <button type="button" id="btn-header-clear-data" class="px-2.5 py-1 text-xs font-semibold text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-red-300 transition flex items-center gap-1.5" title="Clear all candidate information and start fresh">
+          <button type="button" id="btn-header-clear-data" class="px-2.5 py-1 text-xs font-semibold text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400 border border-slate-200 dark:border-slate-700 rounded-lg hover:border-red-300 transition flex items-center gap-1.5" title="Clear all data and start fresh">
             <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
             <span>Clear Data</span>
           </button>
@@ -230,10 +251,10 @@
       <div class="mt-6 mb-8 text-center text-xs text-slate-500 max-w-md no-print">
         <div class="flex items-center justify-center gap-1.5 font-semibold text-slate-600 dark:text-slate-400">
           <i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-600"></i>
-          <span>100% Client-Side Privacy Policy</span>
+          <span>Your data stays on this device</span>
         </div>
         <p class="text-[11px] text-slate-400 mt-0.5">
-          Your resume data is stored strictly in your browser's local storage. Zero personal data is transmitted to external servers.
+          Your information is saved in your browser's local storage. Nothing is sent to external servers.
         </p>
       </div>
 
