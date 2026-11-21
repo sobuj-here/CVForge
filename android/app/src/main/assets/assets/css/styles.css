@@ -1,0 +1,654 @@
+/**
+ * CVForge - Core Stylesheet & Print Engine
+ * Optimized for split-screen live preview, responsive breakpoints, accurate paper dimensions,
+ * page break handling, and vector PDF exports.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800;900&family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Open+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@300;400;500;700&display=swap');
+
+:root {
+  --cv-font: 'Inter', sans-serif;
+  --cv-primary: #1d4ed8;
+  --cv-accent: #3b82f6;
+
+  /* Default Surface Colors (Soft Blue Theme) */
+  --app-bg: #f4f8fe;
+  --panel-bg: #ffffff;
+  --panel-border: #dbeafe;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --preview-canvas-bg: #e2ecfa;
+  --primary-accent: #1d4ed8;
+  --secondary-accent: #3b82f6;
+  --badge-bg: #eff6ff;
+  --badge-text: #1d4ed8;
+  --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-paper: 0 12px 30px -4px rgba(15, 23, 42, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.06);
+
+  /* Independent Point-Based Typography Variables (pt) */
+  --cv-name-size: 24pt;
+  --cv-heading-size: 13pt;
+  --cv-body-size: 10pt;
+  --cv-contact-size: 9.5pt;
+
+  /* Independent Millimeter Margin Variables (mm) */
+  --cv-margin-top: 15mm;
+  --cv-margin-bottom: 15mm;
+  --cv-margin-left: 15mm;
+  --cv-margin-right: 15mm;
+}
+
+/* 7 Professional Themes */
+
+/* 1. Minimal White */
+body[data-theme="minimal-white"] {
+  --app-bg: #fbfbfb;
+  --panel-bg: #ffffff;
+  --panel-border: #e5e5e5;
+  --card-bg: #ffffff;
+  --card-border: #e5e5e5;
+  --preview-canvas-bg: #ececec;
+  --primary-accent: #18181b;
+  --secondary-accent: #52525b;
+  --badge-bg: #f4f4f5;
+  --badge-text: #18181b;
+}
+
+/* 2. Soft Blue (Airy Professional) */
+body[data-theme="soft-blue"] {
+  --app-bg: #f4f8fe;
+  --panel-bg: #ffffff;
+  --panel-border: #dbeafe;
+  --card-bg: #ffffff;
+  --card-border: #e0e7ff;
+  --preview-canvas-bg: #e2ecfa;
+  --primary-accent: #1d4ed8;
+  --secondary-accent: #3b82f6;
+  --badge-bg: #eff6ff;
+  --badge-text: #1d4ed8;
+}
+
+/* 3. Soft Lavender (Creative & Modern) */
+body[data-theme="soft-lavender"] {
+  --app-bg: #f7f5ff;
+  --panel-bg: #ffffff;
+  --panel-border: #ede9fe;
+  --card-bg: #ffffff;
+  --card-border: #ddd6fe;
+  --preview-canvas-bg: #e7e2fa;
+  --primary-accent: #6366f1;
+  --secondary-accent: #8b5cf6;
+  --badge-bg: #f5f3ff;
+  --badge-text: #6366f1;
+}
+
+/* 4. Warm Beige (Editorial & Natural) */
+body[data-theme="warm-beige"] {
+  --app-bg: #faf6f0;
+  --panel-bg: #ffffff;
+  --panel-border: #e7dfd5;
+  --card-bg: #ffffff;
+  --card-border: #ebdcd0;
+  --preview-canvas-bg: #eee4d8;
+  --primary-accent: #78350f;
+  --secondary-accent: #b45309;
+  --badge-bg: #fef3c7;
+  --badge-text: #78350f;
+}
+
+/* 5. Light Gray (Balanced Slate) */
+body[data-theme="light-gray"] {
+  --app-bg: #f1f5f9;
+  --panel-bg: #ffffff;
+  --panel-border: #cbd5e1;
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --preview-canvas-bg: #dbe4ee;
+  --primary-accent: #334155;
+  --secondary-accent: #64748b;
+  --badge-bg: #f1f5f9;
+  --badge-text: #334155;
+}
+
+/* 6. Professional Navy (Corporate Executive) */
+body[data-theme="professional-navy"] {
+  --app-bg: #f0f4f9;
+  --panel-bg: #ffffff;
+  --panel-border: #cbd5e1;
+  --card-bg: #ffffff;
+  --card-border: #bfdbfe;
+  --preview-canvas-bg: #dbe5f2;
+  --primary-accent: #1e3a8a;
+  --secondary-accent: #2563eb;
+  --badge-bg: #dbeafe;
+  --badge-text: #1e3a8a;
+}
+
+/* 7. Modern Pastel (Fresh Contemporary) */
+body[data-theme="modern-pastel"] {
+  --app-bg: #f2fbf9;
+  --panel-bg: #ffffff;
+  --panel-border: #ccfbf1;
+  --card-bg: #ffffff;
+  --card-border: #bbf7d0;
+  --preview-canvas-bg: #d7f0ea;
+  --primary-accent: #0f766e;
+  --secondary-accent: #059669;
+  --badge-bg: #f0fdf4;
+  --badge-text: #0f766e;
+}
+
+/* Dark Mode Overrides */
+html.dark body,
+body.dark {
+  --app-bg: #0b0f19;
+  --panel-bg: #111827;
+  --panel-border: #1f2937;
+  --card-bg: #151d30;
+  --card-border: #1e293b;
+  --preview-canvas-bg: #030712;
+  --shadow-subtle: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-paper: 0 20px 45px -10px rgba(0, 0, 0, 0.75);
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--app-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+#workspace-preview-column {
+  background-color: var(--preview-canvas-bg) !important;
+}
+
+/* Prevent horizontal overflow & text clipping */
+.cv-format {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.7);
+}
+
+/* Simulated Paper Sheet */
+.cv-paper {
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: var(--shadow-paper);
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Dimensions for US Letter vs A4 with Independent Millimeter Margins */
+.cv-paper[data-paper="letter"],
+.cv-paper[data-paper="a4"],
+.cv-paper {
+  padding-top: var(--cv-margin-top, 15mm) !important;
+  padding-bottom: var(--cv-margin-bottom, 15mm) !important;
+  padding-left: var(--cv-margin-left, 15mm) !important;
+  padding-right: var(--cv-margin-right, 15mm) !important;
+  font-size: var(--cv-body-size, 10pt);
+}
+
+.cv-paper[data-paper="letter"] {
+  width: 8.5in;
+  min-height: 11in;
+}
+
+.cv-paper[data-paper="a4"] {
+  width: 210mm;
+  min-height: 297mm;
+}
+
+/* Independent Point-Based Typography Controls */
+.cv-paper h1,
+.cv-paper .cv-name {
+  font-size: var(--cv-name-size, 24pt) !important;
+  line-height: 1.15 !important;
+}
+
+.cv-paper h2,
+.cv-paper .cv-section-title {
+  font-size: var(--cv-heading-size, 13pt) !important;
+  line-height: 1.25 !important;
+}
+
+.cv-paper .cv-contact,
+.cv-paper .cv-contact-line {
+  font-size: var(--cv-contact-size, 9.5pt) !important;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 900px) {
+  .cv-paper[data-paper="letter"],
+  .cv-paper[data-paper="a4"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 16px !important;
+    min-height: auto !important;
+  }
+}
+
+/* Line Spacing */
+.cv-paper[data-spacing="compact"] {
+  line-height: 1.35;
+}
+.cv-paper[data-spacing="compact"] section {
+  margin-bottom: 0.8rem !important;
+}
+.cv-paper[data-spacing="normal"] {
+  line-height: 1.5;
+}
+.cv-paper[data-spacing="normal"] section {
+  margin-bottom: 1.25rem !important;
+}
+.cv-paper[data-spacing="relaxed"] {
+  line-height: 1.68;
+}
+.cv-paper[data-spacing="relaxed"] section {
+  margin-bottom: 1.6rem !important;
+}
+
+/* Font Size Scaling Controls */
+.cv-paper[data-font-size="compact"] {
+  font-size: 11.5px !important;
+}
+.cv-paper[data-font-size="compact"] h1 {
+  font-size: 1.65rem !important;
+}
+.cv-paper[data-font-size="compact"] h2 {
+  font-size: 0.8rem !important;
+}
+.cv-paper[data-font-size="compact"] h3 {
+  font-size: 0.78rem !important;
+}
+
+.cv-paper[data-font-size="normal"] {
+  font-size: 13px !important;
+}
+.cv-paper[data-font-size="normal"] h1 {
+  font-size: 1.95rem !important;
+}
+.cv-paper[data-font-size="normal"] h2 {
+  font-size: 0.9rem !important;
+}
+.cv-paper[data-font-size="normal"] h3 {
+  font-size: 0.85rem !important;
+}
+
+.cv-paper[data-font-size="large"] {
+  font-size: 14.5px !important;
+}
+.cv-paper[data-font-size="large"] h1 {
+  font-size: 2.25rem !important;
+}
+.cv-paper[data-font-size="large"] h2 {
+  font-size: 1.02rem !important;
+}
+.cv-paper[data-font-size="large"] h3 {
+  font-size: 0.95rem !important;
+}
+
+.cv-paper[data-font-size="xlarge"] {
+  font-size: 16px !important;
+}
+.cv-paper[data-font-size="xlarge"] h1 {
+  font-size: 2.5rem !important;
+}
+.cv-paper[data-font-size="xlarge"] h2 {
+  font-size: 1.15rem !important;
+}
+.cv-paper[data-font-size="xlarge"] h3 {
+  font-size: 1.05rem !important;
+}
+
+/* 22 Professional Font Families with Robust System & Web Fallbacks */
+.cv-paper[data-font="Arial"] { font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; }
+.cv-paper[data-font="Calibri"] { font-family: 'Calibri', 'Candara', 'Segoe UI', Optima, Arial, sans-serif; }
+.cv-paper[data-font="Aptos"] { font-family: 'Aptos', 'Segoe UI', 'Calibri', Arial, sans-serif; }
+.cv-paper[data-font="Times New Roman"] { font-family: 'Times New Roman', Times, 'Liberation Serif', serif; }
+.cv-paper[data-font="Georgia"] { font-family: 'Georgia', 'Cambria', Times, serif; }
+.cv-paper[data-font="Cambria"] { font-family: 'Cambria', 'Georgia', Times, serif; }
+.cv-paper[data-font="Garamond"] { font-family: 'Garamond', 'Baskerville', 'EB Garamond', Georgia, serif; }
+.cv-paper[data-font="Helvetica"] { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+.cv-paper[data-font="Verdana"] { font-family: 'Verdana', Geneva, sans-serif; }
+.cv-paper[data-font="Tahoma"] { font-family: 'Tahoma', Geneva, Verdana, sans-serif; }
+.cv-paper[data-font="Trebuchet MS"] { font-family: 'Trebuchet MS', 'Lucida Sans', 'Lucida Grande', Arial, sans-serif; }
+.cv-paper[data-font="Inter"] { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+.cv-paper[data-font="Roboto"] { font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.cv-paper[data-font="Open Sans"] { font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.cv-paper[data-font="Lato"] { font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+.cv-paper[data-font="Source Sans 3"] { font-family: 'Source Sans 3', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif; }
+.cv-paper[data-font="Merriweather"] { font-family: 'Merriweather', Georgia, serif; }
+.cv-paper[data-font="Playfair Display"] { font-family: 'Playfair Display', Georgia, serif; }
+.cv-paper[data-font="Montserrat"] { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif; }
+.cv-paper[data-font="Poppins"] { font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif; }
+.cv-paper[data-font="IBM Plex Sans"] { font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif; }
+.cv-paper[data-font="IBM Plex Serif"] { font-family: 'IBM Plex Serif', Georgia, serif; }
+.cv-paper[data-font="Fira Code"] { font-family: 'Fira Code', monospace; }
+
+/* Font Style Presets */
+.cv-paper[data-font-style="regular"] { font-style: normal; font-weight: 400; }
+.cv-paper[data-font-style="medium"] { font-style: normal; font-weight: 500; }
+.cv-paper[data-font-style="semibold"] { font-style: normal; font-weight: 600; }
+.cv-paper[data-font-style="bold"] { font-style: normal; font-weight: 700; }
+.cv-paper[data-font-style="italic"] { font-style: italic; font-weight: 400; }
+.cv-paper[data-font-style="bold-italic"] { font-style: italic; font-weight: 700; }
+
+/* Granular Typography Target Directives */
+.cv-paper[data-font-target="headings"][data-font="Arial"] h1,
+.cv-paper[data-font-target="headings"][data-font="Arial"] h2,
+.cv-paper[data-font-target="headings"][data-font="Arial"] h3,
+.cv-paper[data-font-target="headings"][data-font="Arial"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Arial"] .cv-section-title { font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Calibri"] h1,
+.cv-paper[data-font-target="headings"][data-font="Calibri"] h2,
+.cv-paper[data-font-target="headings"][data-font="Calibri"] h3,
+.cv-paper[data-font-target="headings"][data-font="Calibri"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Calibri"] .cv-section-title { font-family: 'Calibri', 'Candara', 'Segoe UI', Optima, Arial, sans-serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Aptos"] h1,
+.cv-paper[data-font-target="headings"][data-font="Aptos"] h2,
+.cv-paper[data-font-target="headings"][data-font="Aptos"] h3,
+.cv-paper[data-font-target="headings"][data-font="Aptos"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Aptos"] .cv-section-title { font-family: 'Aptos', 'Segoe UI', 'Calibri', Arial, sans-serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Times New Roman"] h1,
+.cv-paper[data-font-target="headings"][data-font="Times New Roman"] h2,
+.cv-paper[data-font-target="headings"][data-font="Times New Roman"] h3,
+.cv-paper[data-font-target="headings"][data-font="Times New Roman"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Times New Roman"] .cv-section-title { font-family: 'Times New Roman', Times, 'Liberation Serif', serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Georgia"] h1,
+.cv-paper[data-font-target="headings"][data-font="Georgia"] h2,
+.cv-paper[data-font-target="headings"][data-font="Georgia"] h3,
+.cv-paper[data-font-target="headings"][data-font="Georgia"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Georgia"] .cv-section-title { font-family: 'Georgia', 'Cambria', Times, serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Cambria"] h1,
+.cv-paper[data-font-target="headings"][data-font="Cambria"] h2,
+.cv-paper[data-font-target="headings"][data-font="Cambria"] h3,
+.cv-paper[data-font-target="headings"][data-font="Cambria"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Cambria"] .cv-section-title { font-family: 'Cambria', 'Georgia', Times, serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Garamond"] h1,
+.cv-paper[data-font-target="headings"][data-font="Garamond"] h2,
+.cv-paper[data-font-target="headings"][data-font="Garamond"] h3,
+.cv-paper[data-font-target="headings"][data-font="Garamond"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Garamond"] .cv-section-title { font-family: 'Garamond', 'Baskerville', 'EB Garamond', Georgia, serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Merriweather"] h1,
+.cv-paper[data-font-target="headings"][data-font="Merriweather"] h2,
+.cv-paper[data-font-target="headings"][data-font="Merriweather"] h3,
+.cv-paper[data-font-target="headings"][data-font="Merriweather"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Merriweather"] .cv-section-title { font-family: 'Merriweather', Georgia, serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Playfair Display"] h1,
+.cv-paper[data-font-target="headings"][data-font="Playfair Display"] h2,
+.cv-paper[data-font-target="headings"][data-font="Playfair Display"] h3,
+.cv-paper[data-font-target="headings"][data-font="Playfair Display"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Playfair Display"] .cv-section-title { font-family: 'Playfair Display', Georgia, serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Montserrat"] h1,
+.cv-paper[data-font-target="headings"][data-font="Montserrat"] h2,
+.cv-paper[data-font-target="headings"][data-font="Montserrat"] h3,
+.cv-paper[data-font-target="headings"][data-font="Montserrat"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Montserrat"] .cv-section-title { font-family: 'Montserrat', sans-serif; }
+
+.cv-paper[data-font-target="headings"][data-font="Poppins"] h1,
+.cv-paper[data-font-target="headings"][data-font="Poppins"] h2,
+.cv-paper[data-font-target="headings"][data-font="Poppins"] h3,
+.cv-paper[data-font-target="headings"][data-font="Poppins"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="Poppins"] .cv-section-title { font-family: 'Poppins', sans-serif; }
+
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Sans"] h1,
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Sans"] h2,
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Sans"] h3,
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Sans"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Sans"] .cv-section-title { font-family: 'IBM Plex Sans', sans-serif; }
+
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Serif"] h1,
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Serif"] h2,
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Serif"] h3,
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Serif"] .cv-name,
+.cv-paper[data-font-target="headings"][data-font="IBM Plex Serif"] .cv-section-title { font-family: 'IBM Plex Serif', Georgia, serif; }
+
+/* Section page-break hygiene */
+.cv-format section,
+.cv-format header,
+.cv-format .border-l-2,
+.cv-format .border-t,
+.page-break-avoid,
+.break-inside-avoid {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Avoid orphaned section headers */
+.cv-format h1,
+.cv-format h2,
+.cv-format h3 {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+/* Print Preview Mode */
+body.is-print-preview #app-header,
+body.is-print-preview #customize-bar-container,
+body.is-print-preview #workspace-form-column {
+  display: none !important;
+}
+body.is-print-preview #workspace-preview-column {
+  width: 100% !important;
+  background: #1e293b !important;
+  padding: 2rem !important;
+}
+body.is-print-preview .cv-paper {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* Print Stylesheet */
+@media print {
+  @page {
+    margin: 10mm;
+    size: auto;
+  }
+  
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 12pt;
+  }
+
+  /* Hide all app chrome, buttons, modals, alerts */
+  #app-header,
+  #demo-mode-banner,
+  #customize-bar-container,
+  #workspace-form-column,
+  .no-print,
+  button,
+  .accordion-toggle,
+  #smart-summary-box,
+  #ats-audit-modal,
+  #country-modal,
+  #job-matcher-modal,
+  #cover-letter-modal,
+  #template-gallery-modal,
+  #profile-manager-modal,
+  #photo-crop-modal,
+  #export-preview-modal {
+    display: none !important;
+  }
+
+  #workspace-preview-column {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .cv-paper {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
+  }
+
+  .cv-format {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+}
+
+/* ==========================================================================
+   Personal Information Editing Form Typography & Field Dimensions
+   STRICTLY scoped to #sec-personal only.
+   Does not affect other form sections, the final CV, or exports.
+   ========================================================================== */
+
+/* Improved Spacing Between Input Fields in Personal Info */
+#sec-personal .accordion-content {
+  gap: 1.5rem !important;
+}
+
+#sec-personal .accordion-content .grid {
+  gap: 1.25rem !important;
+}
+
+/* 1. Field Labels: 16px */
+#sec-personal .accordion-content label,
+#sec-personal .accordion-content label span:not(.font-normal) {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  display: block;
+  margin-bottom: 6px !important;
+  color: #1e293b !important;
+}
+.dark #sec-personal .accordion-content label,
+.dark #sec-personal .accordion-content label span:not(.font-normal) {
+  color: #f1f5f9 !important;
+}
+
+/* 2. Input Text: 16px, Height: 46-48px (48px) */
+#sec-personal .accordion-content input.form-input,
+#sec-personal .accordion-content select.form-input,
+#sec-personal .accordion-content input[type="text"],
+#sec-personal .accordion-content input[type="email"],
+#sec-personal .accordion-content input[type="tel"],
+#sec-personal .accordion-content input[type="url"],
+#sec-personal .accordion-content select {
+  font-size: 16px !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  padding: 10px 14px !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+  border-radius: 8px !important;
+  color: #0f172a !important;
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+}
+.dark #sec-personal .accordion-content input.form-input,
+.dark #sec-personal .accordion-content select.form-input,
+.dark #sec-personal .accordion-content input[type="text"],
+.dark #sec-personal .accordion-content input[type="email"],
+.dark #sec-personal .accordion-content input[type="tel"],
+.dark #sec-personal .accordion-content input[type="url"],
+.dark #sec-personal .accordion-content select {
+  color: #f8fafc !important;
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* 3. Placeholder Text: 15-16px */
+#sec-personal .accordion-content input::placeholder,
+#sec-personal .accordion-content select::placeholder {
+  font-size: 15.5px !important;
+  color: #64748b !important;
+  opacity: 1 !important;
+}
+.dark #sec-personal .accordion-content input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* 4. Dropdown Options: 16px */
+#sec-personal .accordion-content select option {
+  font-size: 16px !important;
+  padding: 8px 12px !important;
+}
+
+/* 5. Helper Text: 14px */
+#sec-personal .accordion-content p,
+#sec-personal .accordion-content .helper-text,
+#sec-personal .accordion-content .text-\[10px\],
+#sec-personal .accordion-content .text-\[11px\],
+#sec-personal .accordion-content span.text-amber-600,
+#sec-personal .accordion-content span.text-red-500.block,
+#sec-personal .accordion-content .text-slate-400,
+#sec-personal .accordion-content .text-slate-500 {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #475569;
+}
+.dark #sec-personal .accordion-content p,
+.dark #sec-personal .accordion-content .helper-text,
+.dark #sec-personal .accordion-content .text-\[10px\],
+.dark #sec-personal .accordion-content .text-\[11px\],
+.dark #sec-personal .accordion-content .text-slate-400,
+.dark #sec-personal .accordion-content .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+/* 6. Button Text: 15-16px */
+#sec-personal .accordion-content button:not(.accordion-toggle),
+#sec-personal #btn-trigger-crop-modal,
+#sec-personal #btn-remove-photo-direct {
+  font-size: 15.5px !important;
+  padding: 10px 18px !important;
+  min-height: 44px !important;
+  font-weight: 600 !important;
+}
+
+/* Checkbox size alignment */
+#sec-personal .accordion-content input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px !important;
+  min-height: 18px !important;
+}
+

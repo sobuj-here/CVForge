@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Shield Plate -->
+    <path
+        android:fillColor="#0F172A"
+        android:strokeColor="#2563EB"
+        android:strokeWidth="1"
+        android:pathData="M31,34 L54,26 L77,34 L77,73 L54,86 L31,73 Z" />
+    <!-- C Ribbon (Cyan) -->
+    <path
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:pathData="M60,37 C42,37 36,50 36,54 C36,65 46,71 60,71" />
+    <!-- V Chisel (Royal Blue) -->
+    <path
+        android:strokeColor="#60A5FA"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M47,40 L57,68 L68,40" />
+    <!-- Document Lines -->
+    <path
+        android:strokeColor="#E2E8F0"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M44,48 L51,48 M44,53 L53,53" />
+    <!-- Radiant Forge Spark (Gold) -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M65,31 L66.5,34.5 L70,36 L66.5,37.5 L65,41 L63.5,37.5 L60,36 L63.5,34.5 Z" />
+</vector>

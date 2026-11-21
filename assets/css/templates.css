@@ -1,0 +1,52 @@
+/**
+ * CVForge - Specific Styling for the 10 CV Formats
+ */
+
+/* 1. Chronological Timeline Styling */
+.cv-chronological .relative {
+  transition: all 0.2s ease;
+}
+
+/* 3. Functional CV Cards */
+.cv-functional .shadow-xs {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* 7. Academic CV Styles */
+.cv-academic {
+  font-family: 'Merriweather', 'Georgia', serif;
+}
+.cv-academic h1, .cv-academic h2 {
+  font-family: 'Merriweather', 'Georgia', serif;
+}
+.cv-academic ol li::marker {
+  font-weight: 700;
+  color: #475569;
+}
+
+/* 8. Europass Layout Strict Standards */
+.cv-europass table {
+  border-collapse: collapse;
+}
+
+/* 9. ATS-Friendly Strict Standards */
+.cv-ats-friendly {
+  font-family: Arial, Helvetica, 'Liberation Sans', sans-serif !important;
+  color: #000000 !important;
+  background: #ffffff !important;
+}
+.cv-ats-friendly h1, .cv-ats-friendly h2, .cv-ats-friendly h3 {
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: #000000 !important;
+}
+
+/* 10. Creative Visual Split Layout */
+.cv-creative-visual aside {
+  position: relative;
+}
+@media (min-width: 768px) {
+  .cv-creative-visual {
+    display: flex;
+    flex-direction: row;
+  }
+}
