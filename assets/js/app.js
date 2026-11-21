@@ -223,44 +223,50 @@ class CVForgeApp {
   }
 
   bindViewModeToggles() {
-    const btnSplit = document.getElementById('btn-view-split');
-    const btnFormOnly = document.getElementById('btn-view-form');
-    const btnPreviewOnly = document.getElementById('btn-view-preview');
+    const btnSplits = document.querySelectorAll('#btn-view-split, .btn-view-split');
+    const btnForms = document.querySelectorAll('#btn-view-form, .btn-view-form');
+    const btnPreviews = document.querySelectorAll('#btn-view-preview, .btn-view-preview');
     const formCol = document.getElementById('workspace-form-column');
     const previewCol = document.getElementById('workspace-preview-column');
 
     const setMode = (mode) => {
       this.currentViewMode = mode;
-      [btnSplit, btnFormOnly, btnPreviewOnly].forEach(b => {
+      document.querySelectorAll('#btn-view-split, .btn-view-split, #btn-view-form, .btn-view-form, #btn-view-preview, .btn-view-preview').forEach(b => {
         b?.classList.remove('bg-blue-600', 'text-white', 'shadow-xs');
         b?.classList.add('text-slate-600', 'dark:text-slate-300');
       });
 
       if (mode === 'split') {
-        btnSplit?.classList.add('bg-blue-600', 'text-white', 'shadow-xs');
-        btnSplit?.classList.remove('text-slate-600', 'dark:text-slate-300');
+        btnSplits.forEach(b => {
+          b?.classList.add('bg-blue-600', 'text-white', 'shadow-xs');
+          b?.classList.remove('text-slate-600', 'dark:text-slate-300');
+        });
         formCol?.classList.remove('hidden');
         previewCol?.classList.remove('hidden');
         formCol?.classList.add('md:w-1/2', 'lg:w-[45%]');
         previewCol?.classList.add('md:w-1/2', 'lg:w-[55%]');
       } else if (mode === 'form') {
-        btnFormOnly?.classList.add('bg-blue-600', 'text-white', 'shadow-xs');
-        btnFormOnly?.classList.remove('text-slate-600', 'dark:text-slate-300');
+        btnForms.forEach(b => {
+          b?.classList.add('bg-blue-600', 'text-white', 'shadow-xs');
+          b?.classList.remove('text-slate-600', 'dark:text-slate-300');
+        });
         formCol?.classList.remove('hidden', 'md:w-1/2', 'lg:w-[45%]');
         formCol?.classList.add('w-full');
         previewCol?.classList.add('hidden');
       } else if (mode === 'preview') {
-        btnPreviewOnly?.classList.add('bg-blue-600', 'text-white', 'shadow-xs');
-        btnPreviewOnly?.classList.remove('text-slate-600', 'dark:text-slate-300');
+        btnPreviews.forEach(b => {
+          b?.classList.add('bg-blue-600', 'text-white', 'shadow-xs');
+          b?.classList.remove('text-slate-600', 'dark:text-slate-300');
+        });
         formCol?.classList.add('hidden');
         previewCol?.classList.remove('hidden', 'md:w-1/2', 'lg:w-[55%]');
         previewCol?.classList.add('w-full');
       }
     };
 
-    btnSplit?.addEventListener('click', () => setMode('split'));
-    btnFormOnly?.addEventListener('click', () => setMode('form'));
-    btnPreviewOnly?.addEventListener('click', () => setMode('preview'));
+    btnSplits.forEach(b => b.addEventListener('click', () => setMode('split')));
+    btnForms.forEach(b => b.addEventListener('click', () => setMode('form')));
+    btnPreviews.forEach(b => b.addEventListener('click', () => setMode('preview')));
     // Auto-detect mobile screen
     if (window.innerWidth < 768) {
       const btnForm = document.getElementById('btn-view-form');
@@ -308,7 +314,14 @@ window.CVForgeMobile = {
 };
 
 // Bootstrap application on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
+function initCVForge() {
   const app = new CVForgeApp();
   app.init();
-});
+  window.__CVForgeAppInstance = app;
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initCVForge);
+} else {
+  initCVForge();
+}
